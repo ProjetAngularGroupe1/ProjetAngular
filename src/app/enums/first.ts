@@ -1,4 +1,4 @@
-export enum First {
+export enum FirstEnum {
     A,
     B,
 }
