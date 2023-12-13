@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReunionComponent } from './components/reunion/reunion.component';
+import { ArticleComponent } from './components/article/article.component';
 
 import { FirstPipe } from'./pipes/first.pipe';
 import { FirstService } from "./services/first.service"
@@ -15,7 +16,8 @@ import { FirstDirective } from'./directives/first.directive';
     AppComponent,
     ReunionComponent,
     FirstDirective,
-    FirstPipe
+    FirstPipe,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
