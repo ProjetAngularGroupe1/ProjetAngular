@@ -19,9 +19,6 @@ export class ArticleComponent implements OnInit {
             if (id) {
                 this.my_id = id;
             }
-            
-            // this.product = this.products.find(product => product.id === +id);
         })
     }
-
 }
