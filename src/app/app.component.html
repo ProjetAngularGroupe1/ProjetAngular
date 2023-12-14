@@ -1,7 +1,16 @@
-<div> My header </div>
+<div class="body">
+    <div class="header"> My header </div>
 
-<app-article-list></app-article-list>
+    <div class="navbar">
+        <a href="/"> Home </a> |
+        <a href="/profile"> Profile </a> |
+        <a> Logout </a>
+    </div>
 
-<div> My Footer </div>
+    <router-outlet></router-outlet>
 
-<router-outlet></router-outlet>
+    <div> <span highlightDirective>TODO</span> &nbsp; Use directive in a better way </div>
+    <div> <span highlightDirective>TODO</span> &nbsp; {{ "Use pipes in a better way" | firstPipe }} </div>
+
+    <div class="footer"> My Footer </div>
+</div>
