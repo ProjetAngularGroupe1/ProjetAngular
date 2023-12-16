@@ -1,25 +1,13 @@
-<div>
+<div class="commentForm">
     <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-        <p>
-            <label for="firstname">First Name </label>
-            <input formControlName="firstname" type="text" id="firstname" name="firstname" required>
-        </p>
-    
-        <p>
-            <label for="lastname">Last Name </label>
-            <input formControlName="lastname" type="text" id="lastname" name="lastname" required>
-        </p>
-    
+        <textarea class="commentFormBody" id="body" name="body" formControlName="body" type="text" placeholder="Write comment..." required></textarea>
+        
+        <div *ngIf= "commentForm.get('body')!.invalid && (commentForm.get('body')!.dirty|| commentForm.get('body')!.touched)">
+            <div *ngIf= "commentForm.get('body')!.errors?.['required']"> Comment musn't be empty. </div>
+        </div>
+
         <p>
             <button type="submit">Submit</button>
         </p>
     </form>
-</div>
-
-<div>
-    TODO: commentForm error (see in html file)
-    <div *ngIf = "commentForm.get('firstname')!.invalid && (commentForm.get('firstname')!.dirty|| commentForm.get('firstname')!.touched)">
-    <div *ngIf = "commentForm.get('firstname')!.errors?.['required']"> Firstname is required. </div>
-    <div *ngIf = "commentForm.get('firstname')!.errors?.['minlength']"> Firstname must beat least 4 characters long. </div>
-    <div *ngIf = "commentForm.get('firstname')!.errors?.['regexError']"> Name cannot be Bob. </div>
 </div>

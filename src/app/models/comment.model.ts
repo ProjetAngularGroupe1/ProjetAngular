@@ -5,7 +5,6 @@ export class CommentModel {
     creation_date: Date;
     update_date: Date;
     like_count: number;
-    comments: Array<CommentModel>;
 
     constructor() {
         this.id            = 0;
@@ -14,6 +13,5 @@ export class CommentModel {
         this.creation_date = new Date();
         this.update_date   = new Date();
         this.like_count    = 8;
-        this.comments      = new Array<CommentModel>;
     }
 }

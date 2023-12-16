@@ -5,8 +5,6 @@ import { CommentModel } from '../../models/comment.model';
 
 import { CommentService } from "../../services/comment.service"
 
-import { RegexValidator } from '../../validators/regex.validator'
-
 @Component({
   selector: 'app-comment-form',
   templateUrl: './comment-form.component.html',
@@ -20,16 +18,21 @@ export class CommentFormComponent {
 
     constructor(private fb: FormBuilder, private commentService: CommentService) { 
         this.commentForm = this.fb.group({
-            firstname : new FormControl('', [Validators.required, Validators.minLength(3), RegexValidator(/bob/i)]),
-            lastname  : new FormControl(),
+            body : new FormControl('', [Validators.required]),
         }, { updateOn:'submit' })
     }
 
     onSubmit(): void {
-        let new_first_name = this.commentForm.value.firstname;
-
-        let h: CommentModel = new CommentModel()
-
-        this.emitComment.emit(h)
+        if (this.commentForm.valid) {
+            let new_comment: CommentModel = new CommentModel()
+    
+            new_comment.body          = this.commentForm.value.body;
+            new_comment.author        = "Author";
+            new_comment.creation_date = new Date();
+            new_comment.update_date   = new Date();
+            new_comment.like_count    = 0;
+    
+            this.emitComment.emit(new_comment)
+        }
     }
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { CommentModel } from '../../models/comment.model'
+import { UserService } from '../../services/user.service'
 
 @Component({
   selector: 'app-article',
@@ -8,17 +11,27 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./article.component.css']
 })
 export class ArticleComponent implements OnInit {
+    isLoggedIn: boolean = false;
 
-    constructor(private route: ActivatedRoute) {}
+    article_id: string = "";
 
-    my_id: string = "";
+    constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
             let id = params.get('id');
             if (id) {
-                this.my_id = id;
+                this.article_id = id;
             }
         })
+
+        // TODO: use another way to check is logged in every time we go see the component
+        this.router.events.subscribe(event => {
+            this.isLoggedIn = this.userService.isLoggedIn();
+        });
+    }
+
+    getComment(comment: CommentModel) {
+        console.log(comment)
     }
 }

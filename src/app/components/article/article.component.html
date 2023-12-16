@@ -1,5 +1,5 @@
-<h1> Article {{ my_id }} </h1>
-<h3> Title: TODO </h3>
+<h1> Article {{ article_id }} </h1>
+<h4> Title: TODO </h4>
 <h5> Author: TODO </h5>
 <h5> Created: TODO </h5>
 
@@ -10,12 +10,6 @@
     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>
 
-<app-comment-form></app-comment-form>
-
 <app-comment-list></app-comment-list>
 
-<ul>
-    <li><a [routerLink]="['/comments', 1]">Comment 1</a></li>
-    <li><a [routerLink]="['/comments', 2]">Comment 2</a></li>
-    <li><a [routerLink]="['/comments', 3]">Comment 3</a></li>
-</ul>
+<app-comment-form *ngIf="isLoggedIn" (emitComment)="getComment($event)"></app-comment-form>
