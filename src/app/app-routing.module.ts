@@ -12,12 +12,14 @@ import { PageForbiddenComponent } from './components/page-forbidden/page-forbidd
 import { ProfileComponent       } from './components/profile/profile.component';
 import { LoginComponent         } from './components/login/login.component';
 import { LogoutComponent        } from './components/logout/logout.component';
+import { ContactComponent       } from './components/contact/contact.component';
 
 const routes: Routes = [
     { path: ''            , component: ArticleListComponent  , canActivate: []                },
     { path: 'profile'     , component: ProfileComponent      , canActivate: [isLoggedInGuard] },
     { path: 'login'       , component: LoginComponent        , canActivate: []                },
     { path: 'logout'      , component: LogoutComponent       , canActivate: [isLoggedInGuard] },
+    { path: 'contact'     , component: ContactComponent      , canActivate: []                },
     { path: 'articles'    , component: ArticleListComponent  , canActivate: []                },
     { path: 'articles/new', component: ArticleFormComponent  , canActivate: [isLoggedInGuard] },
     { path: 'articles/:id', component: ArticleComponent      , canActivate: []                },

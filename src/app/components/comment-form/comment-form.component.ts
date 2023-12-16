@@ -1,9 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
-
 import { CommentModel } from '../../models/comment.model';
-
 import { CommentService } from "../../services/comment.service"
+
 
 @Component({
   selector: 'app-comment-form',

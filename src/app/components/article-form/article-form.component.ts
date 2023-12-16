@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
-
 import { ArticleModel } from '../../models/article.model';
-
 import { ArticleService } from "../../services/article.service"
-
 import { RegexValidator } from '../../validators/regex.validator'
+
 
 @Component({
   selector: 'app-article-form',

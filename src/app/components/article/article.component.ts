@@ -25,10 +25,9 @@ export class ArticleComponent implements OnInit {
             }
         })
 
-        // TODO: use another way to check is logged in every time we go see the component
         this.router.events.subscribe(event => {
             this.isLoggedIn = this.userService.isLoggedIn();
-        });
+        })
     }
 
     getComment(comment: CommentModel) {

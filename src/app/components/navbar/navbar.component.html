@@ -1,0 +1,6 @@
+<div class="navbar">
+    <a href="/"> Home </a>
+    <a href="/login" *ngIf="!isLoggedIn"> Login </a> 
+    <a href="/profile" *ngIf="isLoggedIn"> Profile </a>
+    <a href="/logout" *ngIf="isLoggedIn"> Logout </a>
+</div>

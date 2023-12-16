@@ -1,14 +1,6 @@
 <div class="body">
-    <div class="header"> Angular Blog </div>
-
-    <div class="navbar">
-        <a href="/"> Home </a>
-        <a href="/login" *ngIf="!isLoggedIn"> Login </a> 
-        <a href="/profile" *ngIf="isLoggedIn"> Profile </a>
-        <a href="/logout" *ngIf="isLoggedIn"> Logout </a>
-    </div>
-
+    <app-header></app-header>
+    <app-navbar></app-navbar>
     <router-outlet></router-outlet>
-
-    <div class="footer"> My Footer </div>
+    <app-footer></app-footer>
 </div>

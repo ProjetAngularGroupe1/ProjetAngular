@@ -20,6 +20,10 @@ import { CommentFormComponent   } from './components/comment-form/comment-form.c
 import { ArticleFormComponent   } from './components/article-form/article-form.component';
 import { LoginComponent         } from './components/login/login.component';
 import { LogoutComponent        } from './components/logout/logout.component';
+import { ContactComponent       } from './components/contact/contact.component';
+import { HeaderComponent        } from './components/header/header.component';
+import { FooterComponent        } from './components/footer/footer.component';
+import { NavbarComponent        } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { LogoutComponent        } from './components/logout/logout.component';
     ArticleFormComponent,
     LoginComponent,
     LogoutComponent,
+    ContactComponent,
+    HeaderComponent,
+    FooterComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

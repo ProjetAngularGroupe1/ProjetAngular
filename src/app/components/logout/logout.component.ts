@@ -1,19 +1,28 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service'
 
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
   styleUrls: ['./logout.component.css']
 })
-export class LogoutComponent {
-    constructor(private userService: UserService, private router: Router) {}
+export class LogoutComponent implements OnInit {
+    constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) {}
 
-    onClick(): void {
+    ngOnInit(): void {
+        this.router.events.subscribe(() => {
+            if (this.route.snapshot.routeConfig?.path === 'logout') {
+                this.logOut();
+            }
+        });
+    }
+
+    logOut(): void {
         this.userService.logOut()
-        this.router.navigate(['/'])
+        setTimeout(() => {
+            this.router.navigate(['/']);
+        }, 5000);
     }
 }

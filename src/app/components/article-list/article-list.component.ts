@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service'
 
+
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.component.html',
@@ -16,6 +17,6 @@ export class ArticleListComponent implements OnInit {
         // TODO: use another way to check is logged in every time we go see the component
         this.router.events.subscribe(event => {
             this.isLoggedIn = this.userService.isLoggedIn();
-        });
+        })
     }
 }
