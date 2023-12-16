@@ -1,0 +1,25 @@
+<div>
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+        <p>
+            <label for="firstname">First Name </label>
+            <input formControlName="firstname" type="text" id="firstname" name="firstname" required>
+        </p>
+    
+        <p>
+            <label for="lastname">Last Name </label>
+            <input formControlName="lastname" type="text" id="lastname" name="lastname" required>
+        </p>
+    
+        <p>
+            <button type="submit">Submit</button>
+        </p>
+    </form>
+</div>
+
+<div>
+    TODO: articleForm error (see in html file)
+    <div *ngIf = "articleForm.get('firstname')!.invalid && (articleForm.get('firstname')!.dirty|| articleForm.get('firstname')!.touched)">
+    <div *ngIf = "articleForm.get('firstname')!.errors?.['required']"> Firstname is required. </div>
+    <div *ngIf = "articleForm.get('firstname')!.errors?.['minlength']"> Firstname must beat least 4 characters long. </div>
+    <div *ngIf = "articleForm.get('firstname')!.errors?.['regexError']"> Name cannot be Bob. </div>
+</div>

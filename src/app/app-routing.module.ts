@@ -1,18 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ArticleListComponent } from './components/article-list/article-list.component';
-import { ArticleComponent } from './components/article/article.component';
-import { CommentComponent } from './components/comment/comment.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { ProfileComponent } from './components/profile/profile.component';
+
+import { isLoggedInGuard } from './guards/login.guard'
+
+import { ArticleListComponent   } from './components/article-list/article-list.component';
+import { ArticleComponent       } from './components/article/article.component';
+import { ArticleFormComponent   } from './components/article-form/article-form.component';
+import { CommentComponent       } from './components/comment/comment.component';
+import { PageNotFoundComponent  } from './components/page-not-found/page-not-found.component';
+import { PageForbiddenComponent } from './components/page-forbidden/page-forbidden.component';
+import { ProfileComponent       } from './components/profile/profile.component';
+import { LoginComponent         } from './components/login/login.component';
+import { LogoutComponent        } from './components/logout/logout.component';
 
 const routes: Routes = [
-    { path: ''            , component: ArticleListComponent },
-    { path: 'profile'     , component: ProfileComponent     },
-    { path: 'articles'    , component: ArticleListComponent },
-    { path: 'articles/:id', component: ArticleComponent     },
-    { path: 'comments/:id', component: CommentComponent     },
-    { path: '**'          , pathMatch: 'full', component: PageNotFoundComponent }, 
+    { path: ''            , component: ArticleListComponent  , canActivate: []                },
+    { path: 'profile'     , component: ProfileComponent      , canActivate: [isLoggedInGuard] },
+    { path: 'login'       , component: LoginComponent        , canActivate: []                },
+    { path: 'logout'      , component: LogoutComponent       , canActivate: [isLoggedInGuard] },
+    { path: 'articles'    , component: ArticleListComponent  , canActivate: []                },
+    { path: 'articles/new', component: ArticleFormComponent  , canActivate: [isLoggedInGuard] },
+    { path: 'articles/:id', component: ArticleComponent      , canActivate: []                },
+    { path: 'comments/:id', component: CommentComponent      , canActivate: []                },
+    { path: '404'         , component: PageNotFoundComponent , canActivate: []                },
+    { path: '403'         , component: PageForbiddenComponent, canActivate: []                },
+    { path: '**'          , component: PageNotFoundComponent , pathMatch: 'full'              },
 ];
 
 @NgModule({
