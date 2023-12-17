@@ -13,11 +13,11 @@ export class ArticleModel {
     constructor() {
         this.id            = 0;
         this.title         = "Article Title";
-        this.author        = "Article Comment Author";
+        this.author        = "Article Author";
         this.body          = "Article Body";
         this.creation_date = new Date();
         this.update_date   = new Date();
-        this.like_count    = 10;
+        this.like_count    = 0;
         this.comments      = new Array<CommentModel>();
     }
 }

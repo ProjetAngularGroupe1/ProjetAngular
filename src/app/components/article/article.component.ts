@@ -25,7 +25,7 @@ export class ArticleComponent implements OnInit {
             }
         })
 
-        this.router.events.subscribe(event => {
+        this.router.events.subscribe(() => {
             this.isLoggedIn = this.userService.isLoggedIn();
         })
     }

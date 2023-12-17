@@ -15,7 +15,15 @@ export class ArticleListComponent implements OnInit {
 
     ngOnInit(): void {
         // TODO: use another way to check is logged in every time we go see the component
-        this.router.events.subscribe(event => {
+        this.router.events.subscribe(() => {
+            this.isLoggedIn = this.userService.isLoggedIn();
+        })
+
+        this.userService.logInSignal$.subscribe(() => {
+            this.isLoggedIn = this.userService.isLoggedIn();
+        })
+
+        this.userService.logOutSignal$.subscribe(() => {
             this.isLoggedIn = this.userService.isLoggedIn();
         })
     }

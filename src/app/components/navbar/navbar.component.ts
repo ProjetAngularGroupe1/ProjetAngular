@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd  } from '@angular/router';
+import { Router  } from '@angular/router';
 import { UserService } from '../../services/user.service'
 
 
@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit(): void {
         // TODO: Combine all this
-        this.router.events.subscribe(event => {
+        this.router.events.subscribe(() => {
             this.isLoggedIn = this.userService.isLoggedIn();
         })
 
