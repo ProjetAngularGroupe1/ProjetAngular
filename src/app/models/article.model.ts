@@ -10,11 +10,11 @@ export class ArticleModel {
     like_count: number
     comments: Array<CommentModel>
    
-    constructor() {
-        this.id            = 0
-        this.title         = "Article Title"
-        this.author        = "Article Author"
-        this.body          = "Article Body"
+    constructor(id: number, title: string, author: string, body: string) {
+        this.id            = id
+        this.title         = title
+        this.author        = author
+        this.body          = body
         this.creation_date = new Date()
         this.update_date   = new Date()
         this.like_count    = 0

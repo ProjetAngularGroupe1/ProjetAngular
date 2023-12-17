@@ -2,16 +2,14 @@ import { Observable, of } from 'rxjs'
 import { delay } from 'rxjs/operators'
 import { Injectable } from '@angular/core'
 import { CommentModel } from '../models/comment.model'
+import { MockDataService } from '../services/mock-data.service'
 
 @Injectable()
 export class CommentService {
-    mockCommentList: Array<CommentModel> = [
-        new CommentModel(),
-        new CommentModel(), 
-        new CommentModel(),
-    ]
+
+    constructor (private mockDataService: MockDataService) {}
 
     getAllComments(): Observable<Array<CommentModel>> {
-        return of(this.mockCommentList).pipe(delay(1000))
+        return of(this.mockDataService.mockCommentList).pipe(delay(1000))
     }
 }

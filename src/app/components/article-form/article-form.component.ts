@@ -25,18 +25,18 @@ export class ArticleFormComponent {
 
     onSubmit(): void {
         if (this.articleForm.valid) {
-            let new_article: ArticleModel = new ArticleModel()
+            // let new_article: ArticleModel = new ArticleModel()
     
-            new_article.title         = this.articleForm.value.title
-            new_article.body          = this.articleForm.value.body
-            new_article.author        = "Author"
-            new_article.creation_date = new Date()
-            new_article.update_date   = new Date()
-            new_article.like_count    = 0
+            // new_article.title         = this.articleForm.value.title
+            // new_article.body          = this.articleForm.value.body
+            // new_article.author        = "Author"
+            // new_article.creation_date = new Date()
+            // new_article.update_date   = new Date()
+            // new_article.like_count    = 0
     
-            this.emitArticle.emit(new_article)
+            // this.emitArticle.emit(new_article)
 
-            this.router.navigate(['/articles', new_article.id ])
+            // this.router.navigate(['/articles', new_article.id ])
         }
     }
 }

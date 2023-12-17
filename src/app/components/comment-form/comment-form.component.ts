@@ -23,15 +23,15 @@ export class CommentFormComponent {
 
     onSubmit(): void {
         if (this.commentForm.valid) {
-            let new_comment: CommentModel = new CommentModel()
+            // let new_comment: CommentModel = new CommentModel()
     
-            new_comment.body          = this.commentForm.value.body
-            new_comment.author        = "Author"
-            new_comment.creation_date = new Date()
-            new_comment.update_date   = new Date()
-            new_comment.like_count    = 0
+            // new_comment.body          = this.commentForm.value.body
+            // new_comment.author        = "Author"
+            // new_comment.creation_date = new Date()
+            // new_comment.update_date   = new Date()
+            // new_comment.like_count    = 0
     
-            this.emitComment.emit(new_comment)
+            // this.emitComment.emit(new_comment)
         }
     }
 }
