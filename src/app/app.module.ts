@@ -7,6 +7,7 @@ import { ArticleService         } from './services/article.service'
 import { CommentService         } from './services/comment.service'
 import { UserService            } from './services/user.service'
 import { LocalStorageService    } from './services/local-storage.service'
+import { MockDataService        } from './services/mock-data.service'
 import { FirstPipe              } from './pipes/first.pipe'
 import { HightlightDirective    } from './directives/highlight.directive'
 import { AppComponent           } from './app.component'
@@ -58,6 +59,7 @@ import { NavbarComponent        } from './components/navbar/navbar.component'
     CommentService,
     UserService,
     LocalStorageService,
+    MockDataService,
   ],
   bootstrap: [AppComponent]
 })

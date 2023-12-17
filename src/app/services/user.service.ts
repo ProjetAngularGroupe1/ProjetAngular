@@ -3,6 +3,7 @@ import { delay } from 'rxjs/operators'
 import { Injectable } from '@angular/core'
 import { UserModel } from '../models/user.model'
 import { LocalStorageService } from '../services/local-storage.service'
+import { MockDataService } from '../services/mock-data.service'
 import { Subject } from 'rxjs'
 
 @Injectable()
@@ -13,17 +14,10 @@ export class UserService {
     logOutSignal$ = this.logOutSignalSource.asObservable()
     logInSignal$  = this.logInSignalSource.asObservable()
 
-    mockUserList: Array<UserModel> = [
-        new UserModel('admin', 'password', 'admin@test.com'),
-        new UserModel('Rick', 'password', 'rick@test.com'),
-        new UserModel('James', 'password', 'james@test.com'), 
-        new UserModel('Alan', 'password', 'alan@test.com'),
-    ]
-
-    constructor (private localStorageService: LocalStorageService) {}
+    constructor (private localStorageService: LocalStorageService, private mockDataService: MockDataService) {}
 
     getAllUsers(): Observable<Array<UserModel>> {
-        return of(this.mockUserList).pipe(delay(1000))
+        return of(this.mockDataService.mockUserList).pipe(delay(1000))
     }
 
     logIn(): void {
@@ -44,7 +38,7 @@ export class UserService {
     isUser(username: string, password: string): boolean {
         let isUser: boolean = false
 
-        this.mockUserList.forEach((u: UserModel): void => {
+        this.mockDataService.mockUserList.forEach((u: UserModel): void => {
             if (u.username == username && u.password == password) {
                 isUser = true
                 return
