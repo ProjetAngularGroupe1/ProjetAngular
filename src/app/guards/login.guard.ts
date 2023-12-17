@@ -1,10 +1,10 @@
-import { inject } from '@angular/core';
-import { Router, CanActivateFn } from '@angular/router';
+import { inject } from '@angular/core'
+import { Router, CanActivateFn } from '@angular/router'
 
 import { UserService } from '../services/user.service'
 
 export const isLoggedInGuard: CanActivateFn = () => {
-    const router      = inject(Router);
+    const router      = inject(Router)
     const userService = inject(UserService)
 
     let loggedIn: boolean = userService.isLoggedIn()
@@ -13,5 +13,5 @@ export const isLoggedInGuard: CanActivateFn = () => {
         router.navigate(['/403'])
     }
 
-    return loggedIn;
+    return loggedIn
 }

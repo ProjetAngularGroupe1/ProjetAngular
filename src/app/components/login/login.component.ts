@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 import { UserService } from '../../services/user.service'
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 
 @Component({
@@ -9,11 +10,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+    loginForm: FormGroup
+    error: string = ""
 
-    constructor(private userService: UserService, private router: Router) {}
+    constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
+        this.loginForm = this.fb.group({
+            username : new FormControl('', [Validators.required]),
+            password : new FormControl('', [Validators.required]),
+        }, { updateOn:'submit' })
+    }
 
-    onClick(): void {
-        this.userService.logIn()
-        this.router.navigate(['/'])
+    onSubmit(): void {
+        this.error = ''
+
+        if (this.loginForm.valid) {
+            let isUser = this.userService.isUser(this.loginForm.value.username, this.loginForm.value.password)
+
+            if (isUser) {
+                this.userService.logIn()
+                this.router.navigate(['/'])
+            } else {
+                this.error = 'User not found'
+            }
+        }
     }
 }

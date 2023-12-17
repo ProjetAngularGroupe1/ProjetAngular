@@ -1,7 +1,7 @@
-import { from, Observable, of } from"rxjs";
-import { delay, concatMap } from"rxjs/operators";
-import { Injectable } from'@angular/core';
-import { ArticleModel } from"../models/article.model";
+import { from, Observable, of } from"rxjs"
+import { delay, concatMap } from"rxjs/operators"
+import { Injectable } from'@angular/core'
+import { ArticleModel } from"../models/article.model"
 
 @Injectable()
 export class ArticleService {
@@ -12,7 +12,7 @@ export class ArticleService {
     ]
 
     getAllArticles(): Observable<Array<ArticleModel>> {
-        return of(this.mockArticleList).pipe(delay(1000));
+        return of(this.mockArticleList).pipe(delay(1000))
     }
 
     rotateAllArticles(): Observable<ArticleModel> {
@@ -20,6 +20,6 @@ export class ArticleService {
             concatMap(item => of(item).pipe(
                 delay(5000)
             ))
-        );
+        )
     }
 }

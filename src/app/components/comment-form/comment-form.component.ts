@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core'
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
-import { CommentModel } from '../../models/comment.model';
+import { CommentModel } from '../../models/comment.model'
 import { CommentService } from "../../services/comment.service"
 
 
@@ -11,9 +11,9 @@ import { CommentService } from "../../services/comment.service"
 })
 export class CommentFormComponent {
     @Output()
-    emitComment: EventEmitter<CommentModel> = new EventEmitter<CommentModel>();
+    emitComment: EventEmitter<CommentModel> = new EventEmitter<CommentModel>()
 
-    commentForm: FormGroup;
+    commentForm: FormGroup
 
     constructor(private fb: FormBuilder, private commentService: CommentService) { 
         this.commentForm = this.fb.group({
@@ -25,11 +25,11 @@ export class CommentFormComponent {
         if (this.commentForm.valid) {
             let new_comment: CommentModel = new CommentModel()
     
-            new_comment.body          = this.commentForm.value.body;
-            new_comment.author        = "Author";
-            new_comment.creation_date = new Date();
-            new_comment.update_date   = new Date();
-            new_comment.like_count    = 0;
+            new_comment.body          = this.commentForm.value.body
+            new_comment.author        = "Author"
+            new_comment.creation_date = new Date()
+            new_comment.update_date   = new Date()
+            new_comment.like_count    = 0
     
             this.emitComment.emit(new_comment)
         }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router  } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { Router  } from '@angular/router'
 import { UserService } from '../../services/user.service'
 
 
@@ -9,22 +9,22 @@ import { UserService } from '../../services/user.service'
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-    isLoggedIn: boolean = false;
+    isLoggedIn: boolean = false
 
     constructor (private router: Router, private userService: UserService) {}
 
     ngOnInit(): void {
         // TODO: Combine all this
         this.router.events.subscribe(() => {
-            this.isLoggedIn = this.userService.isLoggedIn();
+            this.isLoggedIn = this.userService.isLoggedIn()
         })
 
         this.userService.logInSignal$.subscribe(() => {
-            this.isLoggedIn = this.userService.isLoggedIn();
+            this.isLoggedIn = this.userService.isLoggedIn()
         })
 
         this.userService.logOutSignal$.subscribe(() => {
-            this.isLoggedIn = this.userService.isLoggedIn();
+            this.isLoggedIn = this.userService.isLoggedIn()
         })
     }
 }

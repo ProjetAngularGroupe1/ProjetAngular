@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute, Router } from '@angular/router'
 import { UserService } from '../../services/user.service'
 
 
@@ -14,15 +14,15 @@ export class LogoutComponent implements OnInit {
     ngOnInit(): void {
         this.router.events.subscribe(() => {
             if (this.route.snapshot.routeConfig?.path === 'logout') {
-                this.logOut();
+                this.logOut()
             }
-        });
+        })
     }
 
     logOut(): void {
         this.userService.logOut()
         setTimeout(() => {
-            this.router.navigate(['/']);
-        }, 5000);
+            this.router.navigate(['/'])
+        }, 5000)
     }
 }
