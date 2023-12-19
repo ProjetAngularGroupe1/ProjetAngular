@@ -1,15 +1,18 @@
-<h1> Article {{ article_id }} </h1>
-<h4> Title: TODO </h4>
-<h5> Author: TODO </h5>
-<h5> Created: TODO </h5>
+<div *ngIf="article$ | async as article; else loading">
 
-<div class="article_body">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    <h1> Article {{ article.id }} </h1>
+    <h4> {{ article.title }} </h4>
+    <h5> Author: {{ article.user_id }} </h5>
+    <h5> Created: {{ article.creation_date | articleDate }} </h5>
+    <h5> Last update: {{ article.update_date | articleDate }} </h5>
+    
+    <div class="article_body">
+        {{ article.body }}
+    </div>
+    
+    <app-comment-list></app-comment-list>
+    <app-comment-form *ngIf="isLoggedIn" (emitComment)="getComment($event)"></app-comment-form>
 </div>
 
-<app-comment-list></app-comment-list>
+<ng-template #loading>Loading article...</ng-template>
 
-<app-comment-form *ngIf="isLoggedIn" (emitComment)="getComment($event)"></app-comment-form>

@@ -8,7 +8,7 @@ import { CommentService         } from './services/comment.service'
 import { UserService            } from './services/user.service'
 import { LocalStorageService    } from './services/local-storage.service'
 import { MockDataService        } from './services/mock-data.service'
-import { FirstPipe              } from './pipes/first.pipe'
+import { ArticleDatePipe        } from './pipes/article-date.pipe'
 import { HightlightDirective    } from './directives/highlight.directive'
 import { AppComponent           } from './app.component'
 import { ArticleComponent       } from './components/article/article.component'
@@ -29,7 +29,7 @@ import { NavbarComponent        } from './components/navbar/navbar.component'
 
 @NgModule({
   declarations: [
-    FirstPipe,
+    ArticleDatePipe,
     HightlightDirective,
     AppComponent,
     CommentComponent,

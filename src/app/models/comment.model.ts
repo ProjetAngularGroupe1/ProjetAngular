@@ -1,15 +1,17 @@
 export class CommentModel {
     id: number
+    user_id: number
+    article_id: number
     body: string
-    author: string
     creation_date: Date
     update_date: Date
     like_count: number
 
-    constructor(id: number, body: string, author: string) {
+    constructor(id: number, user_id: number, article_id: number, body: string) {
         this.id            = id
+        this.user_id       = user_id
+        this.article_id    = article_id
         this.body          = body
-        this.author        = author
         this.creation_date = new Date()
         this.update_date   = new Date()
         this.like_count    = 0

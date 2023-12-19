@@ -16,8 +16,8 @@ export class UserService {
 
     constructor (private localStorageService: LocalStorageService, private mockDataService: MockDataService) {}
 
-    getAllUsers(): Observable<Array<UserModel>> {
-        return of(this.mockDataService.mockUserList).pipe(delay(1000))
+    getAllUsers(): Observable<UserModel[]> {
+        return of(this.mockDataService.mockUserList).pipe(delay(500))
     }
 
     logIn(): void {
