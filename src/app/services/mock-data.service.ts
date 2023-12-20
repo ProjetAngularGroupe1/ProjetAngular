@@ -24,10 +24,12 @@ export class MockDataService {
 
     mockCommentList: CommentModel[] = [
         new CommentModel(0, 1, 0, 'Lol'),
-        new CommentModel(1, 1, 1, 'Nice'),
-        new CommentModel(2, 3, 2, 'Great advice' ),
-        new CommentModel(3, 3, 3, 'Never post an article again'),
-        new CommentModel(4, 2, 4, 'KYS'),
-        new CommentModel(5, 2, 5, 'Love you'),
+        new CommentModel(1, 2, 0, 'Lmao'),
+        new CommentModel(2, 3, 0, 'Kepp it up !'),
+        new CommentModel(3, 1, 1, 'Nice'),
+        new CommentModel(4, 3, 2, 'Great advice' ),
+        new CommentModel(5, 3, 3, 'Never post an article again'),
+        new CommentModel(6, 2, 4, 'KYS'),
+        new CommentModel(7, 2, 5, 'Love you'),
     ]
 }

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router'
 import { ArticleModel } from '../../models/article.model'
 import { CommentModel } from '../../models/comment.model'
 import { ArticleService } from '../../services/article.service'
+import { CommentService } from '../../services/comment.service'
 import { UserService } from '../../services/user.service'
 import { Observable } from 'rxjs'
 
@@ -14,15 +15,19 @@ import { Observable } from 'rxjs'
 })
 export class ArticleComponent implements OnInit {
     isLoggedIn: boolean = false
-    article$: Observable<ArticleModel> = new Observable<ArticleModel>();
+    articleId!: number 
+    article$: Observable<ArticleModel>    = new Observable<ArticleModel>();
+    comments$: Observable<CommentModel[]> = new Observable<CommentModel[]>();
 
-    constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private articleService: ArticleService) {}
+    constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private articleService: ArticleService,  private commentService: CommentService) {}
 
     ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
             let id = params.get('id')
             if (id) {
-                this.article$ = this.articleService.getArticle(Number(id));
+                this.articleId = Number(id)
+                this.article$  = this.articleService.getArticle(this.articleId);
+                this.comments$ = this.commentService.getAllArticleComments(this.articleId);
             }
         })
 
@@ -32,6 +37,6 @@ export class ArticleComponent implements OnInit {
     }
 
     getComment(comment: CommentModel) {
-        console.log(comment)
+        this.comments$ = this.commentService.getAllArticleComments(this.articleId);
     }
 }

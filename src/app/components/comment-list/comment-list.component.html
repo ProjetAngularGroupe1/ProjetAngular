@@ -1,5 +1,5 @@
 <ul>
-    <li><a [routerLink]="['/comments', 1]">Comment 1</a></li>
-    <li><a [routerLink]="['/comments', 2]">Comment 2</a></li>
-    <li><a [routerLink]="['/comments', 3]">Comment 3</a></li>
+    <div *ngFor="let comment of comments">
+        <li> "{{ comment.body }}" <i>by {{ comment.user_id }}</i></li>
+    </div>
 </ul>

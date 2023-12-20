@@ -10,8 +10,8 @@
         {{ article.body }}
     </div>
     
-    <app-comment-list></app-comment-list>
-    <app-comment-form *ngIf="isLoggedIn" (emitComment)="getComment($event)"></app-comment-form>
+    <app-comment-list [comments]="comments$ | async"></app-comment-list>
+    <app-comment-form *ngIf="isLoggedIn" [article_id]="article.id" (emitComment)="getComment($event)"></app-comment-form>
 </div>
 
 <ng-template #loading>Loading article...</ng-template>
