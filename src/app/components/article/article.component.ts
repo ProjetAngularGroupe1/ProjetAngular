@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { ArticleModel } from '../../models/article.model'
-import { CommentModel } from '../../models/comment.model'
+import { ArticleDataModel } from '../../models/article.model'
+import { CommentDataModel } from '../../models/comment.model'
 import { ArticleService } from '../../services/article.service'
 import { CommentService } from '../../services/comment.service'
 import { UserService } from '../../services/user.service'
-import { Observable } from 'rxjs'
 
 
 @Component({
@@ -15,28 +14,41 @@ import { Observable } from 'rxjs'
 })
 export class ArticleComponent implements OnInit {
     isLoggedIn: boolean = false
+    isArticleLoaded: boolean = false
+    isCommentsLoaded: boolean = false
     articleId!: number 
-    article$: Observable<ArticleModel>    = new Observable<ArticleModel>();
-    comments$: Observable<CommentModel[]> = new Observable<CommentModel[]>();
+    article!: ArticleDataModel
+    comments!: CommentDataModel[]
 
     constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private articleService: ArticleService,  private commentService: CommentService) {}
 
     ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
-            let id = params.get('id')
-            if (id) {
-                this.articleId = Number(id)
-                this.article$  = this.articleService.getArticle(this.articleId);
-                this.comments$ = this.commentService.getAllArticleComments(this.articleId);
-            }
+            this.articleId = Number(params.get('id'))
+            
+            this.isArticleLoaded = false
+            this.articleService.getArticle(this.articleId).subscribe((article) => {
+                this.isArticleLoaded = true
+                this.article = article
+            })
+            
+            this.isCommentsLoaded = false
+            this.commentService.getAllArticleComments(this.articleId).subscribe((comments) => {
+                this.isCommentsLoaded = true
+                this.comments = comments
+            })
         })
-
+        
         this.router.events.subscribe(() => {
             this.isLoggedIn = this.userService.isLoggedIn()
         })
     }
 
-    getComment(comment: CommentModel) {
-        this.comments$ = this.commentService.getAllArticleComments(this.articleId);
+    getComment(comment: CommentDataModel) {
+        this.isCommentsLoaded = false
+        this.commentService.getAllArticleComments(this.articleId).subscribe((comments) => {
+            this.isCommentsLoaded = true
+            this.comments = comments
+        })
     }
 }

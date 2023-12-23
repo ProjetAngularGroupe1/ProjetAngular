@@ -1,8 +1,8 @@
-import { Observable, of } from"rxjs"
+import { Observable, of, lastValueFrom } from"rxjs"
 import { delay } from"rxjs/operators"
 import { Injectable } from'@angular/core'
-import { ArticleModel } from"../models/article.model"
-import { CommentModel } from '../models/comment.model'
+import { ArticleDataModel } from"../models/article.model"
+import { CommentDataModel } from '../models/comment.model'
 import { MockDataService } from '../services/mock-data.service'
 
 
@@ -10,21 +10,28 @@ import { MockDataService } from '../services/mock-data.service'
 export class ArticleService {
     constructor (private mockDataService: MockDataService) {}
 
-    getAllArticles(): Observable<ArticleModel[]> {
+    getAllArticles(): Observable<ArticleDataModel[]> {
         return of(this.mockDataService.mockArticleList).pipe(delay(500))
     }
 
-    getAllUserArticles(id: number): Observable<ArticleModel[]> {
+    getAllUserArticles(id: number): Observable<ArticleDataModel[]> {
         return of(this.mockDataService.mockArticleList.filter(c => c.user_id === id)).pipe(delay(500))
     }
 
-    getArticle(id: number): Observable<ArticleModel>  {
+    getArticle(id: number): Observable<ArticleDataModel>  {
         return of(this.mockDataService.mockArticleList[id]).pipe(delay(500))
     }
 
-    publishCommentOnArticle(id: number, body: string): void {
-        this.getArticle(id).subscribe(article => {
-            this.mockDataService.mockCommentList.push(new CommentModel(this.mockDataService.mockCommentList.length, article.user_id, article.id, body))
-        })
+    async publishCommentOnArticle(id: number, body: string): Promise<boolean> {
+        let article = await lastValueFrom(
+            this.getArticle(id)
+        ) 
+
+        if (article) {
+            this.mockDataService.mockCommentList.push(new CommentDataModel(this.mockDataService.mockCommentList.length, article.user_id, article.id, body))
+            return true
+        } else {
+            return false
+        }
     }
 }

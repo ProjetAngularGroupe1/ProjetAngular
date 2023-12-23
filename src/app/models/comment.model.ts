@@ -1,4 +1,4 @@
-export class CommentModel {
+export class CommentDataModel {
     id: number
     user_id: number
     article_id: number
@@ -16,4 +16,8 @@ export class CommentModel {
         this.update_date   = new Date()
         this.like_count    = 0
     }
+}
+
+export class CommentModel {
+
 }

@@ -1,5 +1,11 @@
-<ul>
-    <div *ngFor="let comment of comments">
-        <li> "{{ comment.body }}" <i>by {{ comment.user_id }}</i></li>
-    </div>
-</ul>
+<div *ngIf="comments && comments.length === 0">
+    No comment
+</div>
+
+<div *ngIf="comments && comments.length > 0">
+    <ul>
+        <div *ngFor="let comment of comments">
+            <li> "{{ comment.body }}" <i>by {{ comment.user_id }}</i></li>
+        </div>
+    </ul>
+</div>

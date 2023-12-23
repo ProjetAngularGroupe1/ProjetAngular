@@ -1,4 +1,10 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
+import { ArticleDataModel } from 'src/app/models/article.model'
+import { CommentDataModel } from 'src/app/models/comment.model'
+import { UserDataModel } from 'src/app/models/user.model'
+import { ArticleService } from 'src/app/services/article.service'
+import { CommentService } from 'src/app/services/comment.service'
+import { UserService } from 'src/app/services/user.service'
 
 
 @Component({
@@ -6,6 +12,28 @@ import { Component } from '@angular/core'
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
+    isArticlesLoaded: boolean = false
+    isCommentsLoaded: boolean = false
+    user!: UserDataModel
+    articles!: ArticleDataModel[]
+    comments!: CommentDataModel[]
 
+    constructor (private userService: UserService,  private articleService: ArticleService, private commentService: CommentService) {}
+
+    ngOnInit(): void {
+        this.userService.getCurrentUser().subscribe((user) => {
+            this.user = user
+
+            this.articleService.getAllUserArticles(this.user.id).subscribe((articles) => {
+                this.isArticlesLoaded = true
+                this.articles = articles
+            })
+    
+            this.commentService.getAllUserComments(this.user.id).subscribe((comments) => {
+                this.isCommentsLoaded = true
+                this.comments = comments
+            })
+        })
+    }
 }

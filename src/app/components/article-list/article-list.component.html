@@ -1,12 +1,11 @@
-<div *ngIf="isLoggedIn" > <a href="/articles/new"> Create new article </a> </div>
+<div *ngIf="articles && articles.length === 0">
+    No article
+</div>
 
-<div *ngIf="articles$ | async as articles; else loading">
+<div *ngIf="articles && articles.length > 0">
     <ul>
         <li *ngFor="let article of articles"> 
             <a [routerLink]="['/articles', article.id]"> {{ article.title }} </a>
         </li>
     </ul>
 </div>
-<ng-template #loading>Loading articles...</ng-template>
-
-<div> <span highlightDirective>TODO</span> &nbsp; Use directive in a better way. </div>

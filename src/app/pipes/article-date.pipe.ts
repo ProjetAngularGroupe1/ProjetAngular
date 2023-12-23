@@ -5,7 +5,7 @@ export class ArticleDatePipe implements PipeTransform {
     transform(d: Date): string {
 
         function padTo2Digits(num: number) {
-            return num.toString().padStart(2, '0');
+            return num.toString().padStart(2, '0')
         }
 
         return (
@@ -20,6 +20,6 @@ export class ArticleDatePipe implements PipeTransform {
               padTo2Digits(d.getMinutes()),
               padTo2Digits(d.getSeconds()),
             ].join(':')
-          );
+          )
     }
 }

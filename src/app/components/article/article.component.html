@@ -1,18 +1,24 @@
-<div *ngIf="article$ | async as article; else loading">
+<div *ngIf="!isArticleLoaded">
+    Loading article...
+</div>
 
-    <h1> Article {{ article.id }} </h1>
+<div *ngIf="isArticleLoaded">
     <h4> {{ article.title }} </h4>
-    <h5> Author: {{ article.user_id }} </h5>
-    <h5> Created: {{ article.creation_date | articleDate }} </h5>
-    <h5> Last update: {{ article.update_date | articleDate }} </h5>
+    <h5> Author : {{ article.user_id }} </h5>
+    <h5> Created : {{ article.creation_date | articleDate }} </h5>
+    <h5> Last update : {{ article.update_date | articleDate }} </h5>
     
     <div class="article_body">
         {{ article.body }}
     </div>
     
-    <app-comment-list [comments]="comments$ | async"></app-comment-list>
-    <app-comment-form *ngIf="isLoggedIn" [article_id]="article.id" (emitComment)="getComment($event)"></app-comment-form>
+    <div *ngIf="!isCommentsLoaded">
+        Loading comments...
+    </div>
+
+    <div *ngIf="isCommentsLoaded">
+        <app-comment-list [comments]="comments"></app-comment-list>
+    </div>
+
+    <app-comment-form *ngIf="isLoggedIn" [articleId]="article.id" (emitComment)="getComment($event)"></app-comment-form>
 </div>
-
-<ng-template #loading>Loading article...</ng-template>
-

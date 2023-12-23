@@ -1,4 +1,4 @@
-export class UserModel {
+export class UserDataModel {
     id: number
     username: string
     password: string
@@ -10,4 +10,8 @@ export class UserModel {
         this.password = password
         this.email    = email
     }
+}
+
+export class UserModel {
+
 }

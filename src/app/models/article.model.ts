@@ -1,6 +1,4 @@
-import { CommentModel } from './comment.model'
-
-export class ArticleModel {
+export class ArticleDataModel {
     id: number
     user_id: number
     title: string
@@ -18,4 +16,9 @@ export class ArticleModel {
         this.update_date   = new Date()
         this.like_count    = 0
     }
+}
+
+
+export class ArticleModel {
+
 }

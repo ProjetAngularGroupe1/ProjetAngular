@@ -13,14 +13,16 @@ import { ProfileComponent       } from './components/profile/profile.component'
 import { LoginComponent         } from './components/login/login.component'
 import { LogoutComponent        } from './components/logout/logout.component'
 import { ContactComponent       } from './components/contact/contact.component'
+import { HomeComponent          } from './components/home/home.component'
 
 const routes: Routes = [
-    { path: ''            , component: ArticleListComponent  , canActivate: []                },
+    { path: ''            , component: HomeComponent         , canActivate: []                },
+    { path: 'home'        , component: HomeComponent         , canActivate: []                },
     { path: 'profile'     , component: ProfileComponent      , canActivate: [isLoggedInGuard] },
     { path: 'login'       , component: LoginComponent        , canActivate: []                },
     { path: 'logout'      , component: LogoutComponent       , canActivate: [isLoggedInGuard] },
     { path: 'contact'     , component: ContactComponent      , canActivate: []                },
-    { path: 'articles'    , component: ArticleListComponent  , canActivate: []                },
+    { path: 'articles'    , component: HomeComponent         , canActivate: []                },
     { path: 'articles/new', component: ArticleFormComponent  , canActivate: [isLoggedInGuard] },
     { path: 'articles/:id', component: ArticleComponent      , canActivate: []                },
     { path: 'comments/:id', component: CommentComponent      , canActivate: []                },

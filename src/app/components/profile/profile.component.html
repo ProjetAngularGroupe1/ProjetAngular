@@ -1,1 +1,19 @@
-<p>profile works!</p>
+<p>My Articles</p>
+
+<div *ngIf="!isArticlesLoaded">
+    Loading articles...
+</div>
+
+<div *ngIf="isArticlesLoaded">
+    <app-article-list [articles]="articles"></app-article-list>
+</div>
+
+<p>My Comments</p>
+
+<div *ngIf="!isCommentsLoaded">
+    Loading comments...
+</div>
+
+<div *ngIf="isCommentsLoaded">
+    <app-comment-list [comments]="comments"></app-comment-list>
+</div>

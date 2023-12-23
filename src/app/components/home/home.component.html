@@ -1,0 +1,11 @@
+<div *ngIf="isLoggedIn" > <a href="/articles/new"> Create new article </a> </div>
+
+<div *ngIf="!isArticlesLoaded">
+    Loading articles...
+</div>
+
+<div *ngIf="isArticlesLoaded">
+    <app-article-list [articles]="articles"></app-article-list>
+</div>
+
+<div> <span highlightDirective>TODO</span> &nbsp; Use directive in a better way. </div>

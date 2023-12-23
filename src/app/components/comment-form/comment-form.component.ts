@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
-import { CommentModel } from '../../models/comment.model'
+import { CommentDataModel } from '../../models/comment.model'
 import { ArticleService } from "../../services/article.service"
 
 
@@ -11,10 +11,10 @@ import { ArticleService } from "../../services/article.service"
 })
 export class CommentFormComponent {
     @Input()
-    article_id!: number
+    articleId!: number
 
     @Output()
-    emitComment: EventEmitter<CommentModel> = new EventEmitter<CommentModel>()
+    emitComment: EventEmitter<CommentDataModel> = new EventEmitter<CommentDataModel>()
 
     commentForm: FormGroup
 
@@ -24,10 +24,16 @@ export class CommentFormComponent {
         }, { updateOn:'submit' })
     }
 
-    onSubmit(): void {
+    async onSubmit(): Promise<void> {
+        // TODO: send comment here and http post in article component
         if (this.commentForm.valid) {
-            this.articleService.publishCommentOnArticle(this.article_id, this.commentForm.value.body)
-            this.emitComment.emit()
+            let success = await this.articleService.publishCommentOnArticle(this.articleId, this.commentForm.value.body)
+            
+            if (success) {
+                this.emitComment.emit()
+            } else {
+                console.log('Can\'t post comment')
+            }
         }
     }
 }
