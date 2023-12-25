@@ -1,4 +1,5 @@
-import { NgModule               } from '@angular/core'
+import { NgModule, isDevMode    } from '@angular/core'
+import { ServiceWorkerModule    } from '@angular/service-worker'
 import { BrowserModule          } from '@angular/platform-browser'
 import { HttpClientModule       } from '@angular/common/http'
 import { ReactiveFormsModule    } from '@angular/forms'
@@ -29,7 +30,7 @@ import { ContactComponent       } from './components/contact/contact.component'
 import { HeaderComponent        } from './components/header/header.component'
 import { FooterComponent        } from './components/footer/footer.component'
 import { NavbarComponent        } from './components/navbar/navbar.component'
-import { HomeComponent          } from './components/home/home.component'
+import { HomeComponent          } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,12 @@ import { HomeComponent          } from './components/home/home.component'
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [
     ArticleService,
