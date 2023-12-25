@@ -1,3 +1,5 @@
+// https://componentcollection.com/cc-components/OrderByPipe%28Sorter%29
+
 /*
 * Usage in HTML:
 * *ngFor="let item of myArr | orderBy:'Name':true:false:false:false"
