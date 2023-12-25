@@ -2,7 +2,9 @@ import { Component, EventEmitter, Output } from '@angular/core'
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ArticleDataModel } from '../../models/article.model'
 import { ArticleService } from "../../services/article.service"
+import { UserService } from 'src/app/services/user.service'
 import { Router } from '@angular/router'
+import { lastValueFrom } from 'rxjs'
 
 
 @Component({
@@ -16,27 +18,22 @@ export class ArticleFormComponent {
 
     articleForm: FormGroup
 
-    constructor(private fb: FormBuilder, private articleService: ArticleService, private router: Router) { 
+    constructor(private fb: FormBuilder, private articleService: ArticleService, private userService: UserService, private router: Router) { 
         this.articleForm = this.fb.group({
             title : new FormControl('', [Validators.required]),
             body : new FormControl('', [Validators.required]),
         }, { updateOn:'submit' })
     }
 
-    onSubmit(): void {
+    async onSubmit(): Promise<void> {
         if (this.articleForm.valid) {
-            // let new_article: ArticleDataModel = new ArticleDataModel()
-    
-            // new_article.title         = this.articleForm.value.title
-            // new_article.body          = this.articleForm.value.body
-            // new_article.author        = "Author"
-            // new_article.creation_date = new Date()
-            // new_article.update_date   = new Date()
-            // new_article.like_count    = 0
-    
-            // this.emitArticle.emit(new_article)
+            let user    = await lastValueFrom(this.userService.getCurrentUser())
+            let article = await this.articleService.publishArticle(user.id, this.articleForm.value.title, this.articleForm.value.body)
 
-            // this.router.navigate(['/articles', new_article.id ])
+            if (user && article) {
+                this.emitArticle.emit()
+                this.router.navigate(['/articles', article.id ])
+            }
         }
     }
 }

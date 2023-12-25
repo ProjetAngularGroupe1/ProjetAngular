@@ -9,6 +9,7 @@ import { UserService            } from './services/user.service'
 import { LocalStorageService    } from './services/local-storage.service'
 import { MockDataService        } from './services/mock-data.service'
 import { ArticleDatePipe        } from './pipes/article-date.pipe'
+import { OrderByPipe            } from './pipes/order-by.pipe'
 import { HightlightDirective    } from './directives/highlight.directive'
 import { AppComponent           } from './app.component'
 import { ArticleComponent       } from './components/article/article.component'
@@ -31,6 +32,7 @@ import { HomeComponent          } from './components/home/home.component'
 @NgModule({
   declarations: [
     ArticleDatePipe,
+    OrderByPipe,
     HightlightDirective,
     AppComponent,
     CommentComponent,

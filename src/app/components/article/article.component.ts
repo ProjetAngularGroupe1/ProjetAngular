@@ -28,6 +28,9 @@ export class ArticleComponent implements OnInit {
             
             this.isArticleLoaded = false
             this.articleService.getArticle(this.articleId).subscribe((article) => {
+                if (!article) {
+                    this.router.navigate(['/404'])
+                }
                 this.isArticleLoaded = true
                 this.article = article
             })

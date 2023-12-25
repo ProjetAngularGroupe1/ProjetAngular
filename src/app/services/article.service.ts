@@ -18,7 +18,7 @@ export class ArticleService {
         return of(this.mockDataService.mockArticleList.filter(c => c.user_id === id)).pipe(delay(500))
     }
 
-    getArticle(id: number): Observable<ArticleDataModel>  {
+    getArticle(id: number): Observable<ArticleDataModel> {
         return of(this.mockDataService.mockArticleList[id]).pipe(delay(500))
     }
 
@@ -33,5 +33,13 @@ export class ArticleService {
         } else {
             return false
         }
+    }
+
+    async publishArticle(user_id: number, title: string, body: string): Promise<ArticleDataModel> {
+        this.mockDataService.mockArticleList.push(new ArticleDataModel(this.mockDataService.mockArticleList.length, user_id, title, body));
+
+        let article = await lastValueFrom(this.getArticle(this.mockDataService.mockArticleList.length - 1)) 
+
+        return article
     }
 }
