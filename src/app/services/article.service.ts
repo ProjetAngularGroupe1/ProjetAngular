@@ -8,7 +8,9 @@ import { MockDataService } from '../services/mock-data.service'
 
 @Injectable()
 export class ArticleService {
-    constructor (private mockDataService: MockDataService) {}
+    constructor (
+        private mockDataService: MockDataService
+    ) {}
 
     getAllArticles(): Observable<ArticleDataModel[]> {
         return of(this.mockDataService.mockArticleList).pipe(delay(500))

@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-
-import { isLoggedInGuard } from './guards/login.guard'
-
-import { ArticleListComponent   } from './components/article-list/article-list.component'
+import { isLoggedInCanActivateGuard, logginResolveGuard } from './guards/login.guard'
 import { ArticleComponent       } from './components/article/article.component'
 import { ArticleFormComponent   } from './components/article-form/article-form.component'
 import { CommentComponent       } from './components/comment/comment.component'
@@ -18,13 +15,16 @@ import { HomeComponent          } from './components/home/home.component'
 const routes: Routes = [
     { path: ''            , component: HomeComponent         , canActivate: []                },
     { path: 'home'        , component: HomeComponent         , canActivate: []                },
-    { path: 'profile'     , component: ProfileComponent      , canActivate: [isLoggedInGuard] },
+    { path: 'profile'     , component: ProfileComponent      , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
     { path: 'login'       , component: LoginComponent        , canActivate: []                },
-    { path: 'logout'      , component: LogoutComponent       , canActivate: [isLoggedInGuard] },
+    { path: 'logout'      , component: LogoutComponent       , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
     { path: 'contact'     , component: ContactComponent      , canActivate: []                },
-    { path: 'articles'    , component: HomeComponent         , canActivate: []                },
-    { path: 'articles/new', component: ArticleFormComponent  , canActivate: [isLoggedInGuard] },
-    { path: 'articles/:id', component: ArticleComponent      , canActivate: []                },
+    { path: 'articles'    , children: [
+            { path: ''   , component: HomeComponent         , canActivate: [] },
+            { path: 'new', component: ArticleFormComponent  , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
+            { path: ':id', component: ArticleComponent      , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
+        ]
+    },
     { path: 'comments/:id', component: CommentComponent      , canActivate: []                },
     { path: '404'         , component: PageNotFoundComponent , canActivate: []                },
     { path: '403'         , component: PageForbiddenComponent, canActivate: []                },

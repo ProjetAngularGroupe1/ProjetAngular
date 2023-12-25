@@ -7,7 +7,9 @@ import { MockDataService } from '../services/mock-data.service'
 
 @Injectable()
 export class CommentService {
-    constructor (private mockDataService: MockDataService) {}
+    constructor (
+        private mockDataService: MockDataService
+    ) {}
 
     getAllComments(): Observable<CommentDataModel[]> {
         return of(this.mockDataService.mockCommentList).pipe(delay(200))

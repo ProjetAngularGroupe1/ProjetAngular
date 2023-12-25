@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 import { ArticleDataModel } from 'src/app/models/article.model'
 import { CommentDataModel } from 'src/app/models/comment.model'
 import { UserDataModel } from 'src/app/models/user.model'
@@ -19,21 +20,26 @@ export class ProfileComponent implements OnInit {
     articles!: ArticleDataModel[]
     comments!: CommentDataModel[]
 
-    constructor (private userService: UserService,  private articleService: ArticleService, private commentService: CommentService) {}
+    constructor (
+        private activatedRoute: ActivatedRoute, 
+        private userService: UserService,  
+        private articleService: ArticleService, 
+        private commentService: CommentService
+    ) {}
 
     ngOnInit(): void {
-        this.userService.getCurrentUser().subscribe((user) => {
-            this.user = user
-
-            this.articleService.getAllUserArticles(this.user.id).subscribe((articles) => {
-                this.isArticlesLoaded = true
-                this.articles = articles
-            })
-    
-            this.commentService.getAllUserComments(this.user.id).subscribe((comments) => {
-                this.isCommentsLoaded = true
-                this.comments = comments
-            })
+        this.activatedRoute.data.subscribe((data) => { 
+                this.user = data['user']
+        
+                this.articleService.getAllUserArticles(this.user.id).subscribe((articles) => {
+                    this.isArticlesLoaded = true
+                    this.articles = articles
+                })
+        
+                this.commentService.getAllUserComments(this.user.id).subscribe((comments) => {
+                    this.isCommentsLoaded = true
+                    this.comments = comments
+                })
         })
     }
 }

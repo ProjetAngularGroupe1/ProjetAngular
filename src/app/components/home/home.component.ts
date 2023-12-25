@@ -15,7 +15,11 @@ export class HomeComponent implements OnInit {
     isArticlesLoaded: boolean = false
     articles!: ArticleDataModel[]
 
-    constructor (private router: Router, private userService: UserService, private articleService: ArticleService) {}
+    constructor (
+        private router: Router, 
+        private userService: UserService, 
+        private articleService: ArticleService
+    ) {}
 
     ngOnInit(): void {
         // TODO: use another way to check is logged in every time we go see the component

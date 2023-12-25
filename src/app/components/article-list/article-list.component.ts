@@ -14,7 +14,11 @@ export class ArticleListComponent implements OnInit {
     @Input() 
     articles!: ArticleDataModel[] | null 
 
-    constructor (private router: Router, private userService: UserService, private articleService: ArticleService) {}
+    constructor (
+        private router: Router, 
+        private userService: UserService, 
+        private articleService: ArticleService
+    ) {}
 
     ngOnInit(): void {
 

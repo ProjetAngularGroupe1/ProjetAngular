@@ -11,7 +11,10 @@ import { UserService } from '../../services/user.service'
 export class NavbarComponent implements OnInit {
     isLoggedIn: boolean = false
 
-    constructor (private router: Router, private userService: UserService) {}
+    constructor (
+        private router: Router, 
+        private userService: UserService
+    ) {}
 
     ngOnInit(): void {
         // TODO: Combine all this

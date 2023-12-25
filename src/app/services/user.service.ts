@@ -14,7 +14,10 @@ export class UserService {
     logOutSignal$ = this.logOutSignalSource.asObservable()
     logInSignal$  = this.logInSignalSource.asObservable()
 
-    constructor (private localStorageService: LocalStorageService, private mockDataService: MockDataService) {}
+    constructor (
+        private localStorageService: LocalStorageService, 
+        private mockDataService: MockDataService
+    ) {}
 
     getAllUsers(): Observable<UserDataModel[]> {
         return of(this.mockDataService.mockUserList).pipe(delay(500))
