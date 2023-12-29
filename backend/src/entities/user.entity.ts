@@ -1,13 +1,21 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Article } from './article.entity';
+import { Comment } from './comment.entity';
 
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ length: 500 })
-    name: string;
+    @Column()
+    username: string;
 
-    @Column('text')
-    description: string;
+    @Column()
+    password: string;
+
+    @OneToMany(type => Article, article => article.user) 
+    articles: Article[];
+
+    @OneToMany(type => Comment, comment => comment.user) 
+    comments: Comment[];
 }
