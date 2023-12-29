@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductModule } from './product/product.module';
+import { ArticleModule } from './modules/article.module';
+import { CommentModule } from './modules/comment.module';
+import { UserModule } from './modules/user.module';
 import { join } from 'path';
 
 @Module({
@@ -11,7 +13,7 @@ import { join } from 'path';
       logging: false,
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
     }),
-    ProductModule],
+    ArticleModule, CommentModule, UserModule],
   controllers: [],
   providers: [],
 })
