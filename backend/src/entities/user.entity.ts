@@ -13,9 +13,15 @@ export class User {
     @Column()
     password: string
 
-    @OneToMany(type => Article, article => article.user) 
+    @OneToMany(() => Article, article => article.user) 
     articles: Article[]
 
-    @OneToMany(type => Comment, comment => comment.user) 
+    @OneToMany(() => Comment, comment => comment.user) 
     comments: Comment[]
+    
+    @OneToMany(() => Article, article => article.likes)
+    liked_articles: Article[]
+    
+    @OneToMany(() => Comment, comment => comment.likes)
+    liked_comments: Comment[]
 }

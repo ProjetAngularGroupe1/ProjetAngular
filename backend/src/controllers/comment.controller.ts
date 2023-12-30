@@ -1,6 +1,7 @@
 import { Get, Controller, Param } from '@nestjs/common'
 import { CommentService } from '../services/comment.service'
 import { Comment } from '../entities/comment.entity'
+import { User } from '../entities/user.entity'
 
 @Controller('comments')
 export class CommentController {
@@ -16,5 +17,10 @@ export class CommentController {
     @Get(':id')
     getCommentById(@Param() params: any): Promise<Comment> {
         return this.commentService.findOneById(params.id)
+    }
+
+    @Get(':id/likes')
+    getLikesById(@Param() params: any): Promise<User[]> {
+        return this.commentService.findAllLikesById(params.id)
     }
 }

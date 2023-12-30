@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
+import { User } from '../entities/user.entity'
 
 @Injectable()
 export class ArticleService {
@@ -24,5 +25,13 @@ export class ArticleService {
             relations: ['comments'],
         })
         return article.comments
+    }
+
+    async findAllLikesById(id: number): Promise<User[]> {
+        const article = await this.articleRepository.findOne({
+            where: { id : id },
+            relations: ['likes'],
+        })
+        return article.likes
     }
 }

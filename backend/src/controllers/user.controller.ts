@@ -21,12 +21,22 @@ export class UserController {
     }
 
     @Get(':id/comments')
-    getUserCommentsById(@Param() params: any): Promise<Comment[]> {
+    getCommentsById(@Param() params: any): Promise<Comment[]> {
         return this.userService.findAllCommentsById(params.id)
     }
 
     @Get(':id/articles')
-    getUserArticlesById(@Param() params: any): Promise<Article[]> {
-        return this.userService.findAllArticlessById(params.id)
+    getArticlesById(@Param() params: any): Promise<Article[]> {
+        return this.userService.findAllArticlesById(params.id)
+    }
+
+    @Get(':id/likes/articles')
+    getLikedArticlesById(@Param() params: any): Promise<Article[]> {
+        return this.userService.findAllLikedArticlesById(params.id)
+    }
+
+    @Get(':id/likes/comments')
+    getLikedCommentsById(@Param() params: any): Promise<Comment[]> {
+        return this.userService.findAllLikedCommentsById(params.id)
     }
 }
