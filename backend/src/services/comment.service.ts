@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Comment } from '../entities/comment.entity';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
+import { Comment } from '../entities/comment.entity'
 
 @Injectable()
 export class CommentService {
@@ -11,10 +11,10 @@ export class CommentService {
     ) {}
 
     async findAll(): Promise<Comment[]> {
-        return await this.commentRepository.find();
+        return await this.commentRepository.find()
     }
 
     async findOneById(id: number): Promise<Comment> {
-        return await this.commentRepository.findOneBy({ id : id });
+        return await this.commentRepository.findOneBy({ id : id })
     }
 }

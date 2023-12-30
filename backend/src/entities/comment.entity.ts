@@ -1,27 +1,27 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm';
-import { Article } from './article.entity';
-import { User } from './user.entity';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne } from 'typeorm'
+import { Article } from './article.entity'
+import { User } from './user.entity'
 
 @Entity()
 export class Comment {
     @PrimaryGeneratedColumn()
-    id: number;
+    id: number
 
     @Column()
-    body: string;
+    body: string
 
     @Column()
-    like_count: number;
+    like_count: number
 
     @CreateDateColumn()
-    created_at: Date;
+    created_at: Date
 
     @UpdateDateColumn()
-    updated_at: Date;
+    updated_at: Date
 
     @ManyToOne(type => Article, article => article.comments)
-    article: Article;
+    article: Article
     
     @ManyToOne(type => User, user => user.comments)
-    user: User;
+    user: User
 }

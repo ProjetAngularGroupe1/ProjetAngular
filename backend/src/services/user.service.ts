@@ -1,7 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from '../entities/user.entity';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
+import { User } from '../entities/user.entity'
+import { Article } from '../entities/article.entity'
+import { Comment } from '../entities/comment.entity'
 
 @Injectable()
 export class UserService {
@@ -11,10 +13,26 @@ export class UserService {
     ) {}
 
     async findAll(): Promise<User[]> {
-        return await this.userRepository.find();
+        return await this.userRepository.find()
     }
 
     async findOneById(id: number): Promise<User> {
-        return await this.userRepository.findOneBy({ id : id });
+        return await this.userRepository.findOneBy({ id : id })
+    }
+
+    async findAllCommentsById(id: number): Promise<Comment[]> {
+        const user = await this.userRepository.findOne({
+            where: { id : id },
+            relations: ['comments'],
+        })
+        return user.comments
+    }
+
+    async findAllArticlessById(id: number): Promise<Article[]> {
+        const user = await this.userRepository.findOne({
+            where: { id : id },
+            relations: ['articles'],
+        })
+        return user.articles
     }
 }

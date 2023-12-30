@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ArticleModule } from './modules/article.module';
-import { CommentModule } from './modules/comment.module';
-import { UserModule } from './modules/user.module';
-import { join } from 'path';
+import { Module } from '@nestjs/common'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { ArticleModule } from './modules/article.module'
+import { CommentModule } from './modules/comment.module'
+import { UserModule } from './modules/user.module'
+import { join } from 'path'
 
 @Module({
   imports: [TypeOrmModule.forRoot({
