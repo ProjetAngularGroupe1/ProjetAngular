@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany } from 'typeorm'
 import { Article } from './article.entity'
 import { Comment } from './comment.entity'
 
@@ -19,9 +19,9 @@ export class User {
     @OneToMany(() => Comment, comment => comment.user) 
     comments: Comment[]
     
-    @OneToMany(() => Article, article => article.likes)
+    @ManyToMany(() => Article, article => article.likes)
     liked_articles: Article[]
     
-    @OneToMany(() => Comment, comment => comment.likes)
+    @ManyToMany(() => Comment, comment => comment.likes)
     liked_comments: Comment[]
 }
