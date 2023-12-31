@@ -27,8 +27,8 @@ export class ArticleFormComponent {
 
     async onSubmit(): Promise<void> {
         if (this.articleForm.valid) {
-            let user    = await lastValueFrom(this.userService.getCurrentUser())
-            let article = await this.articleService.publishArticle(user.id, this.articleForm.value.title, this.articleForm.value.body)
+            let user    = await lastValueFrom(this.userService.getCurrentMockupUser())
+            let article = await this.articleService.publishMockupArticle(user.id, this.articleForm.value.title, this.articleForm.value.body)
 
             if (user && article) {
                 this.emitArticle.emit()

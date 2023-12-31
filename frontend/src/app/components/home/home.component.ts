@@ -36,9 +36,13 @@ export class HomeComponent implements OnInit {
         })
 
         this.isArticlesLoaded = false
-        this.articleService.getAllArticles().subscribe((articles) => {
+        this.articleService.getAllMockupArticles().subscribe((articles) => {
             this.isArticlesLoaded = true
             this.articles = articles
+        })
+
+        this.articleService.getAllArticles().subscribe((articles) => {
+            console.log(articles)
         })
     }
 }

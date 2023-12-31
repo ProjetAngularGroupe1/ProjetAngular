@@ -19,5 +19,5 @@ export const isLoggedInCanActivateGuard: CanActivateFn = (): boolean => {
 }
 
 export const logginResolveGuard: ResolveFn<UserDataModel> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserDataModel> => {
-      return inject(UserService).getCurrentUser()
+      return inject(UserService).getCurrentMockupUser()
 }

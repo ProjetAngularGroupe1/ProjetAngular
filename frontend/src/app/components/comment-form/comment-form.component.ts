@@ -27,7 +27,7 @@ export class CommentFormComponent {
     async onSubmit(): Promise<void> {
         // TODO: send comment here and http post in article component
         if (this.commentForm.valid) {
-            let success = await this.articleService.publishCommentOnArticle(this.articleId, this.commentForm.value.body)
+            let success = await this.articleService.publishCommentOnMockupArticle(this.articleId, this.commentForm.value.body)
             
             if (success) {
                 this.emitComment.emit()

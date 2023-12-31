@@ -5,26 +5,33 @@ import { UserDataModel } from '../models/user.model'
 import { LocalStorageService } from '../services/local-storage.service'
 import { MockDataService } from '../services/mock-data.service'
 import { Subject } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { IUser } from '../interfaces/user.interface'
 
 @Injectable()
 export class UserService {
     private logOutSignalSource = new Subject<any>()
-    private logInSignalSource = new Subject<any>()
+    private logInSignalSource  = new Subject<any>()
 
     logOutSignal$ = this.logOutSignalSource.asObservable()
     logInSignal$  = this.logInSignalSource.asObservable()
 
     constructor (
         private localStorageService: LocalStorageService, 
-        private mockDataService: MockDataService
+        private mockDataService: MockDataService,
+        private http: HttpClient,
     ) {}
 
-    getAllUsers(): Observable<UserDataModel[]> {
+    getAllUsers(): Observable<IUser[]> {
+        return this.http.get<IUser[]>('http://localhost:3000/users/')
+    }
+
+    getAllMockupUsers(): Observable<UserDataModel[]> {
         return of(this.mockDataService.mockUserList).pipe(delay(500))
     }
 
     // rename getLoggedUser ?
-    getCurrentUser(): Observable<UserDataModel> {
+    getCurrentMockupUser(): Observable<UserDataModel> {
         // TODO: get user from localstorage ?
         return of(this.mockDataService.mockUserList[1]).pipe(delay(500))
     }
@@ -44,7 +51,7 @@ export class UserService {
         return isLoggedIn ? true : false
     }
 
-    isUser(username: string, password: string): boolean {
+    isMockupUser(username: string, password: string): boolean {
         let isUser: boolean = false
 
         this.mockDataService.mockUserList.forEach((u: UserDataModel): void => {

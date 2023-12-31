@@ -20,5 +20,5 @@
         <app-comment-list [comments]="comments"></app-comment-list>
     </div>
 
-    <app-comment-form *ngIf="isLoggedIn" [articleId]="article.id" (emitComment)="getComment($event)"></app-comment-form>
+    <app-comment-form *ngIf="isLoggedIn" [articleId]="article.id" (emitComment)="getMockupComment($event)"></app-comment-form>
 </div>

@@ -27,7 +27,7 @@ export class ArticleComponent implements OnInit {
             this.articleId = Number(params.get('id'))
             
             this.isArticleLoaded = false
-            this.articleService.getArticle(this.articleId).subscribe((article) => {
+            this.articleService.getMockupArticle(this.articleId).subscribe((article) => {
                 if (!article) {
                     this.router.navigate(['/404'])
                 }
@@ -36,7 +36,7 @@ export class ArticleComponent implements OnInit {
             })
             
             this.isCommentsLoaded = false
-            this.commentService.getAllArticleComments(this.articleId).subscribe((comments) => {
+            this.commentService.getAllMockupArticleComments(this.articleId).subscribe((comments) => {
                 this.isCommentsLoaded = true
                 this.comments = comments
             })
@@ -47,9 +47,9 @@ export class ArticleComponent implements OnInit {
         })
     }
 
-    getComment(comment: CommentDataModel) {
+    getMockupComment(comment: CommentDataModel) {
         this.isCommentsLoaded = false
-        this.commentService.getAllArticleComments(this.articleId).subscribe((comments) => {
+        this.commentService.getAllMockupArticleComments(this.articleId).subscribe((comments) => {
             this.isCommentsLoaded = true
             this.comments = comments
         })

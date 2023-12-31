@@ -31,12 +31,12 @@ export class ProfileComponent implements OnInit {
         this.activatedRoute.data.subscribe((data) => { 
                 this.user = data['user']
         
-                this.articleService.getAllUserArticles(this.user.id).subscribe((articles) => {
+                this.articleService.getAllMockupUserArticles(this.user.id).subscribe((articles) => {
                     this.isArticlesLoaded = true
                     this.articles = articles
                 })
         
-                this.commentService.getAllUserComments(this.user.id).subscribe((comments) => {
+                this.commentService.getAllMockupUserComments(this.user.id).subscribe((comments) => {
                     this.isCommentsLoaded = true
                     this.comments = comments
                 })

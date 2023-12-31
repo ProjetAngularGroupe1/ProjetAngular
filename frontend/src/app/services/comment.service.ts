@@ -3,27 +3,46 @@ import { delay } from 'rxjs/operators'
 import { Injectable } from '@angular/core'
 import { CommentDataModel } from '../models/comment.model'
 import { MockDataService } from '../services/mock-data.service'
+import { IComment } from '../interfaces/comment.interface'
+import { HttpClient } from '@angular/common/http'
 
 
 @Injectable()
 export class CommentService {
     constructor (
-        private mockDataService: MockDataService
+        private mockDataService: MockDataService,
+        private http: HttpClient,
     ) {}
 
-    getAllComments(): Observable<CommentDataModel[]> {
+    getAllComments(): Observable<IComment[]> {
+        return this.http.get<IComment[]>('http://localhost:3000/comments/')
+    }
+
+    getAllUserComments(id: number): Observable<IComment[]> {
+        return this.http.get<IComment[]>(`http://localhost:3000/users/${ id }/comments`)
+    }
+
+    getAllArticleComments(id: number): Observable<IComment[]> {
+        return this.http.get<IComment[]>(`http://localhost:3000/articles/${ id }/comments`)
+    }
+
+    getComment(id: number): Observable<IComment> {
+        return this.http.get<IComment>(`http://localhost:3000/comments/${ id }`)
+    }
+
+    getMockupAllComments(): Observable<CommentDataModel[]> {
         return of(this.mockDataService.mockCommentList).pipe(delay(200))
     }
 
-    getAllUserComments(id: number): Observable<CommentDataModel[]> {
+    getAllMockupUserComments(id: number): Observable<CommentDataModel[]> {
         return of(this.mockDataService.mockCommentList.filter(c => c.user_id === id)).pipe(delay(200))
     }
 
-    getAllArticleComments(id: number): Observable<CommentDataModel[]> {
+    getAllMockupArticleComments(id: number): Observable<CommentDataModel[]> {
         return of(this.mockDataService.mockCommentList.filter(c => c.article_id === id)).pipe(delay(200))
     }
 
-    getComment(id: number): Observable<CommentDataModel> {
+    getMockupComment(id: number): Observable<CommentDataModel> {
         return of(this.mockDataService.mockCommentList[id]).pipe(delay(200))
     }
 }
