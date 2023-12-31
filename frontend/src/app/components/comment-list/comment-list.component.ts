@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { CommentDataModel } from '../../models/comment.model'
+import { CommentModel } from '../../models/comment.model'
 
 
 @Component({
@@ -9,7 +9,7 @@ import { CommentDataModel } from '../../models/comment.model'
 })
 export class CommentListComponent {
     @Input() 
-    comments!: CommentDataModel[] | null
+    comments!: CommentModel[] | null
 
     constructor() {}
 }

@@ -1,17 +1,13 @@
-export class UserDataModel {
+import { IUser } from "../interfaces/user.interface"
+
+export class UserModel implements IUser {
     id: number
     username: string
     password: string
-    email: string
    
-    constructor(id: number, username: string, password: string, email: string) {
+    constructor(id: number, username: string, password: string) {
         this.id       = id
         this.username = username
         this.password = password
-        this.email    = email
     }
-}
-
-export class UserModel {
-
 }

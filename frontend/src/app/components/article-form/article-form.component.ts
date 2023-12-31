@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
-import { ArticleDataModel } from '../../models/article.model'
+import { ArticleModel } from '../../models/article.model'
 import { ArticleService } from "../../services/article.service"
 import { UserService } from 'src/app/services/user.service'
 import { Router } from '@angular/router'
 import { lastValueFrom } from 'rxjs'
+import { IArticle } from 'src/app/interfaces/article.interface'
 
 
 @Component({
@@ -14,7 +15,7 @@ import { lastValueFrom } from 'rxjs'
 })
 export class ArticleFormComponent {
     @Output()
-    emitArticle: EventEmitter<ArticleDataModel> = new EventEmitter<ArticleDataModel>()
+    emitArticle: EventEmitter<ArticleModel> = new EventEmitter<ArticleModel>()
 
     articleForm: FormGroup
 
@@ -27,13 +28,9 @@ export class ArticleFormComponent {
 
     async onSubmit(): Promise<void> {
         if (this.articleForm.valid) {
-            let user    = await lastValueFrom(this.userService.getCurrentMockupUser())
-            let article = await this.articleService.publishMockupArticle(user.id, this.articleForm.value.title, this.articleForm.value.body)
-
-            if (user && article) {
-                this.emitArticle.emit()
-                this.router.navigate(['/articles', article.id ])
-            }
+            lastValueFrom(this.articleService.publishArticle(this.articleForm.value.title, this.articleForm.value.body)).then((article: IArticle) => {
+                // this.router.navigate(['/articles', article.id ])
+            })
         }
     }
 }

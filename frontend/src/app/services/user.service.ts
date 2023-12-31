@@ -1,7 +1,7 @@
 import { Observable, of } from 'rxjs'
 import { delay } from 'rxjs/operators'
 import { Injectable } from '@angular/core'
-import { UserDataModel } from '../models/user.model'
+import { UserModel } from '../models/user.model'
 import { LocalStorageService } from '../services/local-storage.service'
 import { MockDataService } from '../services/mock-data.service'
 import { Subject } from 'rxjs'
@@ -26,12 +26,12 @@ export class UserService {
         return this.http.get<IUser[]>('http://localhost:3000/users/')
     }
 
-    getAllMockupUsers(): Observable<UserDataModel[]> {
+    getAllMockupUsers(): Observable<UserModel[]> {
         return of(this.mockDataService.mockUserList).pipe(delay(500))
     }
 
     // rename getLoggedUser ?
-    getCurrentMockupUser(): Observable<UserDataModel> {
+    getCurrentMockupUser(): Observable<UserModel> {
         // TODO: get user from localstorage ?
         return of(this.mockDataService.mockUserList[1]).pipe(delay(500))
     }
@@ -54,7 +54,7 @@ export class UserService {
     isMockupUser(username: string, password: string): boolean {
         let isUser: boolean = false
 
-        this.mockDataService.mockUserList.forEach((u: UserDataModel): void => {
+        this.mockDataService.mockUserList.forEach((u: UserModel): void => {
             if (u.username == username && u.password == password) {
                 isUser = true
                 return

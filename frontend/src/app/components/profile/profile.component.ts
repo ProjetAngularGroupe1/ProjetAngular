@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
-import { ArticleDataModel } from 'src/app/models/article.model'
-import { CommentDataModel } from 'src/app/models/comment.model'
-import { UserDataModel } from 'src/app/models/user.model'
+import { ArticleModel } from 'src/app/models/article.model'
+import { CommentModel } from 'src/app/models/comment.model'
+import { UserModel } from 'src/app/models/user.model'
 import { ArticleService } from 'src/app/services/article.service'
 import { CommentService } from 'src/app/services/comment.service'
 import { UserService } from 'src/app/services/user.service'
@@ -16,9 +16,9 @@ import { UserService } from 'src/app/services/user.service'
 export class ProfileComponent implements OnInit {
     isArticlesLoaded: boolean = false
     isCommentsLoaded: boolean = false
-    user!: UserDataModel
-    articles!: ArticleDataModel[]
-    comments!: CommentDataModel[]
+    user!: UserModel
+    articles!: ArticleModel[]
+    comments!: CommentModel[]
 
     constructor (
         private activatedRoute: ActivatedRoute, 

@@ -2,7 +2,7 @@ import { inject } from '@angular/core'
 import { Router, CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, ResolveFn } from '@angular/router'
 
 import { UserService } from '../services/user.service'
-import { UserDataModel } from '../models/user.model'
+import { UserModel } from '../models/user.model'
 import { Observable } from 'rxjs'
 
 export const isLoggedInCanActivateGuard: CanActivateFn = (): boolean => {
@@ -18,6 +18,6 @@ export const isLoggedInCanActivateGuard: CanActivateFn = (): boolean => {
     return loggedIn
 }
 
-export const logginResolveGuard: ResolveFn<UserDataModel> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserDataModel> => {
+export const logginResolveGuard: ResolveFn<UserModel> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserModel> => {
       return inject(UserService).getCurrentMockupUser()
 }

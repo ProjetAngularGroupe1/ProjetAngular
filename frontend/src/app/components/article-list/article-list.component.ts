@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core'
 import { Router } from '@angular/router'
 import { UserService } from '../../services/user.service'
 import { ArticleService } from '../../services/article.service'
-import { ArticleDataModel } from '../../models/article.model'
+import { ArticleModel } from '../../models/article.model'
 
 
 @Component({
@@ -12,7 +12,7 @@ import { ArticleDataModel } from '../../models/article.model'
 })
 export class ArticleListComponent implements OnInit {
     @Input() 
-    articles!: ArticleDataModel[] | null 
+    articles!: ArticleModel[] | null 
 
     constructor (
         private router: Router, 

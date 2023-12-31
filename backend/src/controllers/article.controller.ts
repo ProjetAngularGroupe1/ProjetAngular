@@ -1,8 +1,9 @@
-import { Get, Controller, Param } from '@nestjs/common'
+import { Get, Controller, Param, Post, Body } from '@nestjs/common'
 import { ArticleService } from '../services/article.service'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
+import { PublishArticleDto } from 'src/dto/article.dto'
 
 @Controller('articles')
 export class ArticleController {
@@ -28,5 +29,10 @@ export class ArticleController {
     @Get(':id/likes')
     getLikesById(@Param() params: any): Promise<User[]> {
         return this.articleService.findAllLikesById(params.id)
+    }
+
+    @Post()
+    publishArticle(@Body() article: PublishArticleDto): Promise<Article> {
+        return this.articleService.publishArticle(article)
     }
 }

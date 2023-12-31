@@ -5,8 +5,8 @@
 <div *ngIf="isArticleLoaded">
     <h4> {{ article.title }} </h4>
     <h5> Author : {{ article.user_id }} </h5>
-    <h5> Created : {{ article.creation_date | articleDate }} </h5>
-    <h5> Last update : {{ article.update_date | articleDate }} </h5>
+    <h5> Created : {{ article.created_at | articleDate }} </h5>
+    <h5> Last update : {{ article.updated_at | articleDate }} </h5>
     
     <div class="article_body">
         {{ article.body }}

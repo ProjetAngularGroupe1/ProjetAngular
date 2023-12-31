@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { ArticleDataModel } from '../../models/article.model'
-import { CommentDataModel } from '../../models/comment.model'
+import { ArticleModel } from '../../models/article.model'
+import { CommentModel } from '../../models/comment.model'
 import { ArticleService } from '../../services/article.service'
 import { CommentService } from '../../services/comment.service'
 import { UserService } from '../../services/user.service'
@@ -17,8 +17,8 @@ export class ArticleComponent implements OnInit {
     isArticleLoaded: boolean = false
     isCommentsLoaded: boolean = false
     articleId!: number 
-    article!: ArticleDataModel
-    comments!: CommentDataModel[]
+    article!: ArticleModel
+    comments!: CommentModel[]
 
     constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private articleService: ArticleService,  private commentService: CommentService) {}
 
@@ -47,7 +47,7 @@ export class ArticleComponent implements OnInit {
         })
     }
 
-    getMockupComment(comment: CommentDataModel) {
+    getMockupComment(comment: CommentModel) {
         this.isCommentsLoaded = false
         this.commentService.getAllMockupArticleComments(this.articleId).subscribe((comments) => {
             this.isCommentsLoaded = true

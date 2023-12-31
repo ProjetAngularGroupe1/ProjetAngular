@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
-import { CommentDataModel } from '../../models/comment.model'
+import { CommentModel } from '../../models/comment.model'
 import { ArticleService } from "../../services/article.service"
 
 
@@ -14,7 +14,7 @@ export class CommentFormComponent {
     articleId!: number
 
     @Output()
-    emitComment: EventEmitter<CommentDataModel> = new EventEmitter<CommentDataModel>()
+    emitComment: EventEmitter<CommentModel> = new EventEmitter<CommentModel>()
 
     commentForm: FormGroup
 

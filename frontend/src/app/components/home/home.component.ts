@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { UserService } from '../../services/user.service'
 import { ArticleService } from '../../services/article.service'
-import { ArticleDataModel } from '../../models/article.model'
+import { ArticleModel } from '../../models/article.model'
+import { IArticle } from 'src/app/interfaces/article.interface'
 
 
 @Component({
@@ -13,7 +14,7 @@ import { ArticleDataModel } from '../../models/article.model'
 export class HomeComponent implements OnInit {
     isLoggedIn: boolean = false
     isArticlesLoaded: boolean = false
-    articles!: ArticleDataModel[]
+    articles!: ArticleModel[]
 
     constructor (
         private router: Router, 
@@ -36,13 +37,9 @@ export class HomeComponent implements OnInit {
         })
 
         this.isArticlesLoaded = false
-        this.articleService.getAllMockupArticles().subscribe((articles) => {
+        this.articleService.getAllArticles().subscribe((articles: IArticle[]) => {
             this.isArticlesLoaded = true
-            this.articles = articles
-        })
-
-        this.articleService.getAllArticles().subscribe((articles) => {
-            console.log(articles)
+            this.articles         = articles.map((a) => new ArticleModel(a.id, 0, a.title, a.body))
         })
     }
 }
