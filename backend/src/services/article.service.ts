@@ -43,7 +43,13 @@ export class ArticleService {
             .createQueryBuilder()
             .insert()
             .into(Article)
-            .values({ title: article.title, body: article.body, /* TODO: user: article.user_id */ })
+            .values({ 
+                title: article.title, 
+                body: article.body, 
+                userId: article.user_id, 
+                created_at: new Date(), 
+                updated_at: new Date(),
+            })
             .execute()
 
         return await this.articleRepository.findOneBy({ id : result.identifiers[0].id })
@@ -53,7 +59,11 @@ export class ArticleService {
         const result = await this.articleRepository
             .createQueryBuilder()
             .update(Article)
-            .set({ title: article.title, body: article.body, updated_at: new Date() })
+            .set({ 
+                title: article.title, 
+                body: article.body, 
+                updated_at: new Date(),
+            })
             .where(`id = ${ article.id }`)
             .execute()
 

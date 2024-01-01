@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, ManyToMany, JoinTable } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, ManyToMany, JoinTable, JoinColumn } from 'typeorm'
 import { Comment } from './comment.entity'
 import { User } from './user.entity'
 
@@ -23,7 +23,11 @@ export class Article {
     comments: Comment[]
 
     @ManyToOne(() => User, user => user.comments)
+    @JoinColumn({ name: 'userId' })
     user: User
+
+    @Column()
+    userId: number;
 
     @JoinTable()
     @ManyToMany(() => User, user => user.liked_articles)

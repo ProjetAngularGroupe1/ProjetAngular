@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, JoinTable } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToOne, ManyToMany, JoinTable, JoinColumn } from 'typeorm'
 import { Article } from './article.entity'
 import { User } from './user.entity'
 
@@ -17,10 +17,18 @@ export class Comment {
     updated_at: Date
 
     @ManyToOne(() => Article, article => article.comments)
+    @JoinColumn({ name: 'articleId' })
     article: Article
+
+    @Column()
+    articleId: number;
     
     @ManyToOne(() => User, user => user.comments)
+    @JoinColumn({ name: 'userId' })
     user: User
+
+    @Column()
+    userId: number;
 
     @JoinTable()
     @ManyToMany(() => User, user => user.liked_comments)
