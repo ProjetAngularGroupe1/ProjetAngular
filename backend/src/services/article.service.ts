@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
-import { Repository } from 'typeorm'
+import { DataSource, Repository } from 'typeorm'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
@@ -10,6 +10,8 @@ import { EditArticleDto, PublishArticleDto } from 'src/dto/article.dto'
 export class ArticleService {
     constructor(
         @InjectRepository(Article) private articleRepository: Repository<Article>,
+        @InjectRepository(Comment) private commentRepository: Repository<Comment>,
+        private dataSource: DataSource,
     ) {}
 
     async findAll(): Promise<Article[]> {
@@ -57,5 +59,35 @@ export class ArticleService {
 
         // TODO: use result id
         return await this.articleRepository.findOneBy({ id : article.id })
+    }
+
+    async deleteArticle(id: number): Promise<boolean> {
+        // Delete likes on article
+        await this.dataSource.query(`DELETE FROM article_likes_user WHERE articleId = ${ id };`)
+
+        // Delete comments
+        const comments = await this.findAllCommentsById(id)
+        for (let comment of comments) {
+            // Delete likes on comment
+            await this.dataSource.query(`DELETE FROM comment_likes_user WHERE commentId = ${ comment.id };`)
+
+            // Delete comment
+            await this.commentRepository
+                .createQueryBuilder()
+                .delete()
+                .from(Comment)
+                .where(`id = ${ comment.id }`)
+                .execute()
+        }
+        
+        // Delete article
+        await this.articleRepository
+            .createQueryBuilder()
+            .delete()
+            .from(Article)
+            .where(`id = ${ id }`)
+            .execute()
+
+        return true
     }
 }

@@ -1,4 +1,4 @@
-import { Get, Controller, Param, Post, Body, Patch } from '@nestjs/common'
+import { Get, Controller, Param, Post, Body, Patch, Delete, Response, HttpStatus } from '@nestjs/common'
 import { ArticleService } from '../services/article.service'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
@@ -39,5 +39,12 @@ export class ArticleController {
     @Patch(':id')
     editArticle(@Body() article: EditArticleDto): Promise<Article> {
         return this.articleService.editArticle(article)
+    }
+
+    // TODO: check if user can delete the article
+    @Delete(':id')
+    public async deleteArticle(@Param() params: any, @Response() res: any ) {
+        const ok = await this.articleService.deleteArticle(params.id);
+        return res.status(HttpStatus.OK).json(ok);
     }
 }

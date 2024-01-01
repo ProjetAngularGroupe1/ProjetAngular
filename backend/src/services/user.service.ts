@@ -9,8 +9,7 @@ import { Comment } from '../entities/comment.entity'
 export class UserService {
     constructor(
         private dataSource: DataSource,
-        @InjectRepository(User)
-        private userRepository: Repository<User>
+        @InjectRepository(User) private userRepository: Repository<User>
     ) {}
 
     async findAll(): Promise<User[]> {
