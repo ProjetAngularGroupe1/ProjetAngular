@@ -50,6 +50,10 @@ export class ArticleService {
         return this.http.patch<IArticle>(`http://localhost:3000/articles/${ id }/`, article)
     }
 
+    deleteArticle(id: number): Observable<any> {
+        return this.http.delete(`http://localhost:3000/articles/${ id }/`)
+    }
+
     getAllMockupArticles(): Observable<ArticleModel[]> {
         return of(this.mockDataService.mockArticleList).pipe(delay(500))
     }

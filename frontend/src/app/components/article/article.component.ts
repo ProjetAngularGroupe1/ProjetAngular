@@ -5,6 +5,7 @@ import { CommentModel } from '../../models/comment.model'
 import { ArticleService } from '../../services/article.service'
 import { CommentService } from '../../services/comment.service'
 import { UserService } from '../../services/user.service'
+import { lastValueFrom } from 'rxjs'
 
 
 @Component({
@@ -58,6 +59,12 @@ export class ArticleComponent implements OnInit {
         this.commentService.getAllMockupArticleComments(this.articleId).subscribe((comments) => {
             this.isCommentsLoaded = true
             this.comments = comments
+        })
+    }
+
+    deleteArticle() {
+        lastValueFrom(this.articleService.deleteArticle(this.articleId)).then((x) => {
+            this.router.navigate(['/'])
         })
     }
 }
