@@ -30,19 +30,13 @@ export class CommentService {
         return this.http.get<IComment>(`http://localhost:3000/comments/${ id }`)
     }
 
-    getMockupAllComments(): Observable<CommentModel[]> {
-        return of(this.mockDataService.mockCommentList).pipe(delay(200))
-    }
+    publishComment(user_id: number, article_id: number, body: string): Observable<IComment> {
+        let comment: IComment = {} as IComment
 
-    getAllMockupUserComments(id: number): Observable<CommentModel[]> {
-        return of(this.mockDataService.mockCommentList.filter(c => c.user_id === id)).pipe(delay(200))
-    }
+        comment.user_id    = user_id
+        comment.article_id = article_id
+        comment.body       = body
 
-    getAllMockupArticleComments(id: number): Observable<CommentModel[]> {
-        return of(this.mockDataService.mockCommentList.filter(c => c.article_id === id)).pipe(delay(200))
-    }
-
-    getMockupComment(id: number): Observable<CommentModel> {
-        return of(this.mockDataService.mockCommentList[id]).pipe(delay(200))
+        return this.http.post<IComment>('http://localhost:3000/comments', comment)
     }
 }

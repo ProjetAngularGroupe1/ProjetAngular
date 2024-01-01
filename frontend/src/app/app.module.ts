@@ -22,7 +22,6 @@ import { CommentListComponent   } from './components/comment-list/comment-list.c
 import { PageNotFoundComponent  } from './components/page-not-found/page-not-found.component'
 import { PageForbiddenComponent } from './components/page-forbidden/page-forbidden.component'
 import { ProfileComponent       } from './components/profile/profile.component'
-import { CommentNewComponent    } from './components/comment-new/comment-new.component'
 import { CommentEditComponent   } from './components/comment-edit/comment-edit.component'
 import { ArticleNewComponent    } from './components/article-new/article-new.component'
 import { ArticleEditComponent   } from './components/article-edit/article-edit.component'
@@ -47,7 +46,6 @@ import { HomeComponent          } from './components/home/home.component';
     PageNotFoundComponent,
     PageForbiddenComponent,
     ProfileComponent,
-    CommentNewComponent,
     CommentEditComponent,
     ArticleNewComponent,
     ArticleEditComponent,

@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service'
 import { ArticleService } from '../../services/article.service'
 import { ArticleModel } from '../../models/article.model'
 import { IArticle } from 'src/app/interfaces/article.interface'
+import { FormBuilder } from '@angular/forms'
 
 
 @Component({
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
     articles!: ArticleModel[]
 
     constructor (
+        private fb: FormBuilder,
         private router: Router, 
         private userService: UserService, 
         private articleService: ArticleService

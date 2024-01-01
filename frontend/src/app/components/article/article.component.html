@@ -10,7 +10,7 @@
     <h5> Created : {{ article.created_at | articleDate }} </h5>
     <h5> Last update : {{ article.updated_at | articleDate }} </h5>
     
-    <div class="article_body">
+    <div class="articleBody">
         {{ article.body }}
     </div>
     
@@ -22,6 +22,18 @@
         <app-comment-list [comments]="comments"></app-comment-list>
     </div>
 
-    <app-comment-new *ngIf="isLoggedIn" [articleId]="article.id" (emitComment)="getMockupComment($event)"></app-comment-new>
+    <div class="commentForm">
+        <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+            <textarea class="commentFormBody" id="body" name="body" formControlName="body" type="text" placeholder="Write comment..." required></textarea>
+            
+            <div *ngIf= "commentForm.get('body')!.invalid && (commentForm.get('body')!.dirty|| commentForm.get('body')!.touched)">
+                <div *ngIf= "commentForm.get('body')!.errors?.['required']"> Comment musn't be empty. </div>
+            </div>
+    
+            <p>
+                <button type="submit">Submit</button>
+            </p>
+        </form>
+    </div>
 </div>
 
