@@ -4,7 +4,7 @@ import { Repository } from 'typeorm'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
-import { PublishArticleDto } from 'src/dto/article.dto'
+import { EditArticleDto, PublishArticleDto } from 'src/dto/article.dto'
 
 @Injectable()
 export class ArticleService {
@@ -41,9 +41,21 @@ export class ArticleService {
             .createQueryBuilder()
             .insert()
             .into(Article)
-            .values({ title: article.title, body: article.body })
+            .values({ title: article.title, body: article.body, /* TODO: user: article.user_id */ })
             .execute()
 
         return await this.articleRepository.findOneBy({ id : result.identifiers[0].id })
+    }
+
+    async editArticle(article: EditArticleDto): Promise<Article> {
+        const result = await this.articleRepository
+            .createQueryBuilder()
+            .update(Article)
+            .set({ title: article.title, body: article.body, updated_at: new Date() })
+            .where(`id = ${ article.id }`)
+            .execute()
+
+        // TODO: use result id
+        return await this.articleRepository.findOneBy({ id : article.id })
     }
 }

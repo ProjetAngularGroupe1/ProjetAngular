@@ -22,8 +22,10 @@ import { CommentListComponent   } from './components/comment-list/comment-list.c
 import { PageNotFoundComponent  } from './components/page-not-found/page-not-found.component'
 import { PageForbiddenComponent } from './components/page-forbidden/page-forbidden.component'
 import { ProfileComponent       } from './components/profile/profile.component'
-import { CommentFormComponent   } from './components/comment-form/comment-form.component'
-import { ArticleFormComponent   } from './components/article-form/article-form.component'
+import { CommentNewComponent    } from './components/comment-new/comment-new.component'
+import { CommentEditComponent   } from './components/comment-edit/comment-edit.component'
+import { ArticleNewComponent    } from './components/article-new/article-new.component'
+import { ArticleEditComponent   } from './components/article-edit/article-edit.component'
 import { LoginComponent         } from './components/login/login.component'
 import { LogoutComponent        } from './components/logout/logout.component'
 import { ContactComponent       } from './components/contact/contact.component'
@@ -45,8 +47,10 @@ import { HomeComponent          } from './components/home/home.component';
     PageNotFoundComponent,
     PageForbiddenComponent,
     ProfileComponent,
-    CommentFormComponent,
-    ArticleFormComponent,
+    CommentNewComponent,
+    CommentEditComponent,
+    ArticleNewComponent,
+    ArticleEditComponent,
     LoginComponent,
     LogoutComponent,
     ContactComponent,

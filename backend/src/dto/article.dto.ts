@@ -4,7 +4,16 @@ export class ArticleDto {
 }
 
 export class PublishArticleDto {
-    user_id: string
+    user_id: number
+    title: string
+    body: string
+    constructor(
+    ) {}
+}
+
+export class EditArticleDto {
+    id: number
+    user_id: number
     title: string
     body: string
     constructor(

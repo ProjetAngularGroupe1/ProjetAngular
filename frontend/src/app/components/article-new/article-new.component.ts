@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core'
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ArticleModel } from '../../models/article.model'
 import { ArticleService } from "../../services/article.service"
 import { UserService } from 'src/app/services/user.service'
@@ -9,11 +9,11 @@ import { IArticle } from 'src/app/interfaces/article.interface'
 
 
 @Component({
-  selector: 'app-article-form',
-  templateUrl: './article-form.component.html',
-  styleUrls: ['./article-form.component.css']
+  selector: 'app-article-new',
+  templateUrl: './article-new.component.html',
+  styleUrls: ['./article-new.component.css']
 })
-export class ArticleFormComponent {
+export class ArticleNewComponent {
     @Output()
     emitArticle: EventEmitter<ArticleModel> = new EventEmitter<ArticleModel>()
 
@@ -21,15 +21,15 @@ export class ArticleFormComponent {
 
     constructor(private fb: FormBuilder, private articleService: ArticleService, private userService: UserService, private router: Router) { 
         this.articleForm = this.fb.group({
-            title : new FormControl('', [Validators.required]),
-            body : new FormControl('', [Validators.required]),
-        }, { updateOn:'submit' })
+            title : this.fb.control('', [Validators.required]),
+            body : this.fb.control('', [Validators.required]),
+        })
     }
 
     async onSubmit(): Promise<void> {
         if (this.articleForm.valid) {
             lastValueFrom(this.articleService.publishArticle(this.articleForm.value.title, this.articleForm.value.body)).then((article: IArticle) => {
-                // this.router.navigate(['/articles', article.id ])
+                this.router.navigate(['/articles', article.id ])
             })
         }
     }

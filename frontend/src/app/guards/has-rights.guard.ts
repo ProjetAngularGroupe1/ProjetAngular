@@ -5,9 +5,13 @@ import { UserModel } from '../models/user.model'
 import { Observable } from 'rxjs'
 
 
-export const isLoggedInCanActivateGuard: CanActivateFn = (): boolean => {
+export const canEditArticleCanActivateGuard: CanActivateFn = (): boolean => {
     const router      = inject(Router)
     const userService = inject(UserService)
+
+    // TODO
+    // get article user_id
+    // compare with logged user id
 
     let loggedIn: boolean = userService.isLoggedIn()
 
@@ -16,8 +20,4 @@ export const isLoggedInCanActivateGuard: CanActivateFn = (): boolean => {
     }
 
     return loggedIn
-}
-
-export const logginResolveGuard: ResolveFn<UserModel> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<UserModel> => {
-      return inject(UserService).getCurrentMockupUser()
 }

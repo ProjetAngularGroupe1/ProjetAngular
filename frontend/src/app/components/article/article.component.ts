@@ -20,14 +20,20 @@ export class ArticleComponent implements OnInit {
     article!: ArticleModel
     comments!: CommentModel[]
 
-    constructor(private route: ActivatedRoute, private router: Router, private userService: UserService, private articleService: ArticleService,  private commentService: CommentService) {}
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router, 
+        private userService: UserService, 
+        private articleService: ArticleService, 
+        private commentService: CommentService,
+    ) {}
 
     ngOnInit(): void {
         this.route.paramMap.subscribe(params => {
             this.articleId = Number(params.get('id'))
             
             this.isArticleLoaded = false
-            this.articleService.getMockupArticle(this.articleId).subscribe((article) => {
+            this.articleService.getArticle(this.articleId).subscribe((article) => {
                 if (!article) {
                     this.router.navigate(['/404'])
                 }

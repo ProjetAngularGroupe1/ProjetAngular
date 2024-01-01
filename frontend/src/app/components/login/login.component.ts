@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { UserService } from '../../services/user.service'
 import { Router } from '@angular/router'
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 
 @Component({
@@ -15,9 +15,9 @@ export class LoginComponent {
 
     constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
         this.loginForm = this.fb.group({
-            username : new FormControl('', [Validators.required]),
-            password : new FormControl('', [Validators.required]),
-        }, { updateOn:'submit' })
+            username : this.fb.control('', [Validators.required]),
+            password : this.fb.control('', [Validators.required]),
+        })
     }
 
     onSubmit(): void {

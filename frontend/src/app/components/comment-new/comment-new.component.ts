@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core'
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { CommentModel } from '../../models/comment.model'
 import { ArticleService } from "../../services/article.service"
 
 
 @Component({
-  selector: 'app-comment-form',
-  templateUrl: './comment-form.component.html',
-  styleUrls: ['./comment-form.component.css']
+  selector: 'app-comment-new',
+  templateUrl: './comment-new.component.html',
+  styleUrls: ['./comment-new.component.css']
 })
-export class CommentFormComponent {
+export class CommentNewComponent {
     @Input()
     articleId!: number
 
@@ -20,8 +20,8 @@ export class CommentFormComponent {
 
     constructor(private fb: FormBuilder, private articleService: ArticleService) { 
         this.commentForm = this.fb.group({
-            body : new FormControl('', [Validators.required]),
-        }, { updateOn:'submit' })
+            body : this.fb.control('', [Validators.required]),
+        })
     }
 
     async onSubmit(): Promise<void> {

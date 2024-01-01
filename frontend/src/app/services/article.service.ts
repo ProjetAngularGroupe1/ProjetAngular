@@ -38,6 +38,18 @@ export class ArticleService {
         return this.http.post<IArticle>('http://localhost:3000/articles', article)
     }
 
+    editArticle(id: number, title: string, body: string) : Observable<IArticle> {
+        let article: IArticle = {} as IArticle
+        
+        // TODO: get user
+        article.id      = id
+        article.user_id = 0
+        article.title   = title
+        article.body    = body
+
+        return this.http.patch<IArticle>(`http://localhost:3000/articles/${ id }/`, article)
+    }
+
     getAllMockupArticles(): Observable<ArticleModel[]> {
         return of(this.mockDataService.mockArticleList).pipe(delay(500))
     }

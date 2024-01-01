@@ -1,8 +1,10 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 import { isLoggedInCanActivateGuard, logginResolveGuard } from './guards/login.guard'
+import { canEditArticleCanActivateGuard } from './guards/has-rights.guard'
 import { ArticleComponent       } from './components/article/article.component'
-import { ArticleFormComponent   } from './components/article-form/article-form.component'
+import { ArticleNewComponent    } from './components/article-new/article-new.component'
+import { ArticleEditComponent   } from './components/article-edit/article-edit.component'
 import { CommentComponent       } from './components/comment/comment.component'
 import { PageNotFoundComponent  } from './components/page-not-found/page-not-found.component'
 import { PageForbiddenComponent } from './components/page-forbidden/page-forbidden.component'
@@ -20,9 +22,10 @@ const routes: Routes = [
     { path: 'logout'      , component: LogoutComponent       , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
     { path: 'contact'     , component: ContactComponent      , canActivate: []                },
     { path: 'articles'    , children: [
-            { path: ''   , component: HomeComponent         , canActivate: [] },
-            { path: 'new', component: ArticleFormComponent  , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
-            { path: ':id', component: ArticleComponent      , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
+            { path: ''    , component: HomeComponent           , canActivate: [] },
+            { path: 'new'     , component: ArticleNewComponent , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
+            { path: ':id'     , component: ArticleComponent    , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
+            { path: ':id/edit', component: ArticleEditComponent, canActivate: [isLoggedInCanActivateGuard, canEditArticleCanActivateGuard], resolve : { user: logginResolveGuard } },
         ]
     },
     { path: 'comments/:id', component: CommentComponent      , canActivate: []                },

@@ -1,0 +1,9 @@
+.commentForm {
+    background-color: rgb(189, 241, 189);
+}
+
+.commentFormBody {
+    width: 100%;
+    resize: vertical;
+    box-sizing: border-box;
+}
