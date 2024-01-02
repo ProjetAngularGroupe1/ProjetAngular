@@ -1,6 +1,9 @@
 <div class="navbar">
-    <a href="/"> Home </a>
-    <a href="/login" *ngIf="!isLoggedIn"> Login </a> 
-    <a href="/profile" *ngIf="isLoggedIn"> Profile </a>
-    <a href="/logout" *ngIf="isLoggedIn"> Logout </a>
+    <a class="navbarLink" href="/">home</a>
+    <!-- <a href="#news">news</a> -->
+    <div class="navbarRight">
+        <a class="navbarLink" href="/login"  *ngIf="!isLoggedIn">login</a>
+        <a class="navbarLink" href="/profile" *ngIf="isLoggedIn">profile</a>
+        <a class="navbarLink" href="/logout" *ngIf="isLoggedIn">logout</a>
+    </div>
 </div>

@@ -3,9 +3,7 @@
 </div>
 
 <div *ngIf="articles && articles.length > 0">
-    <ul>
-        <li *ngFor="let article of articles"> 
-            <a [routerLink]="['/articles', article.id]"> {{ article.title }} </a>
-        </li>
-    </ul>
+    <div class="articleBody" *ngFor="let article of articles"> 
+        <a [routerLink]="['/articles', article.id]"> {{ article.title }} </a>
+    </div>
 </div>

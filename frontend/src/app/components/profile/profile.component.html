@@ -1,4 +1,4 @@
-<p>My Articles</p>
+<div class="listTitle">my articles</div>
 
 <div *ngIf="!isArticlesLoaded">
     Loading articles...
@@ -8,7 +8,7 @@
     <app-article-list [articles]="articles"></app-article-list>
 </div>
 
-<p>My Comments</p>
+<div class="listTitle">my comments</div>
 
 <div *ngIf="!isCommentsLoaded">
     Loading comments...

@@ -1,0 +1,11 @@
+.listTitle {
+    background-color: rgb(255, 252, 170);
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
