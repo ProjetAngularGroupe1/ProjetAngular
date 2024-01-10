@@ -1,3 +1,4 @@
+<!--  -->
 <div class="listTitle">my articles</div>
 
 <div *ngIf="!isArticlesLoaded">
@@ -8,6 +9,7 @@
     <app-article-list [articles]="articles"></app-article-list>
 </div>
 
+<!--  -->
 <div class="listTitle">my comments</div>
 
 <div *ngIf="!isCommentsLoaded">
@@ -16,4 +18,26 @@
 
 <div *ngIf="isCommentsLoaded">
     <app-comment-list [comments]="comments"></app-comment-list>
+</div>
+
+<!--  -->
+<div class="listTitle">liked articles</div>
+
+<div *ngIf="!isLikedArticlesLoaded">
+    Loading articles...
+</div>
+
+<div *ngIf="isLikedArticlesLoaded">
+    <app-article-list [articles]="likedArticles"></app-article-list>
+</div>
+    
+<!--  -->
+<div class="listTitle">liked comments</div>
+    
+<div *ngIf="!isLikedCommentsLoaded">
+    Loading comments...
+</div>
+
+<div *ngIf="isLikedCommentsLoaded">
+    <app-comment-list [comments]="likedComments"></app-comment-list>
 </div>

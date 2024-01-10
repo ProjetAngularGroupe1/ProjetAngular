@@ -27,6 +27,10 @@ export class ArticleService {
         return this.http.get<IArticle[]>(`http://localhost:3000/users/${ id }/articles`)
     }
 
+    getAllUserLikedArticles(id: number): Observable<IArticle[]> {
+        return this.http.get<IArticle[]>(`http://localhost:3000/users/${ id }/likes/articles`)
+    }
+
     publishArticle(user_id: number, title: string, body: string) : Observable<IArticle> {
         let article: IArticle = {} as IArticle
         
