@@ -3,25 +3,36 @@
 </div>
 
 <div *ngIf="isArticleLoaded">
-    <div> <button (click)="deleteArticle()"> Delete article </button> </div>
-    <a [routerLink]="['/articles', article.id, 'edit']"> Edit article </a>
-    <h4> {{ article.title }} </h4>
-    <h5> Author : {{ article.user_id }} </h5>
-    <h5> Created : {{ article.created_at | articleDate }} </h5>
-    <h5> Last update : {{ article.updated_at | articleDate }} </h5>
-    
+    <div class="deleteButton"> <button (click)="deleteArticle()"> Delete article </button> </div>
+    <div class="editButton"> <a [routerLink]="['/articles', article.id, 'edit']"> Edit article </a> </div>
+
     <div class="articleBody">
-        {{ article.body }}
+      <h3>Title : </h3>
+      {{ article.title }}
+
+      <h3>Author : </h3>
+      {{ article.user_id }}
+
+      <h3>Created : </h3>
+      {{ article.created_at | articleDate }}
+
+      <h3>Last update : </h3>
+      {{ article.updated_at | articleDate }}
+    
+      <h3>Body : </h3>
+      {{ article.body }}
+    </div>
+
+    <div class="comments">
+      <div *ngIf="!isCommentsLoaded">
+          Loading comments...
+      </div>
+  
+      <div *ngIf="isCommentsLoaded">
+          <app-comment-list [comments]="comments"></app-comment-list>
+      </div>
     </div>
     
-    <div *ngIf="!isCommentsLoaded">
-        Loading comments...
-    </div>
-
-    <div *ngIf="isCommentsLoaded">
-        <app-comment-list [comments]="comments"></app-comment-list>
-    </div>
-
     <div class="commentForm">
         <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
             <textarea class="commentFormBody" id="body" name="body" formControlName="body" type="text" placeholder="Write comment..." required></textarea>

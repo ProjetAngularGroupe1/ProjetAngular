@@ -1,11 +1,12 @@
 .header {
-    background-color: rgb(245, 175, 175);
+    background-color: cornflowerblue;
     
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 10px;
     
     font-size: 200%;
+    font-weight: bold;
 
     display: flex;
     justify-content: center;

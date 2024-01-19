@@ -1,13 +1,41 @@
 .articleBody {
-    background-color: antiquewhite;
+    background-color: rgb(141, 170, 204);
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .commentForm {
     background-color: rgb(189, 241, 189);
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .commentFormBody {
     width: 100%;
     resize: vertical;
     box-sizing: border-box;
+}
+
+.comments {
+  background-color: rgb(31, 24, 82);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.editButton {
+  background-color: gold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+
+}
+
+.deleteButton {
+  background-color: red;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
 }
