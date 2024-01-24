@@ -3,7 +3,7 @@ import { delay } from 'rxjs/operators'
 import { Injectable } from '@angular/core'
 import { CommentModel } from '../models/comment.model'
 import { MockDataService } from '../services/mock-data.service'
-import { IComment } from '../interfaces/comment.interface'
+import { IComment }  from "@blog/shared"
 import { HttpClient } from '@angular/common/http'
 
 
@@ -34,11 +34,11 @@ export class CommentService {
         return this.http.get<IComment>(`http://localhost:3000/comments/${ id }`)
     }
 
-    publishComment(user_id: number, article_id: number, body: string): Observable<IComment> {
+    publishComment(userId: number, articleId: number, body: string): Observable<IComment> {
         let comment: IComment = {} as IComment
 
-        comment.user_id    = user_id
-        comment.article_id = article_id
+        comment.userId    = userId
+        comment.articleId = articleId
         comment.body       = body
 
         return this.http.post<IComment>('http://localhost:3000/comments', comment)

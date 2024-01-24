@@ -13,7 +13,7 @@ VALUES
     (4, 'salmaayachi'  , 'password');
 
 
-INSERT INTO comment (id, body, articleId, userId, created_at, updated_at)
+INSERT INTO comment (id, body, articleId, userId, createdAt, updatedAt)
 VALUES  
     (0, 'Lol'                        ,  1, 0, date(), date() ),
     (1, 'Lmao'                       ,  2, 0, date(), date() ),
@@ -25,7 +25,7 @@ VALUES
     (7, 'Love you'                   ,  2, 5, date(), date() );
 
 
-INSERT INTO article (id, title, body, created_at, updated_at, userId)
+INSERT INTO article (id, title, body, createdAt, updatedAt, userId)
 VALUES 
     (0, 'My First Article'         , 'This is the body of my first article.', date(), date(), 3),
     (1, 'Is the earth flat ?'      , 'Yes.'                                 , date(), date(), 3),

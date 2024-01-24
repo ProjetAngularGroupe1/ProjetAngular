@@ -5,7 +5,7 @@ import { ArticleModel } from"../models/article.model"
 import { CommentModel } from '../models/comment.model'
 import { MockDataService } from '../services/mock-data.service'
 import { HttpClient } from "@angular/common/http"
-import { IArticle } from "../interfaces/article.interface"
+import { IArticle }  from "@blog/shared"
 
 
 @Injectable()
@@ -31,10 +31,10 @@ export class ArticleService {
         return this.http.get<IArticle[]>(`http://localhost:3000/users/${ id }/likes/articles`)
     }
 
-    publishArticle(user_id: number, title: string, body: string) : Observable<IArticle> {
+    publishArticle(userId: number, title: string, body: string) : Observable<IArticle> {
         let article: IArticle = {} as IArticle
         
-        article.user_id = user_id
+        article.userId = userId
         article.title   = title
         article.body    = body
 
@@ -46,7 +46,7 @@ export class ArticleService {
         
         // TODO: get user
         article.id      = id
-        article.user_id = 0
+        article.userId = 0
         article.title   = title
         article.body    = body
 

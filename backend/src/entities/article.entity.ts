@@ -1,9 +1,11 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, ManyToMany, JoinTable, JoinColumn } from 'typeorm'
 import { Comment } from './comment.entity'
 import { User } from './user.entity'
+import { IArticle } from "@blog/shared"
+
 
 @Entity()
-export class Article {
+export class Article implements IArticle {
     @PrimaryGeneratedColumn()
     id: number
 
@@ -14,10 +16,10 @@ export class Article {
     body: string
 
     @CreateDateColumn()
-    created_at: Date
+    createdAt: Date
     
     @UpdateDateColumn()
-    updated_at: Date
+    updatedAt: Date
 
     @OneToMany(() => Comment, comment => comment.article) 
     comments: Comment[]

@@ -4,8 +4,8 @@ export class CommentDto {
 }
 
 export class PublishCommentDto {
-    user_id: number
-    article_id: number
+    userId: number
+    articleId: number
     body: string
     constructor(
     ) {}

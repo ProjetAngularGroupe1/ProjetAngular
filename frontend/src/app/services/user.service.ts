@@ -6,7 +6,7 @@ import { LocalStorageService } from '../services/local-storage.service'
 import { MockDataService } from '../services/mock-data.service'
 import { Subject } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
-import { IUser } from '../interfaces/user.interface'
+import { IUser }  from "@blog/shared"
 
 @Injectable()
 export class UserService {

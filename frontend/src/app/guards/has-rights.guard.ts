@@ -10,7 +10,7 @@ export const canEditArticleCanActivateGuard: CanActivateFn = (): boolean => {
     const userService = inject(UserService)
 
     // TODO
-    // get article user_id
+    // get article userId
     // compare with logged user id
 
     let loggedIn: boolean = userService.isLoggedIn()

@@ -28,7 +28,7 @@ export class ArticleNewComponent {
 
     async onSubmit(): Promise<void> {
         if (this.articleForm.valid) {
-            // TODO: get user_id
+            // TODO: get userId
             lastValueFrom(this.articleService.publishArticle(0, this.articleForm.value.title, this.articleForm.value.body)).then((article: IArticle) => {
                 this.router.navigate(['/articles', article.id ])
             })

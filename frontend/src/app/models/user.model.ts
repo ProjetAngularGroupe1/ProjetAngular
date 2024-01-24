@@ -1,4 +1,4 @@
-import { IUser } from "../interfaces/user.interface"
+import { IUser }  from "@blog/shared"
 
 export class UserModel implements IUser {
     id: number

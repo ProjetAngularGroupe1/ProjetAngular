@@ -50,8 +50,8 @@ export class ArticleComponent implements OnInit {
 
                 this.isArticleLoaded = true
                 this.article = article
-                this.article.created_at = new Date(article.created_at)
-                this.article.updated_at = new Date(article.updated_at)
+                this.article.createdAt = new Date(article.createdAt)
+                this.article.updatedAt = new Date(article.updatedAt)
             })
             
             this.isCommentsLoaded = false
@@ -71,7 +71,7 @@ export class ArticleComponent implements OnInit {
     async onSubmit(): Promise<void> {
         if (this.commentForm.valid) {
             this.isCommentsLoaded = false
-            // TODO: get user_id
+            // TODO: get userId
             lastValueFrom(this.commentService.publishComment(0, this.articleId, this.commentForm.value.body)).then(() => {
                 lastValueFrom(this.commentService.getAllArticleComments(this.articleId)).then((comments) => {
                     this.isCommentsLoaded = true

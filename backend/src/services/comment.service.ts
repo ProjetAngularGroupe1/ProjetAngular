@@ -50,10 +50,10 @@ export class CommentService {
             .into(Comment)
             .values({ 
                 body: comment.body, 
-                articleId : comment.article_id, 
-                userId: comment.user_id,
-                created_at: new Date(), 
-                updated_at: new Date(),
+                articleId : comment.articleId, 
+                userId: comment.userId,
+                createdAt: new Date(), 
+                updatedAt: new Date(),
             })
             .execute()
 

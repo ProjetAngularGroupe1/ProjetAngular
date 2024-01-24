@@ -4,7 +4,7 @@ import { DataSource, Repository } from 'typeorm'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
-import { EditArticleDto, PublishArticleDto } from 'src/dto/article.dto'
+import { EditArticleDto, PublishArticleDto } from '@blog/shared'
 
 @Injectable()
 export class ArticleService {
@@ -46,9 +46,9 @@ export class ArticleService {
             .values({ 
                 title: article.title, 
                 body: article.body, 
-                userId: article.user_id, 
-                created_at: new Date(), 
-                updated_at: new Date(),
+                userId: article.userId, 
+                createdAt: new Date(), 
+                updatedAt: new Date(),
             })
             .execute()
 
@@ -62,7 +62,7 @@ export class ArticleService {
             .set({ 
                 title: article.title, 
                 body: article.body, 
-                updated_at: new Date(),
+                updatedAt: new Date(),
             })
             .where(`id = ${ article.id }`)
             .execute()

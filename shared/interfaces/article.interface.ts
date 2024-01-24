@@ -1,8 +1,8 @@
 export interface IArticle {
     id: number
-    user_id: number
+    userId: number
     title: string
     body: string
-    created_at: Date
-    updated_at: Date
+    createdAt: Date
+    updatedAt: Date
 }

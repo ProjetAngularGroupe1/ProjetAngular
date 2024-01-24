@@ -2,7 +2,7 @@ import { Get, Controller, Param, Body, Post } from '@nestjs/common'
 import { CommentService } from '../services/comment.service'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
-import { PublishCommentDto } from 'src/dto/comment.dto'
+import { PublishCommentDto } from '@blog/shared'
 
 @Controller('comments')
 export class CommentController {
