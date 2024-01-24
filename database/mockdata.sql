@@ -1,10 +1,16 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS article;
+DROP TABLE IF EXISTS article_likes_user;
+DROP TABLE IF EXISTS comment_likes_user;
+
 INSERT INTO user (id, username, password)
 VALUES 
-    (0, 'hfr4', 'password'),
-    (1, 'chay31', 'password'),
-    (2, 'damienien', 'password'),
+    (0, 'hfr4'         , 'password'),
+    (1, 'chay31'       , 'password'),
+    (2, 'damienien'    , 'password'),
     (3, 'mrworldwide97', 'password'),
-    (4, 'salmaayachi', 'password');
+    (4, 'salmaayachi'  , 'password');
 
 
 INSERT INTO comment (id, body, articleId, userId, created_at, updated_at)
