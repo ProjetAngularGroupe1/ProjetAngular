@@ -1,13 +1,24 @@
 # AngularProject
 
 ## Launch Backend
-
-- ```cd backend/```
-- ```npm run start```
-- ```localhost:3000```
+```cmd
+cd backend/
+```
+```cmd
+npm run start
+```
+```cmd
+localhost:3000
+```
 
 ## Launch Frontend
 
-- ```cd frontend/```
-- ```npm run start```
-- ```localhost:4200```
+```cmd
+cd frontend/
+```
+```cmd
+npm run start
+```
+```cmd
+localhost:4200
+```
