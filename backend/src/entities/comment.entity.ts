@@ -31,6 +31,6 @@ export class Comment {
     userId: number;
 
     @JoinTable()
-    @ManyToMany(() => User, user => user.liked_comments)
+    @ManyToMany(() => User, user => user.likedComments)
     likes: User[]
 }

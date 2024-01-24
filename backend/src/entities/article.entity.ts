@@ -32,6 +32,6 @@ export class Article implements IArticle {
     userId: number;
 
     @JoinTable()
-    @ManyToMany(() => User, user => user.liked_articles)
+    @ManyToMany(() => User, user => user.likedArticles)
     likes: User[]
 }

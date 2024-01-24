@@ -40,19 +40,19 @@ export class UserService {
         // TODO: why doesn't this work ?
         // const user = await this.userRepository.findOne({
         //     where: { id : id },
-        //     relations: ['liked_articles'],
+        //     relations: ['likedArticles'],
         // })
-        // return user.liked_articles
+        // return user.likedArticles
 
         const ids: any[] = await this.dataSource.query(`SELECT articleId FROM article_likes_user WHERE userId = ${ id };`)
         
-        let liked_articles: Article[] = []
+        let likedArticles: Article[] = []
         for (const id of ids) {
             const article = await this.dataSource.getRepository(Article).findOneBy({ id : id.articleId })
-            liked_articles.push(article)
+            likedArticles.push(article)
         }
 
-        return liked_articles
+        return likedArticles
     }
 
     async findAllLikedCommentsById(id: number): Promise<Comment[]> {
@@ -65,12 +65,12 @@ export class UserService {
 
         const ids: any[] = await this.dataSource.query(`SELECT commentId FROM comment_likes_user WHERE userId = ${ id };`)
         
-        let liked_comments: Comment[] = []
+        let likedComments: Comment[] = []
         for (const id of ids) {
             const comment = await this.dataSource.getRepository(Comment).findOneBy({ id : id.commentId })
-            liked_comments.push(comment)
+            likedComments.push(comment)
         }
 
-        return liked_comments
+        return likedComments
     }
 }

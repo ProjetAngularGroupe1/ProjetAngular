@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-        "@blog/shared": ["../shared"]
+        "@blog/shared": ["./shared"]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",

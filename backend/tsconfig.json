@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-        "@blog/shared": ["../shared"]
+        "@blog/shared": ["./shared"]
     },
     "module": "commonjs",
     "declaration": true,

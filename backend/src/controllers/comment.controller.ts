@@ -2,7 +2,7 @@ import { Get, Controller, Param, Body, Post } from '@nestjs/common'
 import { CommentService } from '../services/comment.service'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
-import { PublishCommentDto } from '@blog/shared'
+import { IPublishCommentDto } from '@blog/shared'
 
 @Controller('comments')
 export class CommentController {
@@ -26,7 +26,7 @@ export class CommentController {
     }
 
     @Post()
-    publishComment(@Body() comment: PublishCommentDto): Promise<Comment> {
+    publishComment(@Body() comment: IPublishCommentDto): Promise<Comment> {
         return this.commentService.publishComment(comment)
     }
 }

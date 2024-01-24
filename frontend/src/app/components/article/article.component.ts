@@ -6,8 +6,7 @@ import { ArticleService } from '../../services/article.service'
 import { CommentService } from '../../services/comment.service'
 import { UserService } from '../../services/user.service'
 import { lastValueFrom } from 'rxjs'
-import { IArticle } from 'src/app/interfaces/article.interface'
-import { IComment } from 'src/app/interfaces/comment.interface'
+import { IArticle } from '@blog/shared'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 

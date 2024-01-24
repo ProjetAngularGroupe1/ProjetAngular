@@ -4,6 +4,40 @@ DROP TABLE IF EXISTS article;
 DROP TABLE IF EXISTS article_likes_user;
 DROP TABLE IF EXISTS comment_likes_user;
 
+CREATE TABLE user(
+   id       INTEGER PRIMARY KEY,
+   username VARCHAR,
+   password VARCHAR
+);
+
+CREATE TABLE article(
+   id        INTEGER PRIMARY KEY,
+   title     VARCHAR,
+   body      VARCHAR,
+   createdAt DATETIME,
+   updatedAt DATETIME,
+   userId    INTEGER
+);
+
+CREATE TABLE comment(
+   id        INTEGER PRIMARY KEY,
+   body      VARCHAR,
+   createdAt DATETIME,
+   updatedAt DATETIME,
+   userId    INTEGER,
+   articleId INTEGER
+);
+
+CREATE TABLE article_likes_user(
+    articleId INTEGER,
+    userId    INTEGER
+);
+
+CREATE TABLE comment_likes_user(
+    commentId INTEGER,
+    userId    INTEGER
+);
+
 INSERT INTO user (id, username, password)
 VALUES 
     (0, 'hfr4'         , 'password'),

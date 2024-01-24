@@ -20,8 +20,8 @@ export class User {
     comments: Comment[]
     
     @ManyToMany(() => Article, article => article.likes)
-    liked_articles: Article[]
+    likedArticles: Article[]
     
     @ManyToMany(() => Comment, comment => comment.likes)
-    liked_comments: Comment[]
+    likedComments: Comment[]
 }
