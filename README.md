@@ -1,13 +1,13 @@
 # AngularProject
 
-# Launch Backend
+## Launch Backend
 
-- cd backend/
-- npm run start
-- localhost:3000
+- ```cd backend/```
+- ```npm run start```
+- ```localhost:3000```
 
-# Launch Frontend
+## Launch Frontend
 
-- cd frontend/
-- npm run start
-- localhost:4200
+- ```cd frontend/```
+- ```npm run start```
+- ```localhost:4200```
