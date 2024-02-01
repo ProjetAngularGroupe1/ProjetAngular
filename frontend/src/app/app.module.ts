@@ -10,7 +10,6 @@ import { UserService            } from './services/user.service'
 import { LocalStorageService    } from './services/local-storage.service'
 import { IndexedDBService       } from './services/indexed-db.service'
 import { JwtService             } from './services/jwt.service'
-import { MockDataService        } from './services/mock-data.service'
 import { ArticleDatePipe        } from './pipes/article-date.pipe'
 import { OrderByPipe            } from './pipes/order-by.pipe'
 import { HightlightDirective    } from './directives/highlight.directive'
@@ -76,7 +75,6 @@ import { HomeComponent          } from './components/home/home.component';
     LocalStorageService,
     IndexedDBService,
     JwtService,
-    MockDataService,
   ],
   bootstrap: [AppComponent]
 })

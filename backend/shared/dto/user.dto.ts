@@ -1,4 +1,4 @@
-export class UserDto {
-    constructor(
-    ) {}
+export interface IUserLoginDto {
+  jwt: string;
+  username: string;
 }

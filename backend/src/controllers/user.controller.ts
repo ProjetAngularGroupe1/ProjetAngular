@@ -1,8 +1,10 @@
-import { Get, Controller, Param } from '@nestjs/common'
+import { Get, Post, Controller, Param } from '@nestjs/common'
 import { UserService } from '../services/user.service'
 import { User } from '../entities/user.entity'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
+import { IUserLoginDto } from '@blog/shared'
+
 
 @Controller('users')
 export class UserController {
@@ -38,5 +40,15 @@ export class UserController {
     @Get(':id/likes/comments')
     getLikedCommentsById(@Param() params: any): Promise<Comment[]> {
         return this.userService.findAllLikedCommentsById(params.id)
+    }
+
+    @Post('/login')
+    login(@Param() params: any): Promise<IUserLoginDto | void> {
+        return this.userService.logIn()
+    }
+
+    @Post('/signin')
+    signin(@Param() params: any): Promise<void> {
+        return this.userService.signIn()
     }
 }

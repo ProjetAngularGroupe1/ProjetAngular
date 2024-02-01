@@ -24,14 +24,14 @@ export class LoginComponent {
         this.error = ''
 
         if (this.loginForm.valid) {
-            let isUser = this.userService.isMockupUser(this.loginForm.value.username, this.loginForm.value.password)
+            // let isUser = this.userService.isUser(this.loginForm.value.username, this.loginForm.value.password)
 
-            if (isUser) {
-                this.userService.logIn()
-                this.router.navigate(['/'])
-            } else {
-                this.error = 'User not found'
-            }
+            // if (isUser) {
+            //     this.userService.logIn()
+            //     this.router.navigate(['/'])
+            // } else {
+            //     this.error = 'User not found'
+            // }
         }
     }
 }

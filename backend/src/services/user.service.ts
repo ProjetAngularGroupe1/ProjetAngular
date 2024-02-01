@@ -4,6 +4,7 @@ import { DataSource, Repository } from 'typeorm'
 import { User } from '../entities/user.entity'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
+import { IUserLoginDto } from '@blog/shared'
 
 @Injectable()
 export class UserService {
@@ -72,5 +73,13 @@ export class UserService {
         }
 
         return likedComments
+    }
+
+    async signIn(): Promise<void> {
+
+    }
+
+    async logIn(): Promise<IUserLoginDto | void> {
+      
     }
 }
