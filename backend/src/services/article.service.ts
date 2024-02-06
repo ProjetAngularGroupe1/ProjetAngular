@@ -4,7 +4,7 @@ import { DataSource, Repository } from 'typeorm'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
-import { EditArticleDto, PublishArticleDto } from '@blog/shared'
+import { IArticleEditDto, IArticlePublishDto } from '@blog/shared'
 
 @Injectable()
 export class ArticleService {
@@ -38,7 +38,7 @@ export class ArticleService {
         return article.likes
     }
 
-    async publishArticle(article: PublishArticleDto): Promise<Article> {
+    async publishArticle(article: IArticlePublishDto): Promise<Article> {
         const result = await this.articleRepository
             .createQueryBuilder()
             .insert()
@@ -55,7 +55,7 @@ export class ArticleService {
         return await this.articleRepository.findOneBy({ id : result.identifiers[0].id })
     }
 
-    async editArticle(article: EditArticleDto): Promise<Article> {
+    async editArticle(article: IArticleEditDto): Promise<Article> {
         const result = await this.articleRepository
             .createQueryBuilder()
             .update(Article)

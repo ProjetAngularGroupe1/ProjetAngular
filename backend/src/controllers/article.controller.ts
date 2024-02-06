@@ -3,7 +3,7 @@ import { ArticleService } from '../services/article.service'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
-import { EditArticleDto, PublishArticleDto } from '@blog/shared'
+import { IArticleEditDto, IArticlePublishDto } from '@blog/shared'
 
 @Controller('articles')
 export class ArticleController {
@@ -32,12 +32,12 @@ export class ArticleController {
     }
 
     @Post()
-    publishArticle(@Body() article: PublishArticleDto): Promise<Article> {
+    publishArticle(@Body() article: IArticlePublishDto): Promise<Article> {
         return this.articleService.publishArticle(article)
     }
 
     @Patch(':id')
-    editArticle(@Body() article: EditArticleDto): Promise<Article> {
+    editArticle(@Body() article: IArticleEditDto): Promise<Article> {
         return this.articleService.editArticle(article)
     }
 

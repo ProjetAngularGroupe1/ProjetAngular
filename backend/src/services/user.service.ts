@@ -75,11 +75,38 @@ export class UserService {
         return likedComments
     }
 
-    async signIn(): Promise<void> {
-
+    async logIn(username: string, password: string): Promise<IUserLoginDto | void> {
+        const user = await this.userRepository.findOne({
+            where: { 
+                username : username,
+                password : password,
+            },
+        })
+        
+        if (user) {
+            return {
+                id       : user.id,
+                username : user.username,
+                jwt      : "token",
+            }
+        } 
     }
 
-    async logIn(): Promise<IUserLoginDto | void> {
-      
+    async signIn(username: string, password: string): Promise<boolean> {
+        const result = await this.userRepository
+            .createQueryBuilder()
+            .insert()
+            .into(User)
+            .values({ 
+                username: username, 
+                password: password, 
+            })
+            .execute()
+
+        if (result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

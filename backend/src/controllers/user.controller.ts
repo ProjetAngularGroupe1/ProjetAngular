@@ -1,4 +1,4 @@
-import { Get, Post, Controller, Param } from '@nestjs/common'
+import { Get, Post, Controller, Param, Body, Response, HttpStatus } from '@nestjs/common'
 import { UserService } from '../services/user.service'
 import { User } from '../entities/user.entity'
 import { Article } from '../entities/article.entity'
@@ -43,12 +43,19 @@ export class UserController {
     }
 
     @Post('/login')
-    login(@Param() params: any): Promise<IUserLoginDto | void> {
-        return this.userService.logIn()
+    async login(@Body() body: any, @Response() res: any): Promise<IUserLoginDto | void> {
+        const user_jwt = await this.userService.logIn(body.username, body.password)
+        return res.status(HttpStatus.OK).json(user_jwt)
     }
 
     @Post('/signin')
-    signin(@Param() params: any): Promise<void> {
-        return this.userService.signIn()
+    async signin(@Body() body: any, @Response() res: any): Promise<void> {
+        // TODO : check it username doesn't already exist 
+        const ok = this.userService.signIn(body.username, body.password)
+        if (ok) {
+            return res.status(HttpStatus.OK) 
+        } else {
+            return res.status(HttpStatus.FORBIDDEN) 
+        }
     }
 }

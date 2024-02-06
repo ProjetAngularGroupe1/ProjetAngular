@@ -1,7 +1,7 @@
 export interface ICommentDto {
 }
 
-export interface IPublishCommentDto {
+export interface ICommentPublishDto {
     userId: number
     articleId: number
     body: string

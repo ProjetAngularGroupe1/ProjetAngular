@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { DataSource, Repository } from 'typeorm'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
-import { IPublishCommentDto } from '@blog/shared'
+import { ICommentPublishDto } from '@blog/shared'
 
 @Injectable()
 export class CommentService {
@@ -43,7 +43,7 @@ export class CommentService {
         return true
     }
 
-    async publishComment(comment: IPublishCommentDto): Promise<Comment> {
+    async publishComment(comment: ICommentPublishDto): Promise<Comment> {
         const result = await this.commentRepository
             .createQueryBuilder()
             .insert()
