@@ -4,7 +4,7 @@
 
 <div *ngIf="comments && comments.length > 0">
     <div class="commentBody" *ngFor="let comment of comments">
-        <span> "{{ comment.body }}" <i> by </i> <b> User {{ comment.userId }}</b></span>
+        <span> "{{ comment.body }}" <i> by </i> <b> {{ comment.userId }}</b></span>
         <img src="assets/svg/hand-thumbs-down.svg">
         <img src="assets/svg/hand-thumbs-up.svg">
     </div>

@@ -20,18 +20,17 @@ export class LoginComponent {
         })
     }
 
-    onSubmit(): void {
+    async onSubmit(): Promise<void> {
         this.error = ''
 
         if (this.loginForm.valid) {
-            // let isUser = this.userService.isUser(this.loginForm.value.username, this.loginForm.value.password)
+            const logged = await this.userService.logIn(this.loginForm.value.username, this.loginForm.value.password)
 
-            // if (isUser) {
-            //     this.userService.logIn()
-            //     this.router.navigate(['/'])
-            // } else {
-            //     this.error = 'User not found'
-            // }
+            if (logged) {
+                this.router.navigate(['/'])
+            } else {
+                this.error = 'User not found'
+            }
         }
     }
 }

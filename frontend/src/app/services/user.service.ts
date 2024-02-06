@@ -1,10 +1,9 @@
-import { Observable, of } from 'rxjs'
+import { Observable, firstValueFrom, of } from 'rxjs'
 import { Injectable } from '@angular/core'
-import { UserModel } from '../models/user.model'
 import { LocalStorageService } from '../services/local-storage.service'
 import { Subject } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
-import { IUser, IUserLoginDto } from "@blog/shared"
+import { IUserGetDto, IUserLoginDto } from "@blog/shared"
 
 @Injectable()
 export class UserService {
@@ -19,13 +18,17 @@ export class UserService {
         private http: HttpClient,
     ) {}
 
-    getAllUsers(): Observable<IUser[]> {
-        return this.http.get<IUser[]>('http://localhost:3000/users/')
+    getAllUsers(): Observable<IUserGetDto[]> {
+        return this.http.get<IUserGetDto[]>('http://localhost:3000/users/')
+    }
+
+    getUser(id: number): Observable<IUserGetDto>  {
+        return this.http.get<IUserGetDto>(`http://localhost:3000/users/${ id }`)
     }
 
     async logIn(username: string, password: string): Promise<boolean> {
-        const userDto = await this.http.post<IUserLoginDto>('http://localhost:3000/users/login', { username: username, password: password })
-
+        const userDto = await firstValueFrom(this.http.post<IUserLoginDto>('http://localhost:3000/users/login', { username: username, password: password }))
+        
         if (userDto) { 
           this.localStorageService.saveData('loggedUser', userDto)
           this.logInSignalSource.next(null)

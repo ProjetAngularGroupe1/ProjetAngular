@@ -3,3 +3,8 @@ export interface IUserLoginDto {
   username: string;
   id: number;
 }
+
+export interface IUserGetDto {
+    username: string;
+    id: number;
+}

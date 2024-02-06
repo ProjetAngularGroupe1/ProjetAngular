@@ -1,9 +1,8 @@
 import { Get, Post, Controller, Param, Body, Response, HttpStatus } from '@nestjs/common'
 import { UserService } from '../services/user.service'
-import { User } from '../entities/user.entity'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
-import { IUserLoginDto } from '@blog/shared'
+import { IUserLoginDto, IUserGetDto } from '@blog/shared'
 
 
 @Controller('users')
@@ -13,12 +12,12 @@ export class UserController {
     ) {}
 
     @Get()
-    getUsers(): Promise<User[]> {
+    getUsers(): Promise<IUserGetDto[]> {
         return this.userService.findAll()
     }
 
     @Get(':id')
-    getUserById(@Param() params: any): Promise<User> {
+    getUserById(@Param() params: any): Promise<IUserGetDto> {
         return this.userService.findOneById(params.id)
     }
 

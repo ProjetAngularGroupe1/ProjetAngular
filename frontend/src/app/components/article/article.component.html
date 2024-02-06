@@ -7,20 +7,20 @@
     <div class="editButton"> <a [routerLink]="['/articles', article.id, 'edit']"> Edit article </a> </div>
 
     <div class="articleBody">
-      <h3>Title : </h3>
-      {{ article.title }}
+        <h3>Title : </h3>
+        {{ article.title }}
+        
+        <h3>Author : </h3>
+        {{ articleUser.username }}
 
-      <h3>Author : </h3>
-      {{ article.userId }}
+        <h3>Created : </h3>
+        {{ article.createdAt | articleDate }}
 
-      <h3>Created : </h3>
-      {{ article.createdAt | articleDate }}
-
-      <h3>Last update : </h3>
-      {{ article.updatedAt | articleDate }}
-    
-      <h3>Body : </h3>
-      {{ article.body }}
+        <h3>Last update : </h3>
+        {{ article.updatedAt | articleDate }}
+        
+        <h3>Body : </h3>
+        {{ article.body }}
     </div>
 
     <div class="comments">

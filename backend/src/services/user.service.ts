@@ -4,7 +4,7 @@ import { DataSource, Repository } from 'typeorm'
 import { User } from '../entities/user.entity'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
-import { IUserLoginDto } from '@blog/shared'
+import { IUserLoginDto, IUserGetDto } from '@blog/shared'
 
 @Injectable()
 export class UserService {
@@ -13,12 +13,14 @@ export class UserService {
         @InjectRepository(User) private userRepository: Repository<User>
     ) {}
 
-    async findAll(): Promise<User[]> {
-        return await this.userRepository.find()
+    async findAll(): Promise<IUserGetDto[]> {
+        const users = await this.userRepository.find()
+        return users.map(u => { return { id : u.id, username : u.username} as IUserGetDto } )
     }
 
-    async findOneById(id: number): Promise<User> {
-        return await this.userRepository.findOneBy({ id : id })
+    async findOneById(id: number): Promise<IUserGetDto> {
+        const user =  await this.userRepository.findOneBy({ id : id })
+        return { id : user.id, username : user.username } as IUserGetDto
     }
 
     async findAllArticlesById(id: number): Promise<Article[]> {
