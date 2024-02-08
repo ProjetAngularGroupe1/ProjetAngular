@@ -39,12 +39,11 @@ export class ArticleService {
         return this.http.post<IArticle>('http://localhost:3000/articles', article)
     }
 
-    editArticle(id: number, title: string, body: string) : Observable<IArticle> {
+    editArticle(userId: number, id: number, title: string, body: string) : Observable<IArticle> {
         let article: IArticle = {} as IArticle
         
-        // TODO: get user
+        article.userId  = userId
         article.id      = id
-        article.userId = 0
         article.title   = title
         article.body    = body
 

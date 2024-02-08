@@ -48,7 +48,7 @@ export class ArticleEditComponent implements OnInit {
                 }
 
                 this.isArticleLoaded = true
-                this.article = new ArticleModel(a.id, 0, a.title, a.body) // TODO: use current user
+                this.article = new ArticleModel(a.id, a.userId, a.title, a.body)
 
                 this.articleForm.setValue( { title : a.title, body : a.body })
             })
@@ -59,13 +59,20 @@ export class ArticleEditComponent implements OnInit {
         })
     }
 
-    // TODO: Shouldn't be able to submit if there is no edit on the article
+    // TODO : Shouldn't be able to submit if there is no edit on the article
+    // TODO : Error message
     async onSubmit(): Promise<void> {
         if (this.articleForm.valid) {
             if (this.articleForm.value.title !== this.article.title || this.articleForm.value.body !== this.article.body) {
-                lastValueFrom(this.articleService.editArticle(this.articleId, this.articleForm.value.title, this.articleForm.value.body)).then((article: IArticle) => {
-                    this.router.navigate(['/articles', article.id ])
-                })
+                const user = this.userService.getLoggedUser();
+
+                if (user == this.article.userId) {
+                    lastValueFrom(this.articleService.editArticle(user.id, this.articleId, this.articleForm.value.title, this.articleForm.value.body)).then((article: IArticle) => {
+                        this.router.navigate(['/articles', article.id ])
+                    })
+                } else {
+                    // TODO
+                }
             } else {
                 console.log("No modification found")
             }

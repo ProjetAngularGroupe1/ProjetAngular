@@ -72,13 +72,19 @@ export class ArticleComponent implements OnInit {
     async onSubmit(): Promise<void> {
         if (this.commentForm.valid) {
             this.isCommentsLoaded = false
-            // TODO: get userId
-            lastValueFrom(this.commentService.publishComment(0, this.articleId, this.commentForm.value.body)).then(() => {
-                lastValueFrom(this.commentService.getAllArticleComments(this.articleId)).then((comments) => {
-                    this.isCommentsLoaded = true
-                    this.comments = comments
+
+            const user = this.userService.getLoggedUser();
+
+            if (user) {
+                lastValueFrom(this.commentService.publishComment(user.id, this.articleId, this.commentForm.value.body)).then(() => {
+                    lastValueFrom(this.commentService.getAllArticleComments(this.articleId)).then((comments) => {
+                        this.isCommentsLoaded = true
+                        this.comments = comments
+                    })
                 })
-            })
+            } else {
+                // TODO
+            }
         }
     }
 
