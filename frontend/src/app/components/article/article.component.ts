@@ -6,7 +6,7 @@ import { ArticleService } from '../../services/article.service'
 import { CommentService } from '../../services/comment.service'
 import { UserService } from '../../services/user.service'
 import { lastValueFrom } from 'rxjs'
-import { IArticle, IUserGetDto } from '@blog/shared'
+import { IArticle, IUser, IUserGetDto } from '@blog/shared'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 
@@ -23,7 +23,6 @@ export class ArticleComponent implements OnInit {
     article!: ArticleModel
     commentForm!: FormGroup
     comments!: CommentModel[]
-    articleUser!: IUserGetDto 
 
     constructor(
         private fb: FormBuilder,
@@ -54,7 +53,7 @@ export class ArticleComponent implements OnInit {
                 this.article.updatedAt = new Date(article.updatedAt)
 
                 this.userService.getUser(this.article.userId).subscribe((user: IUserGetDto) => {
-                    this.articleUser = user
+                    this.article.user = user as IUser
                 })
             })
             

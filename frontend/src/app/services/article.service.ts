@@ -33,8 +33,8 @@ export class ArticleService {
         let article: IArticle = {} as IArticle
         
         article.userId = userId
-        article.title   = title
-        article.body    = body
+        article.title  = title
+        article.body   = body
 
         return this.http.post<IArticle>('http://localhost:3000/articles', article)
     }

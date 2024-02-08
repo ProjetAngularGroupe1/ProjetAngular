@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
         this.isArticlesLoaded = false
         this.articleService.getAllArticles().subscribe((articles: IArticle[]) => {
             this.isArticlesLoaded = true
-            this.articles         = articles.map((a) => new ArticleModel(a.id, 0, a.title, a.body))
+            this.articles         = articles
         })
     }
 }

@@ -15,7 +15,7 @@ export class UserService {
 
     async findAll(): Promise<IUserGetDto[]> {
         const users = await this.userRepository.find()
-        return users.map(u => { return { id : u.id, username : u.username} as IUserGetDto } )
+        return users as IUserGetDto[]
     }
 
     async findOneById(id: number): Promise<IUserGetDto> {
