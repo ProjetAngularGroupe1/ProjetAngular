@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { ArticleModel } from '../../models/article.model'
+import { IUser, IUserGetDto } from '@blog/shared'
+import { UserService } from 'src/app/services/user.service'
 
 
 @Component({
@@ -9,11 +11,17 @@ import { ArticleModel } from '../../models/article.model'
 })
 export class ArticleListComponent implements OnInit {
     @Input() 
-    articles!: ArticleModel[] | null 
+    articles!: ArticleModel[]
 
-    constructor () {}
+    constructor (
+        private userService: UserService,
+    ) {}
 
     ngOnInit(): void {
-
+        this.articles.forEach(article => {
+            this.userService.getUser(article.userId).subscribe((user: IUserGetDto) => {
+                article.user = user as IUser
+            })
+        })
     }
 }

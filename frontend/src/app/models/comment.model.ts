@@ -1,4 +1,4 @@
-import { IComment }  from "@blog/shared"
+import { IArticle, IComment, IUser }  from "@blog/shared"
 
 export class CommentModel implements IComment {
     id: number
@@ -7,6 +7,9 @@ export class CommentModel implements IComment {
     body: string
     createdAt: Date
     updatedAt: Date
+
+    user?: IUser
+    article?: IArticle
 
     constructor(id: number, userId: number, articleId: number, body: string) {
         this.id        = id
