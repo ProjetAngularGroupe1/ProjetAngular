@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { DataSource, Repository } from 'typeorm'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
-import { ICommentPublishDto } from '@blog/shared'
+import { ICommentPublishDto } from 'shared'
 
 @Injectable()
 export class CommentService {

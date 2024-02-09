@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
 import { ArticleModel } from '../../models/article.model'
-import { IUser, IUserGetDto } from '@blog/shared'
+import { IUser, IUserGetDto } from 'shared'
 import { UserService } from 'src/app/services/user.service'
 
 

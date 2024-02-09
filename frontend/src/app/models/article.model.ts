@@ -1,4 +1,4 @@
-import { IArticle, IUser } from "@blog/shared"
+import { IArticle, IUser } from "shared"
 
 export class ArticleModel implements IArticle {
     id: number

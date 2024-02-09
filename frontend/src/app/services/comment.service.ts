@@ -2,7 +2,7 @@ import { Observable, of } from 'rxjs'
 import { delay } from 'rxjs/operators'
 import { Injectable } from '@angular/core'
 import { CommentModel } from '../models/comment.model'
-import { IComment }  from "@blog/shared"
+import { IComment }  from "shared"
 import { HttpClient } from '@angular/common/http'
 
 

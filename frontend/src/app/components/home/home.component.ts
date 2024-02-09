@@ -3,7 +3,7 @@ import { Router } from '@angular/router'
 import { UserService } from '../../services/user.service'
 import { ArticleService } from '../../services/article.service'
 import { ArticleModel } from '../../models/article.model'
-import { IArticle } from '@blog/shared'
+import { IArticle } from 'shared'
 
 
 @Component({

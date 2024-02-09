@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { CommentModel } from '../../models/comment.model'
 import { UserService } from 'src/app/services/user.service'
-import { IUser, IUserGetDto } from '@blog/shared'
+import { IUser, IUserGetDto } from 'shared'
 
 
 @Component({

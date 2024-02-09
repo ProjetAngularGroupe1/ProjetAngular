@@ -6,7 +6,7 @@ import { ArticleService } from '../../services/article.service'
 import { CommentService } from '../../services/comment.service'
 import { UserService } from '../../services/user.service'
 import { lastValueFrom } from 'rxjs'
-import { IArticle, IUser, IUserGetDto } from '@blog/shared'
+import { IArticle, IUser, IUserGetDto } from 'shared'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 

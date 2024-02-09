@@ -1,4 +1,4 @@
-import { IArticle, IComment, IUser }  from "@blog/shared"
+import { IArticle, IComment, IUser }  from "shared"
 
 export class CommentModel implements IComment {
     id: number

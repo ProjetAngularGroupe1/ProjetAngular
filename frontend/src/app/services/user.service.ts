@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { LocalStorageService } from '../services/local-storage.service'
 import { Subject } from 'rxjs'
 import { HttpClient } from '@angular/common/http'
-import { IUserGetDto, IUserLoginDto } from "@blog/shared"
+import { IUserGetDto, IUserLoginDto } from "shared"
 
 @Injectable()
 export class UserService {

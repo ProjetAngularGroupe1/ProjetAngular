@@ -4,7 +4,7 @@ import { Injectable } from'@angular/core'
 import { ArticleModel } from"../models/article.model"
 import { CommentModel } from '../models/comment.model'
 import { HttpClient } from "@angular/common/http"
-import { IArticle }  from "@blog/shared"
+import { IArticle }  from "shared"
 
 
 @Injectable()

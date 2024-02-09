@@ -2,7 +2,7 @@ import { Get, Post, Controller, Param, Body, Response, HttpStatus } from '@nestj
 import { UserService } from '../services/user.service'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
-import { IUserLoginDto, IUserGetDto } from '@blog/shared'
+import { IUserLoginDto, IUserGetDto } from 'shared'
 
 
 @Controller('users')

@@ -5,7 +5,7 @@ import { ArticleService } from "../../services/article.service"
 import { UserService } from 'src/app/services/user.service'
 import { ActivatedRoute, Router } from '@angular/router'
 import { lastValueFrom } from 'rxjs'
-import { IArticle } from '@blog/shared'
+import { IArticle } from 'shared'
 
 
 @Component({

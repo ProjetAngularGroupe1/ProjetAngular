@@ -3,7 +3,7 @@ import { ArticleService } from '../services/article.service'
 import { Article } from '../entities/article.entity'
 import { Comment } from '../entities/comment.entity'
 import { User } from '../entities/user.entity'
-import { IArticleEditDto, IArticlePublishDto } from '@blog/shared'
+import { IArticleEditDto, IArticlePublishDto } from 'shared'
 
 @Controller('articles')
 export class ArticleController {

@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, ManyToMany, JoinTable, JoinColumn } from 'typeorm'
 import { Comment } from './comment.entity'
 import { User } from './user.entity'
-import { IArticle } from "@blog/shared"
+import { IArticle } from "shared"
 
 
 @Entity()
