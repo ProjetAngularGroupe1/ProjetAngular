@@ -13,15 +13,23 @@ export class ArticleListComponent implements OnInit {
     @Input() 
     articles!: ArticleModel[]
 
+    @Input()
+    show_users: boolean = false
+
+    @Input()
+    show_likes: boolean = false
+
     constructor (
         private userService: UserService,
     ) {}
 
     ngOnInit(): void {
         this.articles.forEach(article => {
-            this.userService.getUser(article.userId).subscribe((user: IUserGetDto) => {
-                article.user = user as IUser
-            })
+            if (this.show_users) {
+                this.userService.getUser(article.userId).subscribe((user: IUserGetDto) => {
+                    article.user = user as IUser
+                })
+            }
         })
     }
 }

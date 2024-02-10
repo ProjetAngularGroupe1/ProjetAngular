@@ -6,7 +6,7 @@
 </div>
 
 <div *ngIf="isArticlesLoaded">
-    <app-article-list [articles]="articles"></app-article-list>
+    <app-article-list [articles]="articles" [show_users]="false"></app-article-list>
 </div>
 
 <!--  -->
@@ -17,7 +17,7 @@
 </div>
 
 <div *ngIf="isCommentsLoaded">
-    <app-comment-list [comments]="comments"></app-comment-list>
+    <app-comment-list [comments]="comments" [show_articles]="true" [show_likes]="true"></app-comment-list>
 </div>
 
 <!--  -->
@@ -28,7 +28,7 @@
 </div>
 
 <div *ngIf="isLikedArticlesLoaded">
-    <app-article-list [articles]="likedArticles"></app-article-list>
+    <app-article-list [articles]="likedArticles" [show_likes]="false"></app-article-list>
 </div>
     
 <!--  -->
@@ -39,5 +39,5 @@
 </div>
 
 <div *ngIf="isLikedCommentsLoaded">
-    <app-comment-list [comments]="likedComments"></app-comment-list>
+    <app-comment-list [comments]="likedComments" [show_users]="true" [show_articles]="true"></app-comment-list>
 </div>
