@@ -4,6 +4,7 @@
 
 <div *ngIf="articles && articles.length > 0">
     <div class="articleBody" *ngFor="let article of articles"> 
-        <a [routerLink]="['/articles', article.id]"> {{ article.title }} </a> - <b> {{ article.user?.username }}</b>
+        <a [routerLink]="['/articles', article.id]"> {{ article.title }} </a> 
+        <span *ngIf="show_users"> - <b> {{ article.user?.username }}</b> </span>
     </div>
 </div>

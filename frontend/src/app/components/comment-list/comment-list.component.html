@@ -4,6 +4,10 @@
 
 <div *ngIf="comments && comments.length > 0">
     <div class="commentBody" *ngFor="let comment of comments">
-        <span> <i> "{{ comment.body }}" </i> - <b> {{ comment.user?.username }}</b> - <a [routerLink]="['/articles', comment.article?.id]"> {{ comment.article?.title }} </a> </span>
+        <span> 
+            <i> "{{ comment.body }}" </i> 
+            <span *ngIf="show_users"> - <b> {{ comment.user?.username }}</b> </span>
+            <span *ngIf="show_articles"> - <a [routerLink]="['/articles', comment.article?.id]"> {{ comment.article?.title }} </a> </span>
+        </span>
     </div>
 </div>
