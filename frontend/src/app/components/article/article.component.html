@@ -3,9 +3,6 @@
 </div>
 
 <div *ngIf="isArticleLoaded">
-    <div class="deleteButton"> <a [routerLink]="['/articles', article.id, 'delete']"> Delete article </a> </div>
-    <div class="editButton"> <a [routerLink]="['/articles', article.id, 'edit']"> Edit article </a> </div>
-
     <div class="articleBody">
         <h3>Title : </h3>
         {{ article.title }}
@@ -21,6 +18,11 @@
         
         <h3>Body : </h3>
         {{ article.body }}
+    </div>
+
+    <div *ngIf="isArticleCreatedByLoggedUser">
+        <div class="editButton"> <a [routerLink]="['/articles', article.id, 'edit']"> Edit article </a> </div>
+        <div class="deleteButton"> <a [routerLink]="['/articles', article.id, 'delete']"> Delete article </a> </div>
     </div>
 
     <div class="comments">

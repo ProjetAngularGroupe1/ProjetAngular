@@ -17,8 +17,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 })
 export class ArticleComponent implements OnInit {
     isLoggedIn: boolean = false
+    loggedUser!: IUser
     isArticleLoaded: boolean = false
     isCommentsLoaded: boolean = false
+    isArticleCreatedByLoggedUser: boolean = false
     articleId!: number 
     article!: ArticleModel
     commentForm!: FormGroup
@@ -34,6 +36,13 @@ export class ArticleComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+
+        this.isLoggedIn = this.userService.isLoggedIn()
+
+        if (this.isLoggedIn) {
+            this.loggedUser = this.userService.getLoggedUser()
+        }
+
         this.commentForm = this.fb.group({
             body : this.fb.control('', [Validators.required]),
         })
@@ -55,6 +64,10 @@ export class ArticleComponent implements OnInit {
                 this.userService.getUser(this.article.userId).subscribe((user: IUserGetDto) => {
                     this.article.user = user as IUser
                 })
+
+                if (this.article.userId === this.loggedUser.id) {
+                    this.isArticleCreatedByLoggedUser = true
+                }
             })
             
             this.isCommentsLoaded = false
@@ -62,10 +75,6 @@ export class ArticleComponent implements OnInit {
                 this.isCommentsLoaded = true
                 this.comments = comments
             })
-        })
-        
-        this.router.events.subscribe(() => {
-            this.isLoggedIn = this.userService.isLoggedIn()
         })
     }
 
