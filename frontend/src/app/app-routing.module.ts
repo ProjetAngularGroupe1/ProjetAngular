@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
-import { isLoggedInCanActivateGuard, logginResolveGuard } from './guards/login.guard'
-import { canEditArticleCanActivateGuard } from './guards/has-rights.guard'
+import { isLoggedInGuard, logginResolver } from './guards/login.guard'
+import { canEditArticleGuard, canDeleteArticleGuard } from './guards/has-rights.guard'
 import { ArticleComponent       } from './components/article/article.component'
 import { ArticleNewComponent    } from './components/article-new/article-new.component'
 import { ArticleEditComponent   } from './components/article-edit/article-edit.component'
+import { ArticleDeleteComponent } from './components/article-delete/article-delete.component'
 import { CommentComponent       } from './components/comment/comment.component'
 import { PageNotFoundComponent  } from './components/page-not-found/page-not-found.component'
 import { PageForbiddenComponent } from './components/page-forbidden/page-forbidden.component'
@@ -17,15 +18,16 @@ import { HomeComponent          } from './components/home/home.component'
 const routes: Routes = [
     { path: ''            , component: HomeComponent         , canActivate: []                },
     { path: 'home'        , component: HomeComponent         , canActivate: []                },
-    { path: 'profile'     , component: ProfileComponent      , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
+    { path: 'profile'     , component: ProfileComponent      , canActivate: [isLoggedInGuard], resolve : { user: logginResolver } },
     { path: 'login'       , component: LoginComponent        , canActivate: []                },
-    { path: 'logout'      , component: LogoutComponent       , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
+    { path: 'logout'      , component: LogoutComponent       , canActivate: [isLoggedInGuard], resolve : { user: logginResolver } },
     { path: 'contact'     , component: ContactComponent      , canActivate: []                },
     { path: 'articles'    , children: [
-            { path: ''    , component: HomeComponent           , canActivate: [] },
-            { path: 'new'     , component: ArticleNewComponent , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
-            { path: ':id'     , component: ArticleComponent    , canActivate: [isLoggedInCanActivateGuard], resolve : { user: logginResolveGuard } },
-            { path: ':id/edit', component: ArticleEditComponent, canActivate: [isLoggedInCanActivateGuard, canEditArticleCanActivateGuard], resolve : { user: logginResolveGuard } },
+            { path: ''          , component: HomeComponent         , canActivate: [] },
+            { path: 'new'       , component: ArticleNewComponent   , canActivate: [isLoggedInGuard]                       , resolve : { user: logginResolver } },
+            { path: ':id'       , component: ArticleComponent      , canActivate: [isLoggedInGuard]                       , resolve : { user: logginResolver } },
+            { path: ':id/edit'  , component: ArticleEditComponent  , canActivate: [isLoggedInGuard, canEditArticleGuard  ], resolve : { user: logginResolver } },
+            { path: ':id/delete', component: ArticleDeleteComponent, canActivate: [isLoggedInGuard, canDeleteArticleGuard], resolve : { user: logginResolver } },
         ]
     },
     { path: 'comments/:id', component: CommentComponent      , canActivate: []                },

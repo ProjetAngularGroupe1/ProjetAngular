@@ -1,0 +1,14 @@
+.articleForm {
+    background-color: rgb(142, 152, 235);
+}
+
+.articleFormTitle {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.articleFormBody {
+    width: 100%;
+    resize: vertical;
+    box-sizing: border-box;
+}

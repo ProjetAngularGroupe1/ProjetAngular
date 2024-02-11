@@ -87,10 +87,4 @@ export class ArticleComponent implements OnInit {
             }
         }
     }
-
-    async deleteArticle(): Promise<void> {
-        lastValueFrom(this.articleService.deleteArticle(this.articleId)).then((x) => {
-            this.router.navigate(['/'])
-        })
-    }
 }

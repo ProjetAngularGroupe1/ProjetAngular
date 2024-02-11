@@ -3,7 +3,7 @@
 </div>
 
 <div *ngIf="isArticleLoaded">
-    <div class="deleteButton"> <button (click)="deleteArticle()"> Delete article </button> </div>
+    <div class="deleteButton"> <a [routerLink]="['/articles', article.id, 'delete']"> Delete article </a> </div>
     <div class="editButton"> <a [routerLink]="['/articles', article.id, 'edit']"> Edit article </a> </div>
 
     <div class="articleBody">

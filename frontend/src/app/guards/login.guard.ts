@@ -4,8 +4,7 @@ import { UserService } from '../services/user.service'
 import { UserModel } from '../models/user.model'
 import { Observable } from 'rxjs'
 
-
-export const isLoggedInCanActivateGuard: CanActivateFn = (): boolean => {
+export const isLoggedInGuard: CanActivateFn = (): boolean => {
     const router      = inject(Router)
     const userService = inject(UserService)
 
@@ -18,6 +17,6 @@ export const isLoggedInCanActivateGuard: CanActivateFn = (): boolean => {
     return loggedIn
 }
 
-export const logginResolveGuard: ResolveFn<UserModel> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> => {
+export const logginResolver: ResolveFn<UserModel> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> => {
       return inject(UserService).getLoggedUser()
 }
