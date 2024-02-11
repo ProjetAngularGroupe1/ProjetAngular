@@ -5,7 +5,5 @@
 <div *ngIf="comments && comments.length > 0">
     <div class="commentBody" *ngFor="let comment of comments">
         <span> <i> "{{ comment.body }}" </i> - <b> {{ comment.user?.username }}</b> - <a [routerLink]="['/articles', comment.article?.id]"> {{ comment.article?.title }} </a> </span>
-        <img *ngIf="show_likes" src="assets/svg/hand-thumbs-down.svg">
-        <img *ngIf="show_likes" src="assets/svg/hand-thumbs-up.svg">
     </div>
 </div>

@@ -20,9 +20,6 @@ export class CommentListComponent implements OnInit {
     @Input()
     show_articles: boolean = false
 
-    @Input()
-    show_likes: boolean = false
-
     constructor(
         private userService: UserService, 
         private articleService: ArticleService, 

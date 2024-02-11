@@ -16,9 +16,6 @@ export class ArticleListComponent implements OnInit {
     @Input()
     show_users: boolean = false
 
-    @Input()
-    show_likes: boolean = false
-
     constructor (
         private userService: UserService,
     ) {}

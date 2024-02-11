@@ -31,16 +31,6 @@ export class UserController {
         return this.userService.findAllArticlesById(params.id)
     }
 
-    @Get(':id/likes/articles')
-    getLikedArticlesById(@Param() params: any): Promise<Article[]> {
-        return this.userService.findAllLikedArticlesById(params.id)
-    }
-
-    @Get(':id/likes/comments')
-    getLikedCommentsById(@Param() params: any): Promise<Comment[]> {
-        return this.userService.findAllLikedCommentsById(params.id)
-    }
-
     @Post('/login')
     async login(@Body() body: any, @Response() res: any): Promise<IUserLoginDto | void> {
         const user_jwt = await this.userService.logIn(body.username, body.password)

@@ -16,13 +16,9 @@ import { UserService } from 'src/app/services/user.service'
 export class ProfileComponent implements OnInit {
     isArticlesLoaded: boolean = false
     isCommentsLoaded: boolean = false
-    isLikedArticlesLoaded: boolean = false
-    isLikedCommentsLoaded: boolean = false
     user!: UserModel
     articles!: ArticleModel[]
     comments!: CommentModel[]
-    likedArticles!: ArticleModel[]
-    likedComments!: CommentModel[]
 
     constructor (
         private activatedRoute: ActivatedRoute, 
@@ -42,16 +38,6 @@ export class ProfileComponent implements OnInit {
                 this.commentService.getAllUserComments(this.user.id).subscribe((comments) => {
                     this.isCommentsLoaded = true
                     this.comments = comments
-                })
-
-                this.articleService.getAllUserLikedArticles(this.user.id).subscribe((articles) => {
-                    this.isLikedArticlesLoaded = true
-                    this.likedArticles = articles
-                })
-
-                this.commentService.getAllUserLikedComments(this.user.id).subscribe((comments) => {
-                    this.isLikedCommentsLoaded = true
-                    this.likedComments = comments
                 })
         })
     }

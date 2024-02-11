@@ -3,7 +3,7 @@
 </div>
 
 <div *ngIf="isArticlesLoaded">
-    <app-article-list [articles]="articles" [show_likes]="true" [show_users]="true"></app-article-list>
+    <app-article-list [articles]="articles" [show_users]="true"></app-article-list>
 </div>
 
 <div class="newArticle" *ngIf="isLoggedIn" > <a class="newArticleLink" href="/articles/new"> Create new article </a> </div>

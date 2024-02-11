@@ -29,8 +29,4 @@ export class Comment {
 
     @Column()
     userId: number;
-
-    @JoinTable()
-    @ManyToMany(() => User, user => user.likedComments)
-    likes: User[]
 }

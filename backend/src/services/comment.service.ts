@@ -20,18 +20,7 @@ export class CommentService {
         return await this.commentRepository.findOneBy({ id : id })
     }
 
-    async findAllLikesById(id: number): Promise<User[]> {
-        const article = await this.commentRepository.findOne({
-            where: { id : id },
-            relations: ['likes'],
-        })
-        return article.likes
-    }
-
     async deleteComment(id: number): Promise<boolean> {
-        // Delete likes
-        await this.dataSource.query(`DELETE FROM comment_likes_user WHERE commentId = ${ id };`)
-
         // Delete comment
         await this.commentRepository
             .createQueryBuilder()

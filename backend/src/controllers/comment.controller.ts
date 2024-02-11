@@ -20,11 +20,6 @@ export class CommentController {
         return this.commentService.findOneById(params.id)
     }
 
-    @Get(':id/likes')
-    getLikesById(@Param() params: any): Promise<User[]> {
-        return this.commentService.findAllLikesById(params.id)
-    }
-
     @Post()
     publishComment(@Body() comment: ICommentPublishDto): Promise<Comment> {
         return this.commentService.publishComment(comment)

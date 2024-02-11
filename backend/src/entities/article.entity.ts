@@ -30,8 +30,4 @@ export class Article implements IArticle {
 
     @Column()
     userId: number;
-
-    @JoinTable()
-    @ManyToMany(() => User, user => user.likedArticles)
-    likes: User[]
 }

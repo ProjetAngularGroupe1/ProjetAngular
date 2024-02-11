@@ -28,16 +28,6 @@ CREATE TABLE comment(
    articleId INTEGER
 );
 
-CREATE TABLE article_likes_user(
-    articleId INTEGER,
-    userId    INTEGER
-);
-
-CREATE TABLE comment_likes_user(
-    commentId INTEGER,
-    userId    INTEGER
-);
-
 INSERT INTO user (id, username, password)
 VALUES 
     (0, 'hfr4'         , 'password'),
@@ -67,37 +57,3 @@ VALUES
     (3, 'To be or not to be'       , 'That is the question.'                , date(), date(), 2),
     (4, 'Chicken review'           , 'Nice.'                                , date(), date(), 1),
     (5, 'How to get rich in 3 days', 'Buy bitcoins.'                        , date(), date(), 1);
-
-
-INSERT INTO article_likes_user (articleId, userId)
-VALUES 
-    (0, 0),
-    (0, 1),
-    (0, 2),
-    (0, 3),
-    (0, 4),
-    (1, 0),
-    (1, 1),
-    (2, 2),
-    (2, 3),
-    (2, 4),
-    (4, 2),
-    (5, 2);
-
-INSERT INTO comment_likes_user (commentId, userId)
-VALUES 
-    (0, 0),
-    (0, 1),
-    (0, 2),
-    (0, 4),
-    (1, 0),
-    (1, 1),
-    (2, 2),
-    (3, 2),
-    (3, 4),
-    (4, 2),
-    (4, 4),
-    (5, 2),
-    (5, 4),
-    (6, 2),
-    (6, 4);

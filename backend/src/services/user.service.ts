@@ -39,44 +39,6 @@ export class UserService {
         return user.comments
     }
 
-    async findAllLikedArticlesById(id: number): Promise<Article[]> {
-        // TODO: why doesn't this work ?
-        // const user = await this.userRepository.findOne({
-        //     where: { id : id },
-        //     relations: ['likedArticles'],
-        // })
-        // return user.likedArticles
-
-        const ids: any[] = await this.dataSource.query(`SELECT articleId FROM article_likes_user WHERE userId = ${ id };`)
-        
-        let likedArticles: Article[] = []
-        for (const id of ids) {
-            const article = await this.dataSource.getRepository(Article).findOneBy({ id : id.articleId })
-            likedArticles.push(article)
-        }
-
-        return likedArticles
-    }
-
-    async findAllLikedCommentsById(id: number): Promise<Comment[]> {
-        // TODO: why doesn't this work ?
-        // const user = await this.userRepository.findOne({
-        //     where: { id : id },
-        //     relations: ['comments'],
-        // })
-        // return user.comments
-
-        const ids: any[] = await this.dataSource.query(`SELECT commentId FROM comment_likes_user WHERE userId = ${ id };`)
-        
-        let likedComments: Comment[] = []
-        for (const id of ids) {
-            const comment = await this.dataSource.getRepository(Comment).findOneBy({ id : id.commentId })
-            likedComments.push(comment)
-        }
-
-        return likedComments
-    }
-
     async logIn(username: string, password: string): Promise<IUserLoginDto | void> {
         const user = await this.userRepository.findOne({
             where: { 

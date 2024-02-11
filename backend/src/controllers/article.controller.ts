@@ -26,11 +26,6 @@ export class ArticleController {
         return this.articleService.findAllCommentsById(params.id)
     }
 
-    @Get(':id/likes')
-    getLikesById(@Param() params: any): Promise<User[]> {
-        return this.articleService.findAllLikesById(params.id)
-    }
-
     @Post()
     publishArticle(@Body() article: IArticlePublishDto): Promise<Article> {
         return this.articleService.publishArticle(article)

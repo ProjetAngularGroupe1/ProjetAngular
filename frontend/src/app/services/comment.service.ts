@@ -20,10 +20,6 @@ export class CommentService {
         return this.http.get<IComment[]>(`http://localhost:3000/users/${ id }/comments`)
     }
 
-    getAllUserLikedComments(id: number): Observable<IComment[]> {
-        return this.http.get<IComment[]>(`http://localhost:3000/users/${ id }/likes/comments`)
-    }
-
     getAllArticleComments(id: number): Observable<IComment[]> {
         return this.http.get<IComment[]>(`http://localhost:3000/articles/${ id }/comments`)
     }

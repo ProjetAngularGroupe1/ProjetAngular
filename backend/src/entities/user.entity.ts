@@ -18,10 +18,4 @@ export class User {
 
     @OneToMany(() => Comment, comment => comment.user) 
     comments: Comment[]
-    
-    @ManyToMany(() => Article, article => article.likes)
-    likedArticles: Article[]
-    
-    @ManyToMany(() => Comment, comment => comment.likes)
-    likedComments: Comment[]
 }

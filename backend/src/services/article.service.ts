@@ -30,14 +30,6 @@ export class ArticleService {
         return article.comments
     }
 
-    async findAllLikesById(id: number): Promise<User[]> {
-        const article = await this.articleRepository.findOne({
-            where: { id : id },
-            relations: ['likes'],
-        })
-        return article.likes
-    }
-
     async publishArticle(article: IArticlePublishDto): Promise<Article> {
         const result = await this.articleRepository
             .createQueryBuilder()
@@ -72,15 +64,9 @@ export class ArticleService {
     }
 
     async deleteArticle(id: number): Promise<boolean> {
-        // Delete likes on article
-        await this.dataSource.query(`DELETE FROM article_likes_user WHERE articleId = ${ id };`)
-
         // Delete comments
         const comments = await this.findAllCommentsById(id)
         for (let comment of comments) {
-            // Delete likes on comment
-            await this.dataSource.query(`DELETE FROM comment_likes_user WHERE commentId = ${ comment.id };`)
-
             // Delete comment
             await this.commentRepository
                 .createQueryBuilder()

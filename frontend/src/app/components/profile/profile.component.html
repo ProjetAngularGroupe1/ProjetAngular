@@ -17,27 +17,5 @@
 </div>
 
 <div *ngIf="isCommentsLoaded">
-    <app-comment-list [comments]="comments" [show_articles]="true" [show_likes]="true"></app-comment-list>
-</div>
-
-<!--  -->
-<div class="listTitle">liked articles</div>
-
-<div *ngIf="!isLikedArticlesLoaded">
-    Loading articles...
-</div>
-
-<div *ngIf="isLikedArticlesLoaded">
-    <app-article-list [articles]="likedArticles" [show_likes]="false"></app-article-list>
-</div>
-    
-<!--  -->
-<div class="listTitle">liked comments</div>
-    
-<div *ngIf="!isLikedCommentsLoaded">
-    Loading comments...
-</div>
-
-<div *ngIf="isLikedCommentsLoaded">
-    <app-comment-list [comments]="likedComments" [show_users]="true" [show_articles]="true"></app-comment-list>
+    <app-comment-list [comments]="comments" [show_articles]="true"></app-comment-list>
 </div>
