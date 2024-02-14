@@ -8,6 +8,7 @@ import { ArticleService         } from './services/article.service'
 import { CommentService         } from './services/comment.service'
 import { UserService            } from './services/user.service'
 import { LocalStorageService    } from './services/local-storage.service'
+import { OnlineStatusService    } from './services/online-status.service'
 import { IndexedDBService       } from './services/indexed-db.service'
 import { JwtService             } from './services/jwt.service'
 import { ArticleDatePipe        } from './pipes/article-date.pipe'
@@ -73,6 +74,7 @@ import { HomeComponent          } from './components/home/home.component';
     CommentService,
     UserService,
     LocalStorageService,
+    OnlineStatusService,
     IndexedDBService,
     JwtService,
   ],
