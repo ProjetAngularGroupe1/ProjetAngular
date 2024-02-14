@@ -25,7 +25,7 @@ const routes: Routes = [
     { path: 'articles'    , children: [
             { path: ''          , component: HomeComponent         , canActivate: [] },
             { path: 'new'       , component: ArticleNewComponent   , canActivate: [isLoggedInGuard]                       , resolve : { user: logginResolver } },
-            { path: ':id'       , component: ArticleComponent      , canActivate: [isLoggedInGuard]                       , resolve : { user: logginResolver } },
+            { path: ':id'       , component: ArticleComponent      , canActivate: []                                      , resolve : { user: logginResolver } },
             { path: ':id/edit'  , component: ArticleEditComponent  , canActivate: [isLoggedInGuard, canEditArticleGuard  ], resolve : { user: logginResolver } },
             { path: ':id/delete', component: ArticleDeleteComponent, canActivate: [isLoggedInGuard, canDeleteArticleGuard], resolve : { user: logginResolver } },
         ]

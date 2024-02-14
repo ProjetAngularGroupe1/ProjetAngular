@@ -66,7 +66,9 @@ export class ArticleEditComponent implements OnInit {
             if (this.articleForm.value.title !== this.article.title || this.articleForm.value.body !== this.article.body) {
                 const user = this.userService.getLoggedUser();
 
-                if (user == this.article.userId) {
+                console.log(user)
+
+                if (user.id == this.article.userId) {
                     lastValueFrom(this.articleService.editArticle(user.id, this.articleId, this.articleForm.value.title, this.articleForm.value.body)).then((article: IArticle) => {
                         this.router.navigate(['/articles', article.id ])
                     })

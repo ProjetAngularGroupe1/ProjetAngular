@@ -5,6 +5,9 @@
 cd backend/
 ```
 ```cmd
+npm install
+```
+```cmd
 npm run start
 ```
 ```cmd
@@ -15,6 +18,9 @@ localhost:3000
 
 ```cmd
 cd frontend/
+```
+```cmd
+npm install
 ```
 ```cmd
 npm run start
