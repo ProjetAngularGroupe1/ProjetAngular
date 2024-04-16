@@ -19,13 +19,13 @@ export class IndexedDb extends Dexie {
 
     async bukAddTest() {
         await db.articles.bulkAdd([
-            { id: 0, userId: 1, title: "test", body: "test", createdAt: new Date(), updatedAt: new Date() },
-            { id: 1, userId: 1, title: "test", body: "test", createdAt: new Date(), updatedAt: new Date() },
+            { id: 0, userId: 1, title: "test", body: "test1 for indexDb", createdAt: new Date(), updatedAt: new Date() },
+            { id: 1, userId: 2, title: "test", body: "test2 for indexDb", createdAt: new Date(), updatedAt: new Date() },
         ]);
 
         await db.comments.bulkAdd([
-            { id: 1, userId: 1,  articleId: 1,  body: "test", createdAt: new Date(), updatedAt: new Date() },
-            { id: 2, userId: 1,  articleId: 1,  body: "test", createdAt: new Date(), updatedAt: new Date() },
+            { id: 0, userId: 1,  articleId: 1,  body: "test1 for indexDb", createdAt: new Date(), updatedAt: new Date() },
+            { id: 1, userId: 2,  articleId: 2,  body: "test2 for indexDb", createdAt: new Date(), updatedAt: new Date() },
         ]);
     }
 }

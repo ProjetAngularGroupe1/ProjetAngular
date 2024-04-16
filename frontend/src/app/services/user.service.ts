@@ -51,4 +51,8 @@ export class UserService {
     getLoggedUser(): any {
       return this.localStorageService.getData('loggedUser')
     }
+
+    getJwt(): string | null {
+        return this.localStorageService.getData('loggedUser')?.['jwt'];
+    }
 }
