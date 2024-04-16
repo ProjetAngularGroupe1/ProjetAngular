@@ -5,11 +5,11 @@
         <textarea class="articleFormBody" id="body" name="body" formControlName="body" type="text" placeholder="Write article..." required></textarea>
         
         <div *ngIf= "articleForm.get('title')!.invalid && (articleForm.get('title')!.dirty || articleForm.get('title')!.touched)">
-            <div *ngIf= "articleForm.get('title')!.errors?.['notEmpty']" style="color: black;"> Title musn't be empty. </div>
+            <div *ngIf= "articleForm.get('title')!.errors?.['notEmpty']" style="color:red;"> Title musn't be empty. </div>
         </div>
 
         <div *ngIf= "articleForm.get('body')!.invalid && (articleForm.get('body')!.dirty || articleForm.get('body')!.touched)">
-            <div *ngIf= "articleForm.get('body')!.errors?.['notEmpty']" style="color: black;"> Body musn't be empty. </div>
+            <div *ngIf= "articleForm.get('body')!.errors?.['notEmpty']" style="color:red;"> Body musn't be empty. </div>
         </div>
 
         <p>

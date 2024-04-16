@@ -5,11 +5,11 @@
         <input class="articleFormBody" id="password" name="password" formControlName="password" type="password" placeholder="Password" required />
         
         <div *ngIf= "loginForm.get('username')!.invalid && (loginForm.get('username')!.dirty || loginForm.get('username')!.touched)">
-            <div *ngIf= "loginForm.get('username')!.errors?.['notEmpty']"> Username musn't be empty. </div>
+            <div *ngIf= "loginForm.get('username')!.errors?.['notEmpty']" style="color:red;"> Username musn't be empty. </div>
         </div>
 
         <div *ngIf= "loginForm.get('password')!.invalid && (loginForm.get('password')!.dirty || loginForm.get('password')!.touched)">
-            <div *ngIf= "loginForm.get('password')!.errors?.['notEmpty']"> Password musn't be empty. </div>
+            <div *ngIf= "loginForm.get('password')!.errors?.['notEmpty']" style="color:red;"> Password musn't be empty. </div>
         </div>
 
         <div *ngIf= error>

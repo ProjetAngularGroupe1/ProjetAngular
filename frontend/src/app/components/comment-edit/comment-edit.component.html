@@ -3,7 +3,7 @@
         <textarea class="commentFormBody" id="body" name="body" formControlName="body" type="text" placeholder="Write comment..." required></textarea>
         
         <div *ngIf= "commentForm.get('body')!.invalid && (commentForm.get('body')!.dirty|| commentForm.get('body')!.touched)">
-            <div *ngIf= "commentForm.get('body')!.errors?.['notEmpty']"> Comment musn't be empty. </div>
+            <div *ngIf= "commentForm.get('body')!.errors?.['notEmpty']" style="color:red;"> Comment musn't be empty. </div>
         </div>
 
         <p>
