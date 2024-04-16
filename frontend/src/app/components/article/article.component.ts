@@ -66,7 +66,7 @@ export class ArticleComponent implements OnInit {
                     this.article.user = user as IUser
                 })
 
-                if (this.article.userId === this.loggedUser.id) {
+                if (this.article.userId === this.loggedUser?.id) {
                     this.isArticleCreatedByLoggedUser = true
                 }
             })

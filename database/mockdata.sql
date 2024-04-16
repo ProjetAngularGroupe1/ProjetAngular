@@ -46,7 +46,7 @@ VALUES
     (4, 'Great advice'               ,  3, 2, date(), date() ),
     (5, 'Never post an article again',  3, 3, date(), date() ),
     (6, 'KYS'                        ,  2, 4, date(), date() ),
-    (7, 'Love you'                   ,  2, 5, date(), date() );
+    (7, 'Love you'                   ,  2, 1, date(), date() );
 
 
 INSERT INTO article (id, title, body, createdAt, updatedAt, userId)
