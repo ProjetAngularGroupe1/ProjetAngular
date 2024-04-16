@@ -32,7 +32,13 @@
   
       <div *ngIf="isCommentsLoaded">
           <app-comment-list [comments]="comments" [show_users]="true"></app-comment-list>
+          <p>
       </div>
+    </div>
+
+    <div>From IDB</div>
+    <div class="comments">
+        <app-comment-list [comments]="commentsIDB" [show_users]="true"></app-comment-list>
     </div>
     
     <div *ngIf="this.isLoggedIn" class="commentForm">

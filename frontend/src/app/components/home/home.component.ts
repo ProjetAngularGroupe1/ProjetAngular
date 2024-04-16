@@ -5,7 +5,6 @@ import { ArticleService } from '../../services/article.service'
 import { ArticleModel } from '../../models/article.model'
 import { IArticle } from 'shared'
 
-import { db } from '../../../indexed.db';
 
 @Component({
   selector: 'app-home',
@@ -24,10 +23,6 @@ export class HomeComponent implements OnInit {
     ) {}
 
     async ngOnInit(): Promise<void> {
-        const articles: IArticle[] = await db.articles.toArray();
-        console.log(articles);
-        console.log(this.userService.getJwt());
-
         // TODO: use another way to check is logged in every time we go see the component
         this.router.events.subscribe(() => {
             this.isLoggedIn = this.userService.isLoggedIn()

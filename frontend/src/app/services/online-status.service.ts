@@ -11,7 +11,7 @@ export class OnlineStatusService {
         return this.internalConnectionChanged.asObservable();
     }
 
-    get isOnline() {
+    isOnline(): boolean {
         return !!window.navigator.onLine;
     }
 

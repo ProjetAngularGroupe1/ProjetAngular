@@ -5,11 +5,12 @@ import { CommentModel } from '../../models/comment.model'
 import { ArticleService } from '../../services/article.service'
 import { CommentService } from '../../services/comment.service'
 import { UserService } from '../../services/user.service'
+import { OnlineStatusService } from '../../services/online-status.service'
 import { lastValueFrom } from 'rxjs'
-import { IArticle, IUser, IUserGetDto } from 'shared'
+import { IArticle, IComment, IUser, IUserGetDto } from 'shared'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { NotEmptyValidator } from '../../validators/not-empty.validator';
-
+import { db } from '../../../indexed.db';
 
 @Component({
   selector: 'app-article',
@@ -26,6 +27,7 @@ export class ArticleComponent implements OnInit {
     article!: ArticleModel
     commentForm!: FormGroup
     comments!: CommentModel[]
+    commentsIDB!: CommentModel[]
 
     constructor(
         private fb: FormBuilder,
@@ -34,10 +36,10 @@ export class ArticleComponent implements OnInit {
         private userService: UserService, 
         private articleService: ArticleService, 
         private commentService: CommentService,
+        private onlineService: OnlineStatusService,
     ) {}
 
-    ngOnInit(): void {
-
+    async ngOnInit(): Promise<void> {
         this.isLoggedIn = this.userService.isLoggedIn()
 
         if (this.isLoggedIn) {
@@ -48,7 +50,7 @@ export class ArticleComponent implements OnInit {
             body : this.fb.control('', [NotEmptyValidator()]),
         })
 
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe(async params => {
             this.articleId = Number(params.get('id'))
             
             this.isArticleLoaded = false
@@ -76,6 +78,10 @@ export class ArticleComponent implements OnInit {
                 this.isCommentsLoaded = true
                 this.comments = comments
             })
+
+            this.commentsIDB = (await db.comments.toArray())
+                .filter(c => c.articleId === this.articleId)
+                .map(c => c as CommentModel);
         })
     }
 
@@ -86,12 +92,27 @@ export class ArticleComponent implements OnInit {
             const user = this.userService.getLoggedUser();
 
             if (user) {
-                lastValueFrom(this.commentService.publishComment(user.id, this.articleId, this.commentForm.value.body)).then(() => {
-                    lastValueFrom(this.commentService.getAllArticleComments(this.articleId)).then((comments) => {
-                        this.isCommentsLoaded = true
-                        this.comments = comments
+                if (this.onlineService.isOnline()) {
+                    lastValueFrom(this.commentService.publishComment(user.id, this.articleId, this.commentForm.value.body)).then(() => {
+                        lastValueFrom(this.commentService.getAllArticleComments(this.articleId)).then((comments) => {
+                            this.isCommentsLoaded = true
+                            this.comments = comments
+                        })
                     })
-                })
+                } else {
+                    let comment: IComment = {} as IComment;
+                    comment.userId    = user.id
+                    comment.articleId = this.articleId
+                    comment.body      = this.commentForm.value.body
+                    comment.createdAt = new Date();
+                    comment.updatedAt = new Date();
+
+                    await db.comments.add({...comment}).then(async () => {
+                        this.commentsIDB = (await db.comments.toArray())
+                        .filter(c => c.articleId === this.articleId)
+                        .map(c => c as CommentModel);
+                    });
+                }
             } else {
                 // TODO
             }

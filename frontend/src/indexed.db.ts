@@ -6,9 +6,8 @@ export class IndexedDb extends Dexie {
     comments!: Table<IComment, number>;
 
     constructor() {
-        super('myDb'); // On choisit le nom du Singleton
+        super('myDb');
 
-        // On initialise l'id du 1er item de la table
         this.version(1).stores({
             articles: '++id', 
             comments: '++id',
