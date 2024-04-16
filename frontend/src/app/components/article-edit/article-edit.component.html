@@ -9,11 +9,11 @@
         <textarea class="articleFormBody" id="body" name="body" formControlName="body" type="text" placeholder="Write article..." required></textarea>
         
         <div *ngIf= "articleForm.get('title')!.invalid && (articleForm.get('title')!.dirty || articleForm.get('title')!.touched)">
-            <div *ngIf= "articleForm.get('title')!.errors?.['required']"> Title musn't be empty. </div>
+            <div *ngIf= "articleForm.get('title')!.errors?.['notEmpty']"> Title musn't be empty. </div>
         </div>
 
         <div *ngIf= "articleForm.get('body')!.invalid && (articleForm.get('body')!.dirty || articleForm.get('body')!.touched)">
-            <div *ngIf= "articleForm.get('body')!.errors?.['required']"> Body musn't be empty. </div>
+            <div *ngIf= "articleForm.get('body')!.errors?.['notEmpty']"> Body musn't be empty. </div>
         </div>
 
         <p>

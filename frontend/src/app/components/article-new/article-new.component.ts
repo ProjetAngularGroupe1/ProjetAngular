@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ArticleModel } from '../../models/article.model'
 import { ArticleService } from "../../services/article.service"
 import { UserService } from 'src/app/services/user.service'
+import { NotEmptyValidator } from '../../validators/not-empty.validator';
 import { Router } from '@angular/router'
 import { lastValueFrom } from 'rxjs'
 import { IArticle } from 'shared'
@@ -26,8 +27,8 @@ export class ArticleNewComponent {
         private router: Router,
     ) { 
         this.articleForm = this.fb.group({
-            title : this.fb.control('', [Validators.required]),
-            body : this.fb.control('', [Validators.required]),
+            title : this.fb.control('', [NotEmptyValidator()]),
+            body : this.fb.control('', [NotEmptyValidator()]),
         })
     }
 
@@ -39,6 +40,8 @@ export class ArticleNewComponent {
                     this.router.navigate(['/articles', article.id ])
                 })
             }
+        } else {
+            console.log(this.articleForm.errors)
         }
     }
 }

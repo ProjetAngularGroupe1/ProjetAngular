@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { NotEmptyValidator } from '../../validators/not-empty.validator';
 import { ArticleModel } from '../../models/article.model'
 import { ArticleService } from "../../services/article.service"
 import { UserService } from 'src/app/services/user.service'
@@ -32,8 +33,8 @@ export class ArticleEditComponent implements OnInit {
         private route: ActivatedRoute,
     ) { 
         this.articleForm = this.fb.group({
-            title : this.fb.control('', [Validators.required]),
-            body : this.fb.control('', [Validators.required]),
+            title : this.fb.control('', [NotEmptyValidator()]),
+            body : this.fb.control('', [NotEmptyValidator()]),
         })
     }
 

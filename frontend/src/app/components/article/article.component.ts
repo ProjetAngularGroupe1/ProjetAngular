@@ -8,6 +8,7 @@ import { UserService } from '../../services/user.service'
 import { lastValueFrom } from 'rxjs'
 import { IArticle, IUser, IUserGetDto } from 'shared'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { NotEmptyValidator } from '../../validators/not-empty.validator';
 
 
 @Component({
@@ -44,7 +45,7 @@ export class ArticleComponent implements OnInit {
         }
 
         this.commentForm = this.fb.group({
-            body : this.fb.control('', [Validators.required]),
+            body : this.fb.control('', [NotEmptyValidator()]),
         })
 
         this.route.paramMap.subscribe(params => {

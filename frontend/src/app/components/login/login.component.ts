@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { UserService } from '../../services/user.service'
 import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { NotEmptyValidator } from '../../validators/not-empty.validator';
 
 
 @Component({
@@ -15,8 +16,8 @@ export class LoginComponent {
 
     constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
         this.loginForm = this.fb.group({
-            username : this.fb.control('', [Validators.required]),
-            password : this.fb.control('', [Validators.required]),
+            username : this.fb.control('', [NotEmptyValidator()]),
+            password : this.fb.control('', [NotEmptyValidator()]),
         })
     }
 

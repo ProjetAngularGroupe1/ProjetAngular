@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { CommentModel } from '../../models/comment.model'
 import { ArticleService } from "../../services/article.service"
+import { NotEmptyValidator } from '../../validators/not-empty.validator';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class CommentEditComponent {
 
     constructor(private fb: FormBuilder, private articleService: ArticleService) { 
         this.commentForm = this.fb.group({
-            body : this.fb.control('', [Validators.required]),
+            body : this.fb.control('', [NotEmptyValidator()]),
         })
     }
 
