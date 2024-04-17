@@ -29,6 +29,7 @@ import { HeaderComponent        } from './components/header/header.component'
 import { FooterComponent        } from './components/footer/footer.component'
 import { NavbarComponent        } from './components/navbar/navbar.component'
 import { HomeComponent          } from './components/home/home.component';
+import { MyDynamicFormComponent } from './components/my-dynamic-form/my-dynamic-form.component'
 
 @NgModule({
   declarations: [
@@ -52,12 +53,14 @@ import { HomeComponent          } from './components/home/home.component';
     FooterComponent,
     NavbarComponent,
     HomeComponent,
+    MyDynamicFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

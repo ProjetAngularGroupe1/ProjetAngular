@@ -1,1 +1,20 @@
-<div>Dynamic form</div>
+<p>Mes stuffs</p>
+<table *ngIf="isLoaded">
+  <thead>
+    <th>Id</th>
+    <th>Nom</th>
+    <th>Score</th>
+    <th>Action</th>
+  </thead>
+  <tbody [formGroup]="commentForm">
+    <ng-container formArrayName="comments">
+      <tr *ngFor="let formGroup of myCommentForm().controls; index as i" [formGroupName]="i">
+        <td>{{ myCommentForm().controls[i].get('id')?.value }}</td>
+        <td><input type="text" formControlName="nom"></td>
+        <td><input type="number" formControlName="body"></td>
+        <td>Edit | Delete</td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+<button>Add</button>
