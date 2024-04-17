@@ -3,13 +3,16 @@ import { delay } from 'rxjs/operators'
 import { Injectable } from '@angular/core'
 import { CommentModel } from '../models/comment.model'
 import { IComment }  from "shared"
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { UserService } from "./user.service"
 
 
 @Injectable()
 export class CommentService {
     constructor (
         private http: HttpClient,
+        private userService: UserService,
+
     ) {}
 
     getAllComments(): Observable<IComment[]> {
@@ -35,6 +38,13 @@ export class CommentService {
         comment.articleId = articleId
         comment.body      = body
 
-        return this.http.post<IComment>('http://localhost:3000/comments', comment)
+        const httpOptions = {
+            headers: new HttpHeaders({
+                "Authorization": "Token " + this.userService.getJwt()
+            })
+        };
+
+
+        return this.http.post<IComment>('http://localhost:3000/comments', comment, httpOptions)
     }
 }

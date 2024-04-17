@@ -3,14 +3,16 @@ import { delay } from"rxjs/operators"
 import { Injectable } from'@angular/core'
 import { ArticleModel } from"../models/article.model"
 import { CommentModel } from '../models/comment.model'
-import { HttpClient } from "@angular/common/http"
+import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { IArticle }  from "shared"
+import { UserService } from "./user.service"
 
 
 @Injectable()
 export class ArticleService {
     constructor (
         private http: HttpClient,
+        private userService: UserService,
     ) {}
 
     getArticle(id: number): Observable<IArticle> {
@@ -32,7 +34,13 @@ export class ArticleService {
         article.title  = title
         article.body   = body
 
-        return this.http.post<IArticle>('http://localhost:3000/articles', article)
+        const httpOptions = {
+            headers: new HttpHeaders({
+                "Authorization": "Token " + this.userService.getJwt()
+            })
+        };
+
+        return this.http.post<IArticle>('http://localhost:3000/articles', article, httpOptions)
     }
 
     editArticle(userId: number, id: number, title: string, body: string) : Observable<IArticle> {
@@ -43,10 +51,24 @@ export class ArticleService {
         article.title   = title
         article.body    = body
 
-        return this.http.patch<IArticle>(`http://localhost:3000/articles/${ id }/`, article)
+        const httpOptions = {
+            headers: new HttpHeaders({
+                "Authorization": "Token " + this.userService.getJwt()
+            })
+        };
+
+        return this.http.patch<IArticle>(`http://localhost:3000/articles/${ id }/`, article, httpOptions)
     }
 
     deleteArticle(id: number): Observable<any> {
-        return this.http.delete(`http://localhost:3000/articles/${ id }/`)
+
+        const httpOptions = {
+            headers: new HttpHeaders({
+                "Authorization": "Token " + this.userService.getJwt()
+            })
+        };
+      
+
+        return this.http.delete(`http://localhost:3000/articles/${ id }/`, httpOptions)
     }
 }
