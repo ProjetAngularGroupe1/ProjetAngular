@@ -1,5 +1,14 @@
 # AngularProject
 
+## Membres
+
+Chaymae Jilla
+Thomas Arnaud
+Ahmed Belhadj
+Salma Ayachi
+Frere Harold
+Damien Choquet
+
 ## Launch Backend
 
 ```cmd
@@ -32,7 +41,6 @@ npm run start
 
 [localhost:4200]()
 
-
 ## Database
 
 - Le script `database/mockupdata.sql` permet de régénérer la BDD
@@ -41,9 +49,9 @@ npm run start
 
 - Depuis l'application on peut se connecter à différent comptes :
 
-    - `hfr4` - `password`
-    - `chay31` - `password`
-    - `damienien` - `password`
-    - `mrworldwide97` - `password`
-    - `salmaayachi` - `password`
-    - `tomasutenmei` - `1234`
+  - `hfr4` - `password`
+  - `chay31` - `password`
+  - `damienien` - `password`
+  - `mrworldwide97` - `password`
+  - `salmaayachi` - `password`
+  - `tomasutenmei` - `1234`
