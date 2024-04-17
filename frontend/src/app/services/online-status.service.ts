@@ -21,26 +21,7 @@ export class OnlineStatusService {
     constructor(
         private commentService: CommentService
     ) {
-        window.addEventListener('online' , () => this.updateOnlineStatus());
-        window.addEventListener('offline', () => this.updateOnlineStatus());
-    }
-
-    private async updateOnlineStatus() {
-        this.internalConnectionChanged.next(window.navigator.onLine);
-
-        if (this.isOnline()) {
-            console.log('online');
-
-            const comments = (await db.comments.toArray()).map(c => c as CommentModel);
-
-            comments?.forEach(comment => {
-                this.commentService.publishComment(comment.userId, comment.articleId, comment.body)
-            });
-
-            db.comments.clear();
-        }  else {
-            console.log('offline');
-        }
-
+        window.addEventListener('online' , () => this.internalConnectionChanged.next(window.navigator.onLine));
+        window.addEventListener('offline', () => this.internalConnectionChanged.next(window.navigator.onLine));
     }
 }

@@ -40,6 +40,18 @@ export class ArticleComponent implements OnInit {
     ) {}
 
     async ngOnInit(): Promise<void> {
+        this.onlineService.connectionChanged.subscribe(async () => {
+            if (this.onlineService.isOnline()) {
+                const comments = (await db.comments.toArray()).map(c => c as CommentModel);
+    
+                comments?.forEach(comment => {
+                    this.commentService.publishComment(comment.userId, comment.articleId, comment.body)
+                });
+    
+                db.comments.clear();
+            }
+        })
+        
         this.isLoggedIn = this.userService.isLoggedIn()
 
         if (this.isLoggedIn) {
