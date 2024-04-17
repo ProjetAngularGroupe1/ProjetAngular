@@ -14,9 +14,7 @@ npm install
 npm run start
 ```
 
-```cmd
-localhost:3000
-```
+[localhost:3000]()
 
 ## Launch Frontend
 
@@ -32,9 +30,8 @@ npm install
 npm run start
 ```
 
-```cmd
-localhost:4200
-```
+[localhost:4200]()
+
 
 ## Database
 
@@ -49,3 +46,4 @@ localhost:4200
     - `damienien` - `password`
     - `mrworldwide97` - `password`
     - `salmaayachi` - `password`
+    - `tomasutenmei` - `1234`

@@ -29,16 +29,17 @@ CREATE TABLE comment(
 );
 
 INSERT INTO user (id, username, password)
-VALUES 
+VALUES
     (0, 'hfr4'         , 'password'),
     (1, 'chay31'       , 'password'),
     (2, 'damienien'    , 'password'),
     (3, 'mrworldwide97', 'password'),
     (4, 'salmaayachi'  , 'password');
+    (5, 'tomasutenmei'  , '1234');
 
 
 INSERT INTO comment (id, body, articleId, userId, createdAt, updatedAt)
-VALUES  
+VALUES
     (0, 'Lol'                        ,  1, 0, date(), date() ),
     (1, 'Lmao'                       ,  2, 0, date(), date() ),
     (2, 'Kepp it up !'               ,  3, 0, date(), date() ),
@@ -50,7 +51,7 @@ VALUES
 
 
 INSERT INTO article (id, title, body, createdAt, updatedAt, userId)
-VALUES 
+VALUES
     (0, 'My First Article'         , 'This is the body of my first article.', date(), date(), 3),
     (1, 'Is the earth flat ?'      , 'Yes.'                                 , date(), date(), 3),
     (2, 'How to double jump IRL'   , 'Jump another time in mid air.'        , date(), date(), 2),
