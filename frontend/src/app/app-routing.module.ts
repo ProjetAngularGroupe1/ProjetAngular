@@ -6,6 +6,7 @@ import { ArticleComponent       } from './components/article/article.component'
 import { ArticleNewComponent    } from './components/article-new/article-new.component'
 import { ArticleEditComponent   } from './components/article-edit/article-edit.component'
 import { ArticleDeleteComponent } from './components/article-delete/article-delete.component'
+import { MyDynamicFormComponent } from './components/my-dynamic-form/my-dynamic-form.component'
 import { CommentComponent       } from './components/comment/comment.component'
 import { PageNotFoundComponent  } from './components/page-not-found/page-not-found.component'
 import { PageForbiddenComponent } from './components/page-forbidden/page-forbidden.component'
@@ -18,6 +19,7 @@ import { HomeComponent          } from './components/home/home.component'
 const routes: Routes = [
     { path: ''            , component: HomeComponent         , canActivate: []                },
     { path: 'home'        , component: HomeComponent         , canActivate: []                },
+    { path: 'dynamicform' , component: MyDynamicFormComponent, canActivate: []                },
     { path: 'profile'     , component: ProfileComponent      , canActivate: [isLoggedInGuard], resolve : { user: logginResolver } },
     { path: 'login'       , component: LoginComponent        , canActivate: []                },
     { path: 'logout'      , component: LogoutComponent       , canActivate: [isLoggedInGuard], resolve : { user: logginResolver } },
