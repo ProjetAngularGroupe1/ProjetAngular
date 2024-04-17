@@ -33,7 +33,7 @@ export class CommentService {
 
         comment.userId    = userId
         comment.articleId = articleId
-        comment.body       = body
+        comment.body      = body
 
         return this.http.post<IComment>('http://localhost:3000/comments', comment)
     }

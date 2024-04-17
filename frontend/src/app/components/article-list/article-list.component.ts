@@ -21,7 +21,7 @@ export class ArticleListComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.articles.forEach(article => {
+        this.articles?.forEach(article => {
             if (this.show_users) {
                 this.userService.getUser(article.userId).subscribe((user: IUserGetDto) => {
                     article.user = user as IUser

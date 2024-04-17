@@ -26,7 +26,7 @@ export class CommentListComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.comments.forEach(comment => {
+        this.comments?.forEach(comment => {
             if (this.show_users) {
                 this.userService.getUser(comment.userId).subscribe((user: IUserGetDto) => {
                     comment.user = user as IUser
